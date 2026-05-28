@@ -1,0 +1,160 @@
+{
+  "meta": {
+    "generated": "2026-05-28T16:30:00Z",
+    "count": 12
+  },
+  "categories": [
+    { "id": "model-release", "label": "Model Release" },
+    { "id": "agent-framework", "label": "Agent Framework" },
+    { "id": "tooling", "label": "Tooling & Infra" },
+    { "id": "research", "label": "Research" },
+    { "id": "lab-update", "label": "Big Lab Update" },
+    { "id": "community", "label": "Community & Discussion" }
+  ],
+  "items": [
+    {
+      "id": "claude-opus-4-8",
+      "title": "Introducing Claude Opus 4.8",
+      "description": "Anthropic's new flagship model, with gains in software engineering and long-running coding tasks plus higher-resolution vision.",
+      "url": "https://www.anthropic.com/news/claude-opus-4-8",
+      "source": "Anthropic",
+      "category": "model-release",
+      "significance": "high",
+      "published": "2026-05-28",
+      "date_added": "2026-05-28",
+      "topics": ["claude", "opus", "frontier model", "coding"]
+    },
+    {
+      "id": "mcp-spec-rc-2026-07-28",
+      "title": "The 2026-07-28 MCP Specification Release Candidate",
+      "description": "Release candidate for the next Model Context Protocol spec: a stateless protocol core, an Extensions framework, a Tasks lifecycle, and OAuth-aligned authorization. Final spec targeted for July 28, 2026.",
+      "url": "https://blog.modelcontextprotocol.io/posts/2026-07-28-release-candidate/",
+      "source": "Model Context Protocol Blog",
+      "category": "tooling",
+      "significance": "high",
+      "published": "2026-05-21",
+      "date_added": "2026-05-28",
+      "topics": ["mcp", "protocol", "tools", "standards"]
+    },
+    {
+      "id": "gemini-3-5-action",
+      "title": "Gemini 3.5: frontier intelligence with action",
+      "description": "Google's new Gemini model series balancing high speed with stronger agentic, action-taking capabilities; unveiled at Google I/O 2026.",
+      "url": "https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-3-5/",
+      "source": "Google",
+      "category": "model-release",
+      "significance": "high",
+      "published": "2026-05-19",
+      "date_added": "2026-05-28",
+      "topics": ["gemini", "google", "agents", "frontier model"]
+    },
+    {
+      "id": "groupmembench-arxiv-2605-14498",
+      "title": "GroupMemBench: Benchmarking LLM Agent Memory in Multi-Party Conversations",
+      "description": "New arXiv benchmark for evaluating LLM agent memory across multi-party conversations, exposing notable gaps in current memory systems.",
+      "url": "https://arxiv.org/abs/2605.14498",
+      "source": "arXiv",
+      "category": "research",
+      "significance": "normal",
+      "published": "2026-05-14",
+      "date_added": "2026-05-28",
+      "topics": ["benchmark", "memory", "multi-agent", "evaluation"]
+    },
+    {
+      "id": "nvidia-hermes-self-improving-agents",
+      "title": "Hermes Unlocks Self-Improving AI Agents on NVIDIA RTX PCs and DGX Spark",
+      "description": "Nous Research's open-source Hermes framework for reliable, self-improving agents optimized to run locally on NVIDIA RTX PCs and DGX Spark.",
+      "url": "https://blogs.nvidia.com/blog/rtx-ai-garage-hermes-agent-dgx-spark/",
+      "source": "NVIDIA Blog",
+      "category": "agent-framework",
+      "significance": "normal",
+      "published": "2026-05-13",
+      "date_added": "2026-05-28",
+      "topics": ["hermes", "nous research", "local agents", "self-improving"]
+    },
+    {
+      "id": "ms-agent-framework-python-1-7-0",
+      "title": "Microsoft Agent Framework 1.7.0 (Python)",
+      "description": "Latest release of Microsoft's Agent Framework adds HarnessAgent, A2A agent sessions, and experimental prompt-to-agent conversion APIs.",
+      "url": "https://github.com/microsoft/agent-framework/releases",
+      "source": "GitHub",
+      "category": "agent-framework",
+      "significance": "normal",
+      "published": "2026-05-28",
+      "date_added": "2026-05-28",
+      "topics": ["microsoft", "orchestration", "a2a", "framework"]
+    },
+    {
+      "id": "code-with-claude-2026-swillison",
+      "title": "Live blog: Code w/ Claude 2026",
+      "description": "Simon Willison's live blog of Anthropic's Code with Claude 2026: higher Claude Code rate limits, multi-agent orchestration and 'Dreaming' for Managed Agents, and a SpaceX/Colossus compute partnership.",
+      "url": "https://simonwillison.net/2026/May/6/code-w-claude-2026/",
+      "source": "Simon Willison",
+      "category": "community",
+      "significance": "normal",
+      "published": "2026-05-06",
+      "date_added": "2026-05-28",
+      "topics": ["anthropic", "claude code", "managed agents", "conference"]
+    },
+    {
+      "id": "alphaevolve-impact",
+      "title": "AlphaEvolve: a Gemini-powered coding agent scaling impact across fields",
+      "description": "Google DeepMind's Gemini-powered coding agent shows real-world impact across genomics, power-grid optimization, quantum physics, and mathematics.",
+      "url": "https://deepmind.google/blog/alphaevolve-impact/",
+      "source": "Google DeepMind",
+      "category": "research",
+      "significance": "normal",
+      "published": "2026-05-07",
+      "date_added": "2026-05-28",
+      "topics": ["alphaevolve", "coding agent", "deepmind", "science"]
+    },
+    {
+      "id": "state-of-ai-may-2026",
+      "title": "State of AI: May 2026",
+      "description": "Nathan Benaich's monthly State of AI roundup covering frontier cyber capabilities, shifting lab partnerships, Chinese open-weight coding models, and agent performance in live markets.",
+      "url": "https://press.airstreet.com/p/state-of-ai-may-2026",
+      "source": "Air Street Press",
+      "category": "community",
+      "significance": "normal",
+      "published": "2026-05-04",
+      "date_added": "2026-05-28",
+      "topics": ["newsletter", "industry", "analysis", "open weights"]
+    },
+    {
+      "id": "anthropic-series-h",
+      "title": "Anthropic raises $65B Series H at $965B post-money valuation",
+      "description": "Anthropic's latest raise signals continued scaling of compute and research investment.",
+      "url": "https://www.anthropic.com/news/series-h",
+      "source": "Anthropic",
+      "category": "lab-update",
+      "significance": "normal",
+      "published": "2026-05-28",
+      "date_added": "2026-05-28",
+      "topics": ["anthropic", "funding", "industry"]
+    },
+    {
+      "id": "claude-design-anthropic-labs",
+      "title": "Introducing Claude Design by Anthropic Labs",
+      "description": "An Anthropic Labs product for collaborating with Claude to produce visual outputs: designs, prototypes, slides, and one-pagers.",
+      "url": "https://www.anthropic.com/news/claude-design-anthropic-labs",
+      "source": "Anthropic",
+      "category": "tooling",
+      "significance": "normal",
+      "published": "2026-04-17",
+      "date_added": "2026-05-28",
+      "topics": ["anthropic labs", "design", "prototyping"]
+    },
+    {
+      "id": "openai-codex-almost-everything",
+      "title": "Codex for (almost) everything",
+      "description": "Major Codex update: it can now operate your computer alongside you, work natively with the web via an in-app browser, and adds 90+ new plugins.",
+      "url": "https://openai.com/index/codex-for-almost-everything/",
+      "source": "OpenAI",
+      "category": "tooling",
+      "significance": "normal",
+      "published": "2026-04-16",
+      "date_added": "2026-05-28",
+      "topics": ["openai", "codex", "computer use", "coding agent"]
+    }
+  ]
+}
