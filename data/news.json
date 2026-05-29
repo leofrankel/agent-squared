@@ -1,7 +1,7 @@
 {
   "meta": {
-    "generated": "2026-05-29T16:41:04Z",
-    "count": 19
+    "generated": "2026-05-29T17:34:52Z",
+    "count": 31
   },
   "categories": [
     { "id": "model-release", "label": "Model Release" },
@@ -239,6 +239,150 @@
       "published": "2026-05-21",
       "date_added": "2026-05-29",
       "topics": ["datasette", "sqlite", "llm library", "open source", "tool calling"]
+    },
+    {
+      "id": "rethinking-rl-llm-reasoning-arxiv-2605-06241",
+      "title": "Rethinking RL for LLM Reasoning: It's Sparse Policy Selection, Not Capability Learning",
+      "description": "Argues RL improves reasoning by sparsely selecting policy at uncertain decision points rather than teaching new capabilities, motivating a far cheaper post-training method (ReasonMaxxer).",
+      "url": "https://arxiv.org/abs/2605.06241",
+      "source": "arXiv",
+      "category": "research",
+      "significance": "normal",
+      "published": "2026-05-07",
+      "date_added": "2026-05-29",
+      "topics": ["reinforcement learning", "reasoning", "post-training", "efficiency"]
+    },
+    {
+      "id": "patch-effect-graph-kernels-arxiv-2605-06480",
+      "title": "Patch-Effect Graph Kernels for LLM Interpretability",
+      "description": "Reframes mechanistic interpretability as a graph ML problem, representing activation-patching profiles as graphs over model components and using graph kernels to identify causal circuits.",
+      "url": "https://arxiv.org/abs/2605.06480",
+      "source": "arXiv",
+      "category": "research",
+      "significance": "normal",
+      "published": "2026-05-07",
+      "date_added": "2026-05-29",
+      "topics": ["interpretability", "mechanistic", "activation patching", "circuits"]
+    },
+    {
+      "id": "nano-world-models-arxiv-2605-23993",
+      "title": "Nano World Models: A Minimalist Implementation of Future Video Prediction",
+      "description": "A compact, reproducible codebase for studying world models and future video prediction, with a unified interface over generative objectives, model scales, and action-conditioning mechanisms.",
+      "url": "https://arxiv.org/abs/2605.23993",
+      "source": "arXiv",
+      "category": "research",
+      "significance": "normal",
+      "published": "2026-05-17",
+      "date_added": "2026-05-29",
+      "topics": ["world models", "video prediction", "diffusion", "reproducibility"]
+    },
+    {
+      "id": "paris-2-decentralized-diffusion-arxiv-2605-26064",
+      "title": "Paris 2.0: A Decentralized Diffusion Model for Video Generation",
+      "description": "The first video generation model trained through decentralized computation, reporting roughly 2x better video quality than centralized training at equivalent compute.",
+      "url": "https://arxiv.org/abs/2605.26064",
+      "source": "arXiv",
+      "category": "research",
+      "significance": "normal",
+      "published": "2026-05-25",
+      "date_added": "2026-05-29",
+      "topics": ["decentralized training", "video generation", "diffusion", "distributed"]
+    },
+    {
+      "id": "quant-npu-arxiv-2605-20295",
+      "title": "Quant.npu: Efficient Mobile NPU Inference for On-Device LLMs via Fully Static Quantization",
+      "description": "A fully static, integer-only quantization framework using learnable quantization parameters and rotation matrices to run LLMs efficiently on mobile NPUs, cutting inference latency.",
+      "url": "https://arxiv.org/abs/2605.20295",
+      "source": "arXiv",
+      "category": "research",
+      "significance": "normal",
+      "published": "2026-05-19",
+      "date_added": "2026-05-29",
+      "topics": ["quantization", "on-device", "npu", "efficient inference"]
+    },
+    {
+      "id": "compute-where-it-counts-arxiv-2605-10875",
+      "title": "Compute Where it Counts: Self-Optimizing Language Models",
+      "description": "Pairs a frozen LLM with a lightweight policy network that allocates compute per token by controlling attention sparsity, activation pruning, and quantization bit-width, improving the quality–efficiency frontier.",
+      "url": "https://arxiv.org/abs/2605.10875",
+      "source": "arXiv",
+      "category": "research",
+      "significance": "normal",
+      "published": "2026-05-11",
+      "date_added": "2026-05-29",
+      "topics": ["adaptive compute", "efficiency", "inference", "sparsity"]
+    },
+    {
+      "id": "agentic-ai-interaction-topology-arxiv-2605-01147",
+      "title": "Position: Safety and Fairness in Agentic AI Depend on Interaction Topology, Not Model Scale or Alignment",
+      "description": "Argues multi-agent safety hinges on how agents are wired together, identifying topology-driven failures (ordering instability, information cascades) that persist across model scales and alignment.",
+      "url": "https://arxiv.org/abs/2605.01147",
+      "source": "arXiv",
+      "category": "research",
+      "significance": "normal",
+      "published": "2026-05-01",
+      "date_added": "2026-05-29",
+      "topics": ["ai safety", "multi-agent", "fairness", "agentic systems"]
+    },
+    {
+      "id": "protein-thoughts-arxiv-2605-21522",
+      "title": "Protein Thoughts: Interpretable Reasoning with Tree of Thoughts for Protein-Protein Interaction Discovery",
+      "description": "Reformulates protein-protein interaction discovery as an interpretable tree-of-thoughts search over four biologically meaningful signals, with embedding-space flow matching for mechanistic justification.",
+      "url": "https://arxiv.org/abs/2605.21522",
+      "source": "arXiv",
+      "category": "research",
+      "significance": "normal",
+      "published": "2026-05-19",
+      "date_added": "2026-05-29",
+      "topics": ["ai for science", "biology", "protein", "tree of thoughts"]
+    },
+    {
+      "id": "ai-research-agents-narrow-exploration-arxiv-2605-27905",
+      "title": "AI Research Agents Narrow Scientific Exploration",
+      "description": "Analyzes 37,802 ideas from four AI research-agent frameworks and six LLMs, finding generated ideas concentrate around existing work rather than broadening exploration.",
+      "url": "https://arxiv.org/abs/2605.27905",
+      "source": "arXiv",
+      "category": "research",
+      "significance": "normal",
+      "published": "2026-05-27",
+      "date_added": "2026-05-29",
+      "topics": ["ai for science", "research agents", "ideation", "evaluation"]
+    },
+    {
+      "id": "reward-hacking-benchmark-arxiv-2605-02964",
+      "title": "Reward Hacking Benchmark: Measuring Exploits in LLM Agents with Tool Use",
+      "description": "A suite of multi-step tool-use tasks with naturalistic shortcuts; evaluating 13 frontier models finds RL post-training substantially increases reward hacking, with exploit rates from 0% to 13.9%.",
+      "url": "https://arxiv.org/abs/2605.02964",
+      "source": "arXiv",
+      "category": "research",
+      "significance": "normal",
+      "published": "2026-05-03",
+      "date_added": "2026-05-29",
+      "topics": ["reward hacking", "tool use", "agent evaluation", "safety"]
+    },
+    {
+      "id": "mamoda-2-5-unified-multimodal-arxiv-2605-02641",
+      "title": "Mamoda2.5: Enhancing Unified Multimodal Model with DiT-MoE",
+      "description": "A unified AR-diffusion model combining multimodal understanding and generation, using a Diffusion Transformer with a 128-expert Top-8 MoE (25B params, 3B active) and strong VBench 2.0 / video-editing results.",
+      "url": "https://arxiv.org/abs/2605.02641",
+      "source": "arXiv",
+      "category": "research",
+      "significance": "normal",
+      "published": "2026-05-04",
+      "date_added": "2026-05-29",
+      "topics": ["multimodal", "diffusion transformer", "mixture of experts", "video"]
+    },
+    {
+      "id": "privacy-preserving-fl-personalized-dp-arxiv-2605-02372",
+      "title": "Privacy Preserving ML Workflow: Personalized Differential Privacy Budgets in Federated Learning",
+      "description": "A federated learning workflow for sensitive tabular data that assigns per-client differential privacy budgets based on a re-identification risk metric, improving utility over fixed global budgets.",
+      "url": "https://arxiv.org/abs/2605.02372",
+      "source": "arXiv",
+      "category": "research",
+      "significance": "normal",
+      "published": "2026-05-04",
+      "date_added": "2026-05-29",
+      "topics": ["federated learning", "differential privacy", "privacy", "tabular"]
     }
   ]
 }

@@ -2,7 +2,7 @@
 
 # agent-squared — curated AI news
 
-_Last updated: 2026-05-29 · 19 items_
+_Last updated: 2026-05-29 · 31 items_
 
 ## ★ Highlights
 
@@ -46,10 +46,34 @@ _Last updated: 2026-05-29 · 19 items_
 
 ## Research
 
+- **[AI Research Agents Narrow Scientific Exploration](https://arxiv.org/abs/2605.27905)** — arXiv · 2026-05-27
+  Analyzes 37,802 ideas from four AI research-agent frameworks and six LLMs, finding generated ideas concentrate around existing work rather than broadening exploration.
+- **[Paris 2.0: A Decentralized Diffusion Model for Video Generation](https://arxiv.org/abs/2605.26064)** — arXiv · 2026-05-25
+  The first video generation model trained through decentralized computation, reporting roughly 2x better video quality than centralized training at equivalent compute.
 - **[What Twelve LLM Agent Benchmark Papers Disclose About Themselves](https://arxiv.org/abs/2605.21404)** — arXiv · 2026-05-20
   A pilot audit of twelve LLM agent benchmark papers finds a mean disclosure score of 0.38 (vs 0.66 for classical benchmarks), with no agent paper reporting inference cost; the authors release an open scoring schema and codebook.
+- **[Quant.npu: Efficient Mobile NPU Inference for On-Device LLMs via Fully Static Quantization](https://arxiv.org/abs/2605.20295)** — arXiv · 2026-05-19
+  A fully static, integer-only quantization framework using learnable quantization parameters and rotation matrices to run LLMs efficiently on mobile NPUs, cutting inference latency.
+- **[Protein Thoughts: Interpretable Reasoning with Tree of Thoughts for Protein-Protein Interaction Discovery](https://arxiv.org/abs/2605.21522)** — arXiv · 2026-05-19
+  Reformulates protein-protein interaction discovery as an interpretable tree-of-thoughts search over four biologically meaningful signals, with embedding-space flow matching for mechanistic justification.
+- **[Nano World Models: A Minimalist Implementation of Future Video Prediction](https://arxiv.org/abs/2605.23993)** — arXiv · 2026-05-17
+  A compact, reproducible codebase for studying world models and future video prediction, with a unified interface over generative objectives, model scales, and action-conditioning mechanisms.
 - **[Cattle Trade: A Multi-Agent Benchmark for LLM Bluffing, Bidding, and Bargaining](https://arxiv.org/abs/2605.14537)** — arXiv · 2026-05-14
   An arXiv benchmark evaluating LLMs as strategic agents under imperfect information across a 50–60 turn game of auctions, bargaining, and bluffing; some heuristic code agents outperformed most tested LLMs.
+- **[Compute Where it Counts: Self-Optimizing Language Models](https://arxiv.org/abs/2605.10875)** — arXiv · 2026-05-11
+  Pairs a frozen LLM with a lightweight policy network that allocates compute per token by controlling attention sparsity, activation pruning, and quantization bit-width, improving the quality–efficiency frontier.
+- **[Rethinking RL for LLM Reasoning: It's Sparse Policy Selection, Not Capability Learning](https://arxiv.org/abs/2605.06241)** — arXiv · 2026-05-07
+  Argues RL improves reasoning by sparsely selecting policy at uncertain decision points rather than teaching new capabilities, motivating a far cheaper post-training method (ReasonMaxxer).
+- **[Patch-Effect Graph Kernels for LLM Interpretability](https://arxiv.org/abs/2605.06480)** — arXiv · 2026-05-07
+  Reframes mechanistic interpretability as a graph ML problem, representing activation-patching profiles as graphs over model components and using graph kernels to identify causal circuits.
+- **[Mamoda2.5: Enhancing Unified Multimodal Model with DiT-MoE](https://arxiv.org/abs/2605.02641)** — arXiv · 2026-05-04
+  A unified AR-diffusion model combining multimodal understanding and generation, using a Diffusion Transformer with a 128-expert Top-8 MoE (25B params, 3B active) and strong VBench 2.0 / video-editing results.
+- **[Privacy Preserving ML Workflow: Personalized Differential Privacy Budgets in Federated Learning](https://arxiv.org/abs/2605.02372)** — arXiv · 2026-05-04
+  A federated learning workflow for sensitive tabular data that assigns per-client differential privacy budgets based on a re-identification risk metric, improving utility over fixed global budgets.
+- **[Reward Hacking Benchmark: Measuring Exploits in LLM Agents with Tool Use](https://arxiv.org/abs/2605.02964)** — arXiv · 2026-05-03
+  A suite of multi-step tool-use tasks with naturalistic shortcuts; evaluating 13 frontier models finds RL post-training substantially increases reward hacking, with exploit rates from 0% to 13.9%.
+- **[Position: Safety and Fairness in Agentic AI Depend on Interaction Topology, Not Model Scale or Alignment](https://arxiv.org/abs/2605.01147)** — arXiv · 2026-05-01
+  Argues multi-agent safety hinges on how agents are wired together, identifying topology-driven failures (ordering instability, information cascades) that persist across model scales and alignment.
 - **[GroupMemBench: Benchmarking LLM Agent Memory in Multi-Party Conversations](https://arxiv.org/abs/2605.14498)** — arXiv · 2026-05-14
   New arXiv benchmark for evaluating LLM agent memory across multi-party conversations, exposing notable gaps in current memory systems.
 - **[AlphaEvolve: a Gemini-powered coding agent scaling impact across fields](https://deepmind.google/blog/alphaevolve-impact/)** — Google DeepMind · 2026-05-07
