@@ -2,10 +2,12 @@
 
 # agent-squared — curated AI news
 
-_Last updated: 2026-05-28 · 12 items_
+_Last updated: 2026-05-29 · 17 items_
 
 ## ★ Highlights
 
+- **[Google Antigravity 2.0: agent-first development platform](https://blog.google/innovation-and-ai/technology/developers-tools/google-io-2026-developer-highlights/)** — Google · 2026-05-19 · _Agent Framework_
+  At Google I/O 2026, Google launched Antigravity 2.0, a standalone desktop app built around orchestrating multiple agents in parallel, alongside an Antigravity CLI, SDK, Managed Agents in the Gemini API, and enterprise support.
 - **[Introducing Claude Opus 4.8](https://www.anthropic.com/news/claude-opus-4-8)** — Anthropic · 2026-05-28 · _Model Release_
   Anthropic's new flagship model, with gains in software engineering and long-running coding tasks plus higher-resolution vision.
 - **[The 2026-07-28 MCP Specification Release Candidate](https://blog.modelcontextprotocol.io/posts/2026-07-28-release-candidate/)** — Model Context Protocol Blog · 2026-05-21 · _Tooling & Infra_
@@ -22,10 +24,12 @@ _Last updated: 2026-05-28 · 12 items_
 
 ## Agent Framework
 
-- **[Hermes Unlocks Self-Improving AI Agents on NVIDIA RTX PCs and DGX Spark](https://blogs.nvidia.com/blog/rtx-ai-garage-hermes-agent-dgx-spark/)** — NVIDIA Blog · 2026-05-13
-  Nous Research's open-source Hermes framework for reliable, self-improving agents optimized to run locally on NVIDIA RTX PCs and DGX Spark.
+- **[Google Antigravity 2.0: agent-first development platform](https://blog.google/innovation-and-ai/technology/developers-tools/google-io-2026-developer-highlights/)** — Google · 2026-05-19
+  At Google I/O 2026, Google launched Antigravity 2.0, a standalone desktop app built around orchestrating multiple agents in parallel, alongside an Antigravity CLI, SDK, Managed Agents in the Gemini API, and enterprise support.
 - **[Microsoft Agent Framework 1.7.0 (Python)](https://github.com/microsoft/agent-framework/releases)** — GitHub · 2026-05-28
   Latest release of Microsoft's Agent Framework adds HarnessAgent, A2A agent sessions, and experimental prompt-to-agent conversion APIs.
+- **[Hermes Unlocks Self-Improving AI Agents on NVIDIA RTX PCs and DGX Spark](https://blogs.nvidia.com/blog/rtx-ai-garage-hermes-agent-dgx-spark/)** — NVIDIA Blog · 2026-05-13
+  Nous Research's open-source Hermes framework for reliable, self-improving agents optimized to run locally on NVIDIA RTX PCs and DGX Spark.
 
 ## Tooling & Infra
 
@@ -38,6 +42,10 @@ _Last updated: 2026-05-28 · 12 items_
 
 ## Research
 
+- **[What Twelve LLM Agent Benchmark Papers Disclose About Themselves](https://arxiv.org/abs/2605.21404)** — arXiv · 2026-05-20
+  A pilot audit of twelve LLM agent benchmark papers finds a mean disclosure score of 0.38 (vs 0.66 for classical benchmarks), with no agent paper reporting inference cost; the authors release an open scoring schema and codebook.
+- **[Cattle Trade: A Multi-Agent Benchmark for LLM Bluffing, Bidding, and Bargaining](https://arxiv.org/abs/2605.14537)** — arXiv · 2026-05-14
+  An arXiv benchmark evaluating LLMs as strategic agents under imperfect information across a 50–60 turn game of auctions, bargaining, and bluffing; some heuristic code agents outperformed most tested LLMs.
 - **[GroupMemBench: Benchmarking LLM Agent Memory in Multi-Party Conversations](https://arxiv.org/abs/2605.14498)** — arXiv · 2026-05-14
   New arXiv benchmark for evaluating LLM agent memory across multi-party conversations, exposing notable gaps in current memory systems.
 - **[AlphaEvolve: a Gemini-powered coding agent scaling impact across fields](https://deepmind.google/blog/alphaevolve-impact/)** — Google DeepMind · 2026-05-07
@@ -45,11 +53,15 @@ _Last updated: 2026-05-28 · 12 items_
 
 ## Big Lab Update
 
+- **[Anthropic forms $200 million partnership with the Gates Foundation](https://www.anthropic.com/news/gates-foundation-partnership)** — Anthropic · 2026-05-14
+  A four-year partnership providing grant funding, Claude usage credits, and technical support for AI applications in global health, life sciences, education, and economic mobility.
 - **[Anthropic raises $65B Series H at $965B post-money valuation](https://www.anthropic.com/news/series-h)** — Anthropic · 2026-05-28
   Anthropic's latest raise signals continued scaling of compute and research investment.
 
 ## Community & Discussion
 
+- **[I think Anthropic and OpenAI have found product-market fit](https://simonwillison.net/2026/May/27/product-market-fit/)** — Simon Willison · 2026-05-27
+  Simon Willison argues coding agents (Claude Code/Cowork, Codex) have become daily drivers for well-paid professionals, citing his own ~$2,180/month in usage and April 2026 as the revenue inflection point.
 - **[Live blog: Code w/ Claude 2026](https://simonwillison.net/2026/May/6/code-w-claude-2026/)** — Simon Willison · 2026-05-06
   Simon Willison's live blog of Anthropic's Code with Claude 2026: higher Claude Code rate limits, multi-agent orchestration and 'Dreaming' for Managed Agents, and a SpaceX/Colossus compute partnership.
 - **[State of AI: May 2026](https://press.airstreet.com/p/state-of-ai-may-2026)** — Air Street Press · 2026-05-04
