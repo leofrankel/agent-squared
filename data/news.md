@@ -2,7 +2,7 @@
 
 # agent-squared — curated AI news
 
-_Last updated: 2026-05-29 · 17 items_
+_Last updated: 2026-05-29 · 19 items_
 
 ## ★ Highlights
 
@@ -24,8 +24,12 @@ _Last updated: 2026-05-29 · 17 items_
 
 ## Agent Framework
 
+- **[Datasette Agent: an extensible AI assistant for Datasette](https://simonwillison.net/2026/May/21/datasette-agent/)** — Simon Willison · 2026-05-21
+  Simon Willison's open-source Datasette plugin providing a conversational interface over SQLite, built on the LLM library with support for hundreds of tool-calling models from frontier and open-weight vendors.
 - **[Google Antigravity 2.0: agent-first development platform](https://blog.google/innovation-and-ai/technology/developers-tools/google-io-2026-developer-highlights/)** — Google · 2026-05-19
   At Google I/O 2026, Google launched Antigravity 2.0, a standalone desktop app built around orchestrating multiple agents in parallel, alongside an Antigravity CLI, SDK, Managed Agents in the Gemini API, and enterprise support.
+- **[Gemini Spark: a 24/7 personal AI agent](https://blog.google/innovation-and-ai/sundar-pichai-io-2026/)** — Google · 2026-05-19
+  Google's personal AI agent in the Gemini app, powered by Gemini 3.5 and the Antigravity harness on dedicated Google Cloud VMs. Runs long-horizon tasks in the background, integrates Gmail/Workspace, and adds third-party tools via MCP. Rolling out to trusted testers and AI Ultra subscribers.
 - **[Microsoft Agent Framework 1.7.0 (Python)](https://github.com/microsoft/agent-framework/releases)** — GitHub · 2026-05-28
   Latest release of Microsoft's Agent Framework adds HarnessAgent, A2A agent sessions, and experimental prompt-to-agent conversion APIs.
 - **[Hermes Unlocks Self-Improving AI Agents on NVIDIA RTX PCs and DGX Spark](https://blogs.nvidia.com/blog/rtx-ai-garage-hermes-agent-dgx-spark/)** — NVIDIA Blog · 2026-05-13

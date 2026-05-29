@@ -1,7 +1,7 @@
 {
   "meta": {
     "generated": "2026-05-29T16:41:04Z",
-    "count": 17
+    "count": 19
   },
   "categories": [
     { "id": "model-release", "label": "Model Release" },
@@ -215,6 +215,30 @@
       "published": "2026-05-27",
       "date_added": "2026-05-29",
       "topics": ["coding agents", "industry", "claude code", "codex", "analysis"]
+    },
+    {
+      "id": "gemini-spark-personal-agent",
+      "title": "Gemini Spark: a 24/7 personal AI agent",
+      "description": "Google's personal AI agent in the Gemini app, powered by Gemini 3.5 and the Antigravity harness on dedicated Google Cloud VMs. Runs long-horizon tasks in the background, integrates Gmail/Workspace, and adds third-party tools via MCP. Rolling out to trusted testers and AI Ultra subscribers.",
+      "url": "https://blog.google/innovation-and-ai/sundar-pichai-io-2026/",
+      "source": "Google",
+      "category": "agent-framework",
+      "significance": "normal",
+      "published": "2026-05-19",
+      "date_added": "2026-05-29",
+      "topics": ["gemini", "google", "personal agent", "mcp", "long-horizon"]
+    },
+    {
+      "id": "datasette-agent-0-1",
+      "title": "Datasette Agent: an extensible AI assistant for Datasette",
+      "description": "Simon Willison's open-source Datasette plugin providing a conversational interface over SQLite, built on the LLM library with support for hundreds of tool-calling models from frontier and open-weight vendors.",
+      "url": "https://simonwillison.net/2026/May/21/datasette-agent/",
+      "source": "Simon Willison",
+      "category": "agent-framework",
+      "significance": "normal",
+      "published": "2026-05-21",
+      "date_added": "2026-05-29",
+      "topics": ["datasette", "sqlite", "llm library", "open source", "tool calling"]
     }
   ]
 }
