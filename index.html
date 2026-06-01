@@ -23,6 +23,12 @@
     </div>
   </header>
 
+  <nav class="wrap viewnav" aria-label="Views">
+    <button id="nav-dashboard" class="viewtab active" type="button">Dashboard</button>
+    <button id="nav-mylinks" class="viewtab" type="button">My Links</button>
+  </nav>
+
+  <div id="view-dashboard">
   <div class="wrap controls">
     <div class="search-row">
       <input id="search" class="search" type="search" placeholder="Search titles, descriptions, sources…" aria-label="Search news" />
@@ -50,6 +56,58 @@
       <p id="empty-state" class="empty-state" hidden>No items match your filters.</p>
     </section>
   </main>
+  </div><!-- /view-dashboard -->
+
+  <div id="view-mylinks" hidden>
+    <div class="wrap mylinks-top">
+      <form id="ml-add" class="ml-add" autocomplete="off">
+        <div class="ml-add-row">
+          <input id="ml-url" class="ml-input ml-input-url" type="text" required placeholder="Paste a link (https://…)  *required" aria-label="Link URL" />
+        </div>
+        <div class="ml-add-row">
+          <input id="ml-title" class="ml-input" type="text" placeholder="Title (optional)" aria-label="Title" />
+          <input id="ml-desc" class="ml-input" type="text" placeholder="Description (optional)" aria-label="Description" />
+        </div>
+        <div class="ml-add-row ml-add-meta">
+          <input id="ml-folder" class="ml-input ml-input-sm" type="text" list="ml-folder-list" placeholder="Folder (optional)" aria-label="Folder" />
+          <datalist id="ml-folder-list"></datalist>
+          <input id="ml-tags" class="ml-input ml-input-sm" type="text" placeholder="Tags, comma-separated (optional)" aria-label="Tags" />
+          <button id="ml-add-submit" type="submit" class="ml-add-btn">+ Add link</button>
+          <button id="ml-add-cancel" type="button" class="ml-cancel-btn" hidden>Cancel</button>
+        </div>
+      </form>
+
+      <div class="ml-sync">
+        <span id="ml-sync-status" class="ml-sync-status"></span>
+        <div class="ml-sync-actions">
+          <button id="ml-sync-from" class="ml-sync-btn" type="button" hidden>Sync from repo</button>
+          <button id="ml-export" class="ml-sync-btn" type="button">Export to repo</button>
+        </div>
+      </div>
+      <p id="ml-flash" class="ml-flash" hidden></p>
+    </div>
+
+    <div class="wrap controls">
+      <div class="search-row">
+        <input id="ml-search" class="search" type="search" placeholder="Search your links…" aria-label="Search links" />
+      </div>
+      <div class="filter-block">
+        <span class="filter-label">Folder</span>
+        <div id="ml-folder-filters" class="pills" role="group" aria-label="Filter by folder"></div>
+      </div>
+      <div id="ml-tag-block" class="filter-block">
+        <span class="filter-label">Tags</span>
+        <div id="ml-tag-filters" class="pills" role="group" aria-label="Filter by tag"></div>
+      </div>
+    </div>
+
+    <main class="wrap">
+      <section id="ml-section">
+        <div id="ml-groups"></div>
+        <p id="ml-empty" class="empty-state" hidden>No saved links yet.</p>
+      </section>
+    </main>
+  </div><!-- /view-mylinks -->
 
   <footer class="site-footer">
     <div class="wrap">
@@ -69,6 +127,8 @@
   </template>
 
   <script src="data/news.js"></script>
+  <script src="data/my-links.js"></script>
   <script src="assets/app.js"></script>
+  <script src="assets/mylinks.js"></script>
 </body>
 </html>

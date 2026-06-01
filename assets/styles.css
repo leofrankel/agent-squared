@@ -85,6 +85,143 @@ a { color: inherit; }
 .last-updated { color: var(--text-soft); font-size: 13px; }
 .item-count { color: var(--text-dim); font-size: 12.5px; }
 
+/* ---------- View nav (Dashboard / My Links) ---------- */
+.viewnav {
+  display: flex;
+  gap: 6px;
+  padding-top: 18px;
+}
+.viewtab {
+  appearance: none;
+  background: transparent;
+  border: 1px solid transparent;
+  border-bottom: 2px solid transparent;
+  color: var(--text-dim);
+  font-family: var(--sans);
+  font-size: 14.5px;
+  font-weight: 500;
+  padding: 8px 14px;
+  border-radius: var(--radius-sm) var(--radius-sm) 0 0;
+  cursor: pointer;
+  transition: color 0.14s, border-color 0.14s, background 0.14s;
+}
+.viewtab:hover { color: var(--text); }
+.viewtab.active {
+  color: var(--text);
+  border-bottom-color: var(--navy);
+  background: var(--navy-soft);
+}
+
+/* ---------- My Links: add form + sync ---------- */
+.mylinks-top { padding-top: 22px; }
+.ml-add {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  background: var(--bg-elev);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 16px;
+}
+.ml-add.editing { border-color: var(--navy-line); }
+.ml-add-row { display: flex; gap: 10px; flex-wrap: wrap; }
+.ml-add-row > .ml-input { flex: 1 1 220px; min-width: 0; }
+.ml-add-meta { align-items: center; }
+.ml-add-meta .ml-input-sm { flex: 1 1 180px; }
+.ml-input {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  color: var(--text);
+  padding: 10px 13px;
+  font-size: 14px;
+  font-family: inherit;
+  transition: border-color 0.15s, background 0.15s;
+}
+.ml-input::placeholder { color: var(--text-dim); }
+.ml-input:focus { outline: none; border-color: var(--navy-line); background: var(--bg-elev-2); }
+.ml-input-url { font-size: 14.5px; }
+.ml-add-btn {
+  appearance: none;
+  background: var(--navy-soft);
+  border: 1px solid var(--navy-line);
+  color: var(--text);
+  border-radius: var(--radius-sm);
+  padding: 10px 16px;
+  font-size: 14px;
+  font-family: inherit;
+  font-weight: 500;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.14s;
+}
+.ml-add-btn:hover { background: rgba(111, 151, 214, 0.26); }
+.ml-cancel-btn {
+  appearance: none;
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--text-dim);
+  border-radius: var(--radius-sm);
+  padding: 10px 14px;
+  font-size: 13.5px;
+  font-family: inherit;
+  cursor: pointer;
+}
+.ml-cancel-btn:hover { color: var(--text); border-color: var(--border-strong); }
+
+.ml-sync {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 12px;
+}
+.ml-sync-actions { display: flex; gap: 8px; flex-wrap: wrap; }
+.ml-sync-status { color: var(--text-dim); font-size: 13px; }
+.ml-sync-status.dirty { color: var(--cream); }
+.ml-sync-btn {
+  appearance: none;
+  background: var(--bg-elev);
+  border: 1px solid var(--border);
+  color: var(--text-soft);
+  border-radius: var(--radius-sm);
+  padding: 7px 14px;
+  font-size: 13px;
+  font-family: inherit;
+  cursor: pointer;
+  transition: all 0.14s;
+}
+.ml-sync-btn:hover { color: var(--text); border-color: var(--border-strong); }
+.ml-sync-btn.primary {
+  background: var(--cream-soft);
+  border-color: rgba(230, 216, 184, 0.4);
+  color: var(--cream);
+}
+.ml-flash {
+  margin: 10px 0 0;
+  padding: 9px 13px;
+  border-radius: var(--radius-sm);
+  background: var(--navy-soft);
+  border: 1px solid var(--navy-line);
+  color: var(--text-soft);
+  font-size: 13px;
+}
+
+/* My Links card variants */
+.badge-folder {
+  background: var(--cream-soft);
+  color: var(--cream);
+  border-color: rgba(230, 216, 184, 0.3);
+}
+.badge-folder.is-unfiled {
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--text-dim);
+  border-color: var(--border);
+}
+.usertag-static { padding-right: 9px; }
+.action-btn.danger:hover { color: var(--danger); border-color: rgba(217, 138, 138, 0.4); }
+
 /* ---------- Controls ---------- */
 .controls { padding-top: 22px; padding-bottom: 6px; }
 .search-row { margin-bottom: 16px; }
