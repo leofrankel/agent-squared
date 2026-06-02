@@ -4,14 +4,13 @@
  * agent² — "My Links" view
  * A personal log of articles/links found outside the curated dashboard.
  *
- * Storage model (backendless, cross-device via git):
- *   - data/my-links.js (window.__MYLINKS__) is the committed, git-synced baseline.
- *   - localStorage (MLS_KEY) is the live working store you edit in the browser.
- *   - On a fresh device the baseline seeds localStorage.
- *   - "Export to repo" downloads an updated my-links.js to commit & push.
- *   - "Sync from repo" merges newly-committed links from the baseline into the
- *     local store (baseline wins for matching ids; un-exported local-only links
- *     are kept).
+ * Storage model (local-first):
+ *   - Each visitor's links live in their own browser (localStorage, MLS_KEY).
+ *   - data/my-links.js (window.__MYLINKS__) is sample SEED content shown only on
+ *     a brand-new visitor's first load, so the feature isn't an empty page.
+ *   - "Export backup" downloads the user's links as JSON; "Import backup" restores
+ *     or merges them — a portable, offline data-safety feature.
+ *   - (Phase 2) Signing in will sync this local store to a per-user account.
  * This file is intentionally independent of assets/app.js (the curated feed).
  * -------------------------------------------------------------------------- */
 
@@ -19,7 +18,7 @@ const MLS_KEY = "agent2:mylinks:v1";
 const VIEW_KEY = "agent2:view";
 const UNFILED = "__unfiled__";
 
-let MLS = { links: [], dirty: false, syncedGeneration: null };
+let MLS = { links: [] };
 const mlFilters = { folder: "all", tag: "all", q: "" };
 let editingId = null;
 
@@ -29,11 +28,7 @@ function mlLoad() {
     const raw = localStorage.getItem(MLS_KEY);
     if (raw) {
       const p = JSON.parse(raw);
-      return {
-        links: Array.isArray(p.links) ? p.links : [],
-        dirty: !!p.dirty,
-        syncedGeneration: p.syncedGeneration || null,
-      };
+      return { links: Array.isArray(p.links) ? p.links : [] };
     }
   } catch (e) {
     console.warn("Could not read My Links store:", e);
@@ -414,7 +409,6 @@ function submitForm(e) {
       added: mlToday(),
     });
   }
-  MLS.dirty = true;
   mlSave();
   resetForm();
   renderML();
@@ -425,12 +419,11 @@ function deleteLink(id) {
   if (!window.confirm("Delete “" + name + "” from your links?")) return;
   MLS.links = MLS.links.filter((x) => x.id !== id);
   if (editingId === id) resetForm();
-  MLS.dirty = true;
   mlSave();
   renderML();
 }
 
-/* ---------- sync: export / pull ---------- */
+/* ---------- backup: export / import ---------- */
 function buildExportObject() {
   return {
     meta: { generated: new Date().toISOString(), count: MLS.links.length },
@@ -438,89 +431,68 @@ function buildExportObject() {
     links: MLS.links.slice().sort((a, b) => (a.added < b.added ? 1 : a.added > b.added ? -1 : 0)),
   };
 }
-function exportToRepo() {
+function exportBackup() {
   const data = buildExportObject();
-  const header =
-    "// USER-MANAGED FILE — your personal \"My Links\" store for the agent² dashboard.\n" +
-    "//\n" +
-    "// This is the cross-device source of truth. To update it:\n" +
-    "//   1. Add / edit links in the dashboard's \"My Links\" view (held in your browser).\n" +
-    "//   2. Click \"Export to repo\" — it downloads a fresh my-links.js.\n" +
-    "//   3. Replace this file with the download, then commit & push.\n" +
-    "// On another device, pull the repo and open the dashboard; if your browser already\n" +
-    "// has older links, click \"Sync from repo\" to merge in the committed ones.\n" +
-    "//\n" +
-    "// The object below is plain JSON wrapped in a window assignment so the dashboard\n" +
-    "// loads it with no server (works via file:// and http). Safe to hand-edit too.\n";
-  const content = header + "window.__MYLINKS__ = " + JSON.stringify(data, null, 2) + ";\n";
-
-  const blob = new Blob([content], { type: "text/javascript" });
+  const content = JSON.stringify(data, null, 2);
+  const blob = new Blob([content], { type: "application/json" });
   const url = URL.createObjectURL(blob);
   const a = document.createElement("a");
   a.href = url;
-  a.download = "my-links.js";
+  a.download = "my-links-backup-" + mlToday() + ".json";
   document.body.appendChild(a);
   a.click();
   document.body.removeChild(a);
   setTimeout(() => URL.revokeObjectURL(url), 1000);
-
-  MLS.dirty = false;
-  MLS.syncedGeneration = data.meta.generated;
-  mlSave();
-  updateSyncStatus();
-  flashStatus("Downloaded my-links.js — replace data/my-links.js, then commit & push.");
+  flashStatus("Downloaded a backup of your " + MLS.links.length + " links.");
 }
-function baselineNewIds() {
-  const have = new Set(MLS.links.map((l) => l.id));
-  return baseline().links.filter((l) => l && l.id && !have.has(l.id));
-}
-function syncFromRepo() {
-  const base = baseline();
-  const byId = new Map(MLS.links.map((l) => [l.id, l]));
-  let added = 0, updated = 0;
-  base.links.forEach((bl) => {
-    if (!bl || !bl.id) return;
-    if (byId.has(bl.id)) {
-      // baseline (committed) wins for matching ids
-      Object.assign(byId.get(bl.id), bl);
-      updated++;
-    } else {
-      const copy = Object.assign({}, bl);
-      MLS.links.push(copy);
-      byId.set(bl.id, copy);
-      added++;
+function importBackup(file) {
+  const reader = new FileReader();
+  reader.onload = () => {
+    let parsed;
+    try {
+      parsed = JSON.parse(reader.result);
+    } catch (e) {
+      flashStatus("Couldn’t read that file — it isn’t valid JSON.");
+      return;
     }
-  });
-  MLS.syncedGeneration = base.meta && base.meta.generated ? base.meta.generated : MLS.syncedGeneration;
-  // dirty only if there are local-only links not yet in the committed baseline
-  const baseIds = new Set(base.links.map((l) => l.id));
-  MLS.dirty = MLS.links.some((l) => !baseIds.has(l.id));
-  mlSave();
-  renderML();
-  flashStatus("Synced from repo: " + added + " added, " + updated + " updated.");
+    const incoming = Array.isArray(parsed) ? parsed : parsed && parsed.links;
+    if (!Array.isArray(incoming)) {
+      flashStatus("That file doesn’t look like a My Links backup.");
+      return;
+    }
+    const byId = new Map(MLS.links.map((l) => [l.id, l]));
+    let added = 0, updated = 0;
+    incoming.forEach((raw) => {
+      if (!raw || !raw.url) return;
+      const link = {
+        id: raw.id || mlNewId(),
+        url: String(raw.url),
+        title: raw.title ? String(raw.title) : "",
+        description: raw.description ? String(raw.description) : "",
+        folder: raw.folder ? String(raw.folder) : "",
+        tags: normTags(raw.tags),
+        added: raw.added || mlToday(),
+      };
+      if (byId.has(link.id)) {
+        Object.assign(byId.get(link.id), link);
+        updated++;
+      } else {
+        MLS.links.push(link);
+        byId.set(link.id, link);
+        added++;
+      }
+    });
+    mlSave();
+    renderML();
+    flashStatus("Imported " + added + " new, updated " + updated + ".");
+  };
+  reader.readAsText(file);
 }
 function updateSyncStatus() {
   const status = document.getElementById("ml-sync-status");
-  const exportBtn = document.getElementById("ml-export");
-  const syncBtn = document.getElementById("ml-sync-from");
   const n = MLS.links.length;
   const count = n + (n === 1 ? " link" : " links");
-  if (MLS.dirty) {
-    status.textContent = count + " · unsynced changes";
-    status.classList.add("dirty");
-    exportBtn.classList.add("primary");
-  } else {
-    status.textContent = count + " · synced";
-    status.classList.remove("dirty");
-    exportBtn.classList.remove("primary");
-  }
-  const pending = baselineNewIds().length;
-  if (pending > 0) {
-    syncBtn.hidden = false;
-    syncBtn.textContent = "Sync from repo (" + pending + " new)";
-  } else {
-    syncBtn.hidden = true;
-  }
+  status.textContent = count + " · stored in this browser";
 }
 let flashTimer = null;
 function flashStatus(msg) {
@@ -553,20 +525,21 @@ function setView(view) {
   if (stored) {
     MLS = stored;
   } else {
-    // first time on this device → seed from committed baseline
+    // brand-new visitor → start from the sample seed content
     const base = baseline();
-    MLS = {
-      links: base.links.map((l) => Object.assign({}, l)),
-      dirty: false,
-      syncedGeneration: base.meta && base.meta.generated ? base.meta.generated : null,
-    };
+    MLS = { links: base.links.map((l) => Object.assign({}, l)) };
     mlSave();
   }
 
   document.getElementById("ml-add").addEventListener("submit", submitForm);
   document.getElementById("ml-add-cancel").addEventListener("click", resetForm);
-  document.getElementById("ml-export").addEventListener("click", exportToRepo);
-  document.getElementById("ml-sync-from").addEventListener("click", syncFromRepo);
+  document.getElementById("ml-export").addEventListener("click", exportBackup);
+  const importFile = document.getElementById("ml-import-file");
+  document.getElementById("ml-import").addEventListener("click", () => importFile.click());
+  importFile.addEventListener("change", () => {
+    if (importFile.files && importFile.files[0]) importBackup(importFile.files[0]);
+    importFile.value = "";
+  });
 
   const search = document.getElementById("ml-search");
   search.addEventListener("input", () => {
