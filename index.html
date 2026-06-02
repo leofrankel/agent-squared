@@ -60,6 +60,7 @@
 
   <div id="view-mylinks" hidden>
     <div class="wrap mylinks-top">
+      <div id="ml-account" class="ml-account" hidden></div>
       <form id="ml-add" class="ml-add" autocomplete="off">
         <div class="ml-add-row">
           <input id="ml-url" class="ml-input ml-input-url" type="text" required placeholder="Paste a link (https://…)  *required" aria-label="Link URL" />
@@ -127,6 +128,8 @@
     </div>
   </template>
 
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="assets/cloud.js"></script>
   <script src="data/news.js"></script>
   <script src="data/my-links.js"></script>
   <script src="assets/app.js"></script>

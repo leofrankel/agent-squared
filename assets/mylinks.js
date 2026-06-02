@@ -50,7 +50,14 @@ function baseline() {
 
 /* ---------- helpers ---------- */
 function mlNewId() {
+  if (window.crypto && crypto.randomUUID) return crypto.randomUUID();
   return "ml-" + Date.now().toString(36) + "-" + Math.random().toString(36).slice(2, 6);
+}
+function isUuid(s) {
+  return /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(String(s));
+}
+function cloudReady() {
+  return window.Cloud && window.Cloud.available;
 }
 function mlToday() {
   const d = new Date();
@@ -389,29 +396,24 @@ function submitForm(e) {
   const folder = document.getElementById("ml-folder").value.trim();
   const tags = normTags(document.getElementById("ml-tags").value);
 
+  let affected;
   if (editingId) {
-    const l = MLS.links.find((x) => x.id === editingId);
-    if (l) {
-      l.url = url;
-      l.title = title;
-      l.description = description;
-      l.folder = folder;
-      l.tags = tags;
+    affected = MLS.links.find((x) => x.id === editingId);
+    if (affected) {
+      affected.url = url;
+      affected.title = title;
+      affected.description = description;
+      affected.folder = folder;
+      affected.tags = tags;
     }
   } else {
-    MLS.links.push({
-      id: mlNewId(),
-      url,
-      title,
-      description,
-      folder,
-      tags,
-      added: mlToday(),
-    });
+    affected = { id: mlNewId(), url, title, description, folder, tags, added: mlToday() };
+    MLS.links.push(affected);
   }
   mlSave();
   resetForm();
   renderML();
+  if (affected && cloudReady() && Cloud.isSignedIn()) Cloud.upsert(affected);
 }
 function deleteLink(id) {
   const l = MLS.links.find((x) => x.id === id);
@@ -421,6 +423,7 @@ function deleteLink(id) {
   if (editingId === id) resetForm();
   mlSave();
   renderML();
+  if (cloudReady() && Cloud.isSignedIn()) Cloud.remove(id);
 }
 
 /* ---------- backup: export / import ---------- */
@@ -492,7 +495,130 @@ function updateSyncStatus() {
   const status = document.getElementById("ml-sync-status");
   const n = MLS.links.length;
   const count = n + (n === 1 ? " link" : " links");
-  status.textContent = count + " · stored in this browser";
+  if (cloudReady() && Cloud.isSignedIn()) {
+    status.textContent = count + " · synced to your account";
+  } else {
+    status.textContent = count + " · stored in this browser";
+  }
+}
+
+/* ---------- account / cloud sync ---------- */
+let authFormOpen = false;
+
+function renderAccount() {
+  const host = document.getElementById("ml-account");
+  if (!host) return;
+  host.innerHTML = "";
+  if (!cloudReady()) {
+    host.hidden = true;
+    return;
+  }
+  host.hidden = false;
+
+  if (Cloud.isSignedIn()) {
+    const u = Cloud.user();
+    const status = document.createElement("span");
+    status.className = "ml-account-status";
+    status.textContent = "✓ Synced across devices" + (u && u.email ? " as " + u.email : "");
+    const out = document.createElement("button");
+    out.type = "button";
+    out.className = "ml-sync-btn";
+    out.textContent = "Sign out";
+    out.addEventListener("click", () => Cloud.signOut());
+    host.appendChild(status);
+    host.appendChild(out);
+    return;
+  }
+
+  const status = document.createElement("span");
+  status.className = "ml-account-status";
+  status.textContent = "Your links are saved in this browser.";
+  host.appendChild(status);
+
+  if (!authFormOpen) {
+    const btn = document.createElement("button");
+    btn.type = "button";
+    btn.className = "ml-sync-btn primary-soft";
+    btn.textContent = "Sign in to sync across devices";
+    btn.addEventListener("click", () => {
+      authFormOpen = true;
+      renderAccount();
+    });
+    host.appendChild(btn);
+    return;
+  }
+
+  const form = document.createElement("form");
+  form.className = "ml-signin-form";
+  const email = document.createElement("input");
+  email.type = "email";
+  email.required = true;
+  email.placeholder = "you@example.com";
+  email.className = "ml-input ml-input-sm";
+  const send = document.createElement("button");
+  send.type = "submit";
+  send.className = "ml-add-btn";
+  send.textContent = "Send sign-in link";
+  const cancel = document.createElement("button");
+  cancel.type = "button";
+  cancel.className = "ml-cancel-btn";
+  cancel.textContent = "Cancel";
+  cancel.addEventListener("click", () => {
+    authFormOpen = false;
+    renderAccount();
+  });
+  form.appendChild(email);
+  form.appendChild(send);
+  form.appendChild(cancel);
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const addr = email.value.trim();
+    if (!addr) return;
+    send.disabled = true;
+    send.textContent = "Sending…";
+    const { error } = await Cloud.signInWithEmail(addr);
+    if (error) {
+      flashStatus("Sign-in failed: " + error.message);
+      send.disabled = false;
+      send.textContent = "Send sign-in link";
+    } else {
+      authFormOpen = false;
+      renderAccount();
+      flashStatus("Check your email for a sign-in link, then come back to this page.");
+    }
+  });
+  host.appendChild(form);
+  setTimeout(() => email.focus(), 0);
+}
+
+async function syncOnSignIn() {
+  try {
+    const cloud = await Cloud.fetchAll();
+    const cloudIds = new Set(cloud.map((l) => l.id));
+    // Adopt any local links that aren't sample seeds and aren't already in the cloud.
+    const toPush = MLS.links.filter(
+      (l) => !String(l.id).startsWith("seed-") && !cloudIds.has(l.id)
+    );
+    for (const l of toPush) {
+      if (!isUuid(l.id)) l.id = mlNewId();
+      await Cloud.upsert(l);
+      cloud.push(l);
+    }
+    // From here, the cloud is the source of truth.
+    MLS.links = cloud;
+    mlSave();
+    renderML();
+  } catch (e) {
+    console.warn("Sync on sign-in failed:", e);
+  }
+}
+
+async function onCloudAuth() {
+  renderAccount();
+  if (cloudReady() && Cloud.isSignedIn()) {
+    await syncOnSignIn();
+  }
+  updateSyncStatus();
 }
 let flashTimer = null;
 function flashStatus(msg) {
@@ -549,6 +675,9 @@ function setView(view) {
 
   document.getElementById("nav-dashboard").addEventListener("click", () => setView("dashboard"));
   document.getElementById("nav-mylinks").addEventListener("click", () => setView("mylinks"));
+
+  document.addEventListener("cloud-auth", onCloudAuth);
+  renderAccount();
 
   let initial = "dashboard";
   try {

@@ -208,6 +208,28 @@ a { color: inherit; }
   font-size: 13px;
 }
 
+/* My Links: account / cloud-sync bar */
+.ml-account {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  padding: 10px 14px;
+  margin-bottom: 14px;
+  background: var(--bg-elev);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+}
+.ml-account-status { color: var(--text-soft); font-size: 13px; }
+.ml-signin-form { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+.ml-signin-form .ml-input-sm { flex: 1 1 200px; }
+.ml-sync-btn.primary-soft {
+  background: var(--navy-soft);
+  border-color: var(--navy-line);
+  color: var(--text);
+}
+.ml-sync-btn.primary-soft:hover { background: rgba(111, 151, 214, 0.26); }
+
 /* My Links card variants */
 .badge-folder {
   background: var(--cream-soft);
