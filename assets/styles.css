@@ -113,7 +113,7 @@ a { color: inherit; }
 }
 
 /* ---------- My Links: add form + sync ---------- */
-.mylinks-top { padding-top: 22px; }
+.library-top { padding-top: 22px; }
 .ml-add {
   display: flex;
   flex-direction: column;
@@ -229,6 +229,20 @@ a { color: inherit; }
   color: var(--text);
 }
 .ml-sync-btn.primary-soft:hover { background: rgba(111, 151, 214, 0.26); }
+
+/* Library: caption + status chip */
+.lib-add-caption { color: var(--text-dim); font-size: 13px; margin: 0 0 10px; }
+.status-chip {
+  font-size: 10.5px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  padding: 2px 8px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  white-space: nowrap;
+}
+.status-chip.is-read { color: var(--navy); background: var(--navy-soft); border-color: var(--navy-line); }
+.status-chip.is-want { color: var(--text-dim); background: rgba(255, 255, 255, 0.03); }
 
 /* My Links card variants */
 .badge-folder {

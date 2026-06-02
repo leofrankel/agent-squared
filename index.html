@@ -25,7 +25,7 @@
 
   <nav class="wrap viewnav" aria-label="Views">
     <button id="nav-dashboard" class="viewtab active" type="button">Dashboard</button>
-    <button id="nav-mylinks" class="viewtab" type="button">My Links</button>
+    <button id="nav-library" class="viewtab" type="button">Library</button>
   </nav>
 
   <div id="view-dashboard">
@@ -58,58 +58,63 @@
   </main>
   </div><!-- /view-dashboard -->
 
-  <div id="view-mylinks" hidden>
-    <div class="wrap mylinks-top">
-      <div id="ml-account" class="ml-account" hidden></div>
-      <form id="ml-add" class="ml-add" autocomplete="off">
+  <div id="view-library" hidden>
+    <div class="wrap library-top">
+      <div id="lib-account" class="ml-account" hidden></div>
+      <p class="lib-add-caption">Save items from the Dashboard, or add a link of your own:</p>
+      <form id="lib-add" class="ml-add" autocomplete="off">
         <div class="ml-add-row">
-          <input id="ml-url" class="ml-input ml-input-url" type="text" required placeholder="Paste a link (https://…)  *required" aria-label="Link URL" />
+          <input id="lib-url" class="ml-input ml-input-url" type="text" required placeholder="Paste a link (https://…)  *required" aria-label="Link URL" />
         </div>
         <div class="ml-add-row">
-          <input id="ml-title" class="ml-input" type="text" placeholder="Title (optional)" aria-label="Title" />
-          <input id="ml-desc" class="ml-input" type="text" placeholder="Description (optional)" aria-label="Description" />
+          <input id="lib-title" class="ml-input" type="text" placeholder="Title (optional)" aria-label="Title" />
+          <input id="lib-desc" class="ml-input" type="text" placeholder="Description (optional)" aria-label="Description" />
         </div>
         <div class="ml-add-row ml-add-meta">
-          <input id="ml-folder" class="ml-input ml-input-sm" type="text" list="ml-folder-list" placeholder="Folder (optional)" aria-label="Folder" />
-          <datalist id="ml-folder-list"></datalist>
-          <input id="ml-tags" class="ml-input ml-input-sm" type="text" placeholder="Tags, comma-separated (optional)" aria-label="Tags" />
-          <button id="ml-add-submit" type="submit" class="ml-add-btn">+ Add link</button>
-          <button id="ml-add-cancel" type="button" class="ml-cancel-btn" hidden>Cancel</button>
+          <input id="lib-folder" class="ml-input ml-input-sm" type="text" list="lib-folder-list" placeholder="Folder (optional)" aria-label="Folder" />
+          <datalist id="lib-folder-list"></datalist>
+          <input id="lib-tags" class="ml-input ml-input-sm" type="text" placeholder="Tags, comma-separated (optional)" aria-label="Tags" />
+          <button id="lib-add-submit" type="submit" class="ml-add-btn">+ Add link</button>
+          <button id="lib-add-cancel" type="button" class="ml-cancel-btn" hidden>Cancel</button>
         </div>
       </form>
 
       <div class="ml-sync">
-        <span id="ml-sync-status" class="ml-sync-status"></span>
+        <span id="lib-status-text" class="ml-sync-status"></span>
         <div class="ml-sync-actions">
-          <button id="ml-import" class="ml-sync-btn" type="button">Import backup</button>
-          <button id="ml-export" class="ml-sync-btn" type="button">Export backup</button>
-          <input id="ml-import-file" type="file" accept="application/json,.json" hidden />
+          <button id="lib-import" class="ml-sync-btn" type="button">Import backup</button>
+          <button id="lib-export" class="ml-sync-btn" type="button">Export backup</button>
+          <input id="lib-import-file" type="file" accept="application/json,.json" hidden />
         </div>
       </div>
-      <p id="ml-flash" class="ml-flash" hidden></p>
+      <p id="lib-flash" class="ml-flash" hidden></p>
     </div>
 
     <div class="wrap controls">
       <div class="search-row">
-        <input id="ml-search" class="search" type="search" placeholder="Search your links…" aria-label="Search links" />
+        <input id="lib-search" class="search" type="search" placeholder="Search your library…" aria-label="Search library" />
       </div>
       <div class="filter-block">
-        <span class="filter-label">Folder</span>
-        <div id="ml-folder-filters" class="pills" role="group" aria-label="Filter by folder"></div>
+        <span class="filter-label">Status</span>
+        <div id="lib-status-filters" class="pills" role="group" aria-label="Filter by status"></div>
       </div>
-      <div id="ml-tag-block" class="filter-block">
+      <div class="filter-block">
+        <span class="filter-label">Section</span>
+        <div id="lib-section-filters" class="pills" role="group" aria-label="Filter by section"></div>
+      </div>
+      <div id="lib-tag-block" class="filter-block">
         <span class="filter-label">Tags</span>
-        <div id="ml-tag-filters" class="pills" role="group" aria-label="Filter by tag"></div>
+        <div id="lib-tag-filters" class="pills" role="group" aria-label="Filter by tag"></div>
       </div>
     </div>
 
     <main class="wrap">
-      <section id="ml-section">
-        <div id="ml-groups"></div>
-        <p id="ml-empty" class="empty-state" hidden>No saved links yet.</p>
+      <section id="lib-section-wrap">
+        <div id="lib-groups"></div>
+        <p id="lib-empty" class="empty-state" hidden></p>
       </section>
     </main>
-  </div><!-- /view-mylinks -->
+  </div><!-- /view-library -->
 
   <footer class="site-footer">
     <div class="wrap">
@@ -131,8 +136,8 @@
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script src="assets/cloud.js"></script>
   <script src="data/news.js"></script>
-  <script src="data/my-links.js"></script>
+  <script src="assets/store.js"></script>
   <script src="assets/app.js"></script>
-  <script src="assets/mylinks.js"></script>
+  <script src="assets/library.js"></script>
 </body>
 </html>

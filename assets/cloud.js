@@ -2,14 +2,14 @@
 
 /* ----------------------------------------------------------------------------
  * agent² — Supabase cloud layer
- * Client + auth (email magic link) + per-user "links" CRUD.
+ * Client + auth (email magic link) + per-user "library" CRUD.
  *
  * The URL and publishable (anon) key below are PUBLIC by design — they're meant
- * to ship in the browser. Row-Level Security on the `links` table is what keeps
+ * to ship in the browser. Row-Level Security on the `library` table is what keeps
  * each user's data private, so committing these is safe.
  *
  * Exposes window.Cloud and dispatches a "cloud-auth" event on the document
- * whenever the sign-in state resolves or changes. mylinks.js consumes both.
+ * whenever the sign-in state resolves or changes. store.js consumes both.
  * -------------------------------------------------------------------------- */
 (function () {
   const SUPABASE_URL = "https://ledmhtatxhkonppyxjeo.supabase.co";
@@ -30,27 +30,37 @@
     );
   }
 
-  function rowToLink(r) {
+  function rowToItem(r) {
     return {
       id: r.id,
+      origin: r.origin || "custom",
+      news_id: r.news_id || null,
       url: r.url || "",
       title: r.title || "",
       description: r.description || "",
+      source: r.source || "",
+      category: r.category || "",
       folder: r.folder || "",
       tags: Array.isArray(r.tags) ? r.tags : [],
+      status: r.status === "read" ? "read" : "want",
       added: r.added || "",
     };
   }
-  function linkToRow(l) {
+  function itemToRow(i) {
     // user_id intentionally omitted — the column defaults to auth.uid() on insert.
     return {
-      id: l.id,
-      url: l.url,
-      title: l.title || "",
-      description: l.description || "",
-      folder: l.folder || "",
-      tags: Array.isArray(l.tags) ? l.tags : [],
-      added: l.added || null,
+      id: i.id,
+      origin: i.origin || "custom",
+      news_id: i.news_id || null,
+      url: i.url,
+      title: i.title || "",
+      description: i.description || "",
+      source: i.source || "",
+      category: i.category || "",
+      folder: i.folder || "",
+      tags: Array.isArray(i.tags) ? i.tags : [],
+      status: i.status === "read" ? "read" : "want",
+      added: i.added || null,
     };
   }
 
@@ -71,22 +81,22 @@
     },
     async fetchAll() {
       const { data, error } = await client
-        .from("links")
+        .from("library")
         .select("*")
         .order("added", { ascending: false });
       if (error) {
         console.warn("Cloud fetch failed:", error.message);
         return [];
       }
-      return (data || []).map(rowToLink);
+      return (data || []).map(rowToItem);
     },
-    async upsert(link) {
-      const { error } = await client.from("links").upsert(linkToRow(link));
+    async upsert(item) {
+      const { error } = await client.from("library").upsert(itemToRow(item));
       if (error) console.warn("Cloud upsert failed:", error.message);
       return !error;
     },
     async remove(id) {
-      const { error } = await client.from("links").delete().eq("id", id);
+      const { error } = await client.from("library").delete().eq("id", id);
       if (error) console.warn("Cloud delete failed:", error.message);
       return !error;
     },
@@ -96,7 +106,6 @@
     currentUser = session && session.user ? session.user : null;
     emit();
   });
-  // Resolve any existing session on load (e.g. returning from a magic link).
   client.auth.getSession().then(({ data }) => {
     currentUser = data && data.session && data.session.user ? data.session.user : null;
     emit();

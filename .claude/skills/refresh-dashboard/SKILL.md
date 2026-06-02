@@ -13,7 +13,7 @@ Curate recent AI developments and update the agent-squared dashboard. The audien
 - `data/news.js` — generated mirror: `window.__NEWS__ = <same object as news.json>`. Lets the dashboard open from `file://` with no server. **Regenerate from news.json every time.**
 - `data/news.md` — generated human-readable mirror for browsing in git. **Regenerate from news.json every time.**
 - `index.html`, `assets/styles.css`, `assets/app.js` — the UI. You normally do **not** touch these during a refresh; only edit if the user asks for UI changes or the schema changes.
-- `data/my-links.js`, `assets/mylinks.js` — the "My Links" feature. `data/my-links.js` is only *sample seed* content for first-time visitors; real per-user links live client-side (localStorage, and a per-user account in Phase 2). **Off-limits to this skill** — never read, edit, or stage these during a news refresh.
+- `assets/store.js`, `assets/cloud.js`, `assets/library.js` — the user's personal **Library** feature (saved dashboard items + custom links; local-first with optional Supabase sync). Personal data lives client-side / in the user's account, never in the repo. **Off-limits to this skill** — never read, edit, or stage these during a news refresh.
 
 These three data files must always stay in sync. `news.js` and `news.md` are derived 100% from `news.json`.
 

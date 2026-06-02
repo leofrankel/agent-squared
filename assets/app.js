@@ -1,55 +1,22 @@
 "use strict";
 
 /* ----------------------------------------------------------------------------
- * agent² dashboard
- * Reads news from window.__NEWS__ (data/news.js) with a fetch fallback to
- * data/news.json. Personal tags (read / saved / custom) live in localStorage.
+ * agent² dashboard (front page)
+ * Renders curated recommendations from window.__NEWS__ (data/news.js, fetch
+ * fallback to data/news.json). All personal state — add-to-library, read
+ * status, tags — lives in the shared per-user Store (assets/store.js), so the
+ * Dashboard and Library stay in sync and sync to the cloud when signed in.
  * -------------------------------------------------------------------------- */
 
-const STORE_KEY = "agent2:v1";
-const BUILTIN_TAGS = [
-  { id: "unread", label: "Unread" },
-  { id: "read", label: "Read" },
-  { id: "saved", label: "Saved for later" },
-];
-
 let DATA = { meta: {}, categories: [], items: [] };
-let store = loadStore();
 const filters = { category: "all", tag: "all", q: "" };
-let openEditor = null; // { el, itemId } of the currently open tag popover
+let openEditor = null; // { el, itemId } of the open tag popover
 
-/* ---------- persistence ---------- */
-function loadStore() {
-  try {
-    const raw = localStorage.getItem(STORE_KEY);
-    if (raw) {
-      const parsed = JSON.parse(raw);
-      return {
-        customTags: Array.isArray(parsed.customTags) ? parsed.customTags : [],
-        items: parsed.items && typeof parsed.items === "object" ? parsed.items : {},
-      };
-    }
-  } catch (e) {
-    console.warn("Could not read saved tags:", e);
-  }
-  return { customTags: [], items: {} };
-}
-function saveStore() {
-  try {
-    localStorage.setItem(STORE_KEY, JSON.stringify(store));
-  } catch (e) {
-    console.warn("Could not save tags:", e);
-  }
-}
-function itemState(id) {
-  let s = store.items[id];
-  if (!s) {
-    s = { read: false, saved: false, tags: [] };
-    store.items[id] = s;
-  }
-  if (!Array.isArray(s.tags)) s.tags = [];
-  return s;
-}
+const TAG_BUILTINS = [
+  { id: "in-library", label: "In library" },
+  { id: "want", label: "Want to read" },
+  { id: "read", label: "Read" },
+];
 
 /* ---------- data loading ---------- */
 async function loadData() {
@@ -82,7 +49,8 @@ function sortKey(item) {
 }
 function sortedItems() {
   return [...DATA.items].sort((a, b) => {
-    const ka = sortKey(a), kb = sortKey(b);
+    const ka = sortKey(a),
+      kb = sortKey(b);
     if (ka < kb) return 1;
     if (ka > kb) return -1;
     return (a.title || "").localeCompare(b.title || "");
@@ -102,13 +70,18 @@ function matchesCategory(item) {
   return filters.category === "all" || item.category === filters.category;
 }
 function matchesTag(item) {
-  const s = itemState(item.id);
+  const it = Store.byNewsId(item.id);
   switch (filters.tag) {
-    case "all": return true;
-    case "unread": return !s.read;
-    case "read": return s.read;
-    case "saved": return s.saved;
-    default: return s.tags.includes(filters.tag);
+    case "all":
+      return true;
+    case "in-library":
+      return !!it;
+    case "want":
+      return !!it && it.status === "want";
+    case "read":
+      return !!it && it.status === "read";
+    default:
+      return !!it && it.tags.includes(filters.tag);
   }
 }
 function passesAll(item) {
@@ -116,51 +89,6 @@ function passesAll(item) {
 }
 
 /* ---------- filter bars ---------- */
-function renderCategoryFilters() {
-  const host = document.getElementById("category-filters");
-  host.innerHTML = "";
-  const base = sortedItems().filter((i) => matchesSearch(i) && matchesTag(i));
-  const all = makePill("All", filters.category === "all", base.length, () => {
-    filters.category = "all"; render();
-  });
-  host.appendChild(all);
-  DATA.categories.forEach((c) => {
-    const n = base.filter((i) => i.category === c.id).length;
-    if (n === 0 && filters.category !== c.id) return;
-    host.appendChild(
-      makePill(c.label, filters.category === c.id, n, () => {
-        filters.category = c.id; render();
-      })
-    );
-  });
-}
-function renderTagFilters() {
-  const host = document.getElementById("tag-filters");
-  host.innerHTML = "";
-  const base = sortedItems().filter((i) => matchesSearch(i) && matchesCategory(i));
-  const countFor = (tagId) => base.filter((i) => {
-    const s = itemState(i.id);
-    if (tagId === "all") return true;
-    if (tagId === "unread") return !s.read;
-    if (tagId === "read") return s.read;
-    if (tagId === "saved") return s.saved;
-    return s.tags.includes(tagId);
-  }).length;
-
-  host.appendChild(makePill("All", filters.tag === "all", countFor("all"), () => {
-    filters.tag = "all"; render();
-  }, true));
-  BUILTIN_TAGS.forEach((t) => {
-    host.appendChild(makePill(t.label, filters.tag === t.id, countFor(t.id), () => {
-      filters.tag = t.id; render();
-    }, true));
-  });
-  store.customTags.slice().sort((a, b) => a.localeCompare(b)).forEach((t) => {
-    host.appendChild(makePill("#" + t, filters.tag === t, countFor(t), () => {
-      filters.tag = t; render();
-    }, true));
-  });
-}
 function makePill(label, active, count, onClick, isTag) {
   const btn = document.createElement("button");
   btn.className = "pill" + (active ? " active" : "") + (isTag ? " tag-pill" : "");
@@ -177,12 +105,76 @@ function makePill(label, active, count, onClick, isTag) {
   btn.addEventListener("click", onClick);
   return btn;
 }
+function renderCategoryFilters() {
+  const host = document.getElementById("category-filters");
+  host.innerHTML = "";
+  const base = sortedItems().filter((i) => matchesSearch(i) && matchesTag(i));
+  host.appendChild(
+    makePill("All", filters.category === "all", base.length, () => {
+      filters.category = "all";
+      render();
+    })
+  );
+  DATA.categories.forEach((c) => {
+    const n = base.filter((i) => i.category === c.id).length;
+    if (n === 0 && filters.category !== c.id) return;
+    host.appendChild(
+      makePill(c.label, filters.category === c.id, n, () => {
+        filters.category = c.id;
+        render();
+      })
+    );
+  });
+}
+function tagCount(tagId, base) {
+  return base.filter((i) => {
+    const it = Store.byNewsId(i.id);
+    if (tagId === "all") return true;
+    if (tagId === "in-library") return !!it;
+    if (tagId === "want") return !!it && it.status === "want";
+    if (tagId === "read") return !!it && it.status === "read";
+    return !!it && it.tags.includes(tagId);
+  }).length;
+}
+function renderTagFilters() {
+  const host = document.getElementById("tag-filters");
+  host.innerHTML = "";
+  const base = sortedItems().filter((i) => matchesSearch(i) && matchesCategory(i));
+  host.appendChild(
+    makePill("All", filters.tag === "all", tagCount("all", base), () => {
+      filters.tag = "all";
+      render();
+    }, true)
+  );
+  TAG_BUILTINS.forEach((t) => {
+    host.appendChild(
+      makePill(t.label, filters.tag === t.id, tagCount(t.id, base), () => {
+        filters.tag = t.id;
+        render();
+      }, true)
+    );
+  });
+  Store.allTags().forEach((t) => {
+    const n = tagCount(t, base);
+    if (n === 0 && filters.tag !== t) return;
+    host.appendChild(
+      makePill("#" + t, filters.tag === t, n, () => {
+        filters.tag = t;
+        render();
+      }, true)
+    );
+  });
+}
 
 /* ---------- cards ---------- */
 function buildCard(item) {
-  const s = itemState(item.id);
+  const it = Store.byNewsId(item.id);
   const card = document.createElement("article");
-  card.className = "card" + (item.significance === "high" ? " is-highlight" : "") + (s.read ? " is-read" : "");
+  card.className =
+    "card" +
+    (item.significance === "high" ? " is-highlight" : "") +
+    (it && it.status === "read" ? " is-read" : "") +
+    (it ? " is-saved" : "");
 
   const top = document.createElement("div");
   top.className = "card-top";
@@ -235,13 +227,12 @@ function buildCard(item) {
     meta.appendChild(dot());
   }
   const date = document.createElement("span");
-  const displayDate = item.published || item.date_added;
-  date.textContent = fmtDate(displayDate);
+  date.textContent = fmtDate(item.published || item.date_added);
   if (item.date_added) date.title = "Added " + fmtDate(item.date_added);
   meta.appendChild(date);
   card.appendChild(meta);
 
-  card.appendChild(buildActions(item, card, usertags));
+  card.appendChild(buildActions(item, usertags));
   return card;
 }
 function dot() {
@@ -252,43 +243,52 @@ function dot() {
 }
 function renderUserTags(host, item) {
   host.innerHTML = "";
-  const s = itemState(item.id);
-  s.tags.slice().sort((a, b) => a.localeCompare(b)).forEach((t) => {
-    const chip = document.createElement("span");
-    chip.className = "usertag";
-    chip.appendChild(document.createTextNode("#" + t));
-    const x = document.createElement("button");
-    x.type = "button";
-    x.textContent = "×";
-    x.title = "Remove tag";
-    x.addEventListener("click", () => {
-      s.tags = s.tags.filter((x2) => x2 !== t);
-      saveStore();
-      render();
+  const it = Store.byNewsId(item.id);
+  if (!it) return;
+  it.tags
+    .slice()
+    .sort((a, b) => a.localeCompare(b))
+    .forEach((t) => {
+      const chip = document.createElement("span");
+      chip.className = "usertag";
+      chip.appendChild(document.createTextNode("#" + t));
+      const x = document.createElement("button");
+      x.type = "button";
+      x.textContent = "×";
+      x.title = "Remove tag";
+      x.addEventListener("click", () => {
+        Store.toggleTag(it.id, t);
+        renderUserTags(host, item);
+        renderTagFilters();
+      });
+      chip.appendChild(x);
+      host.appendChild(chip);
     });
-    chip.appendChild(x);
-    host.appendChild(chip);
-  });
 }
-function buildActions(item, card, usertags) {
-  const s = itemState(item.id);
+function buildActions(item, usertags) {
+  const it = Store.byNewsId(item.id);
   const wrap = document.createElement("div");
   wrap.className = "card-actions";
 
-  const readBtn = actionButton(s.read ? "Read" : "Mark read", "✓", s.read);
-  readBtn.classList.add("read");
-  readBtn.addEventListener("click", () => {
-    s.read = !s.read;
-    saveStore();
-    render();
-  });
-
-  const saveBtn = actionButton(s.saved ? "Saved" : "Save", s.saved ? "★" : "☆", s.saved);
+  const saved = !!it;
+  const saveBtn = actionButton(saved ? "In library" : "Add to library", saved ? "★" : "☆", saved);
   saveBtn.classList.add("save");
   saveBtn.addEventListener("click", () => {
-    s.saved = !s.saved;
-    saveStore();
-    render();
+    if (saved) {
+      if (window.confirm("Remove “" + (item.title || "this item") + "” from your library?")) {
+        Store.remove(it.id);
+      }
+    } else {
+      Store.addCurated(item, "want");
+    }
+  });
+
+  const read = saved && it.status === "read";
+  const readBtn = actionButton(read ? "Read" : "Mark read", "✓", read);
+  readBtn.classList.add("read");
+  readBtn.addEventListener("click", () => {
+    if (read) Store.setStatus(it.id, "want");
+    else Store.addCurated(item, "read");
   });
 
   const tagBtn = actionButton("Tag", "#", false);
@@ -297,8 +297,8 @@ function buildActions(item, card, usertags) {
     toggleTagEditor(item, wrap, usertags);
   });
 
-  wrap.appendChild(readBtn);
   wrap.appendChild(saveBtn);
+  wrap.appendChild(readBtn);
   wrap.appendChild(tagBtn);
   return wrap;
 }
@@ -319,43 +319,50 @@ function closeEditor() {
   if (openEditor && openEditor.el && openEditor.el.parentNode) {
     openEditor.el.parentNode.removeChild(openEditor.el);
   }
+  const wasOpen = !!openEditor;
   openEditor = null;
+  if (wasOpen) render();
 }
 function toggleTagEditor(item, actionsWrap, usertags) {
   if (openEditor && openEditor.itemId === item.id) {
     closeEditor();
     return;
   }
-  closeEditor();
+  if (openEditor) {
+    if (openEditor.el && openEditor.el.parentNode) openEditor.el.parentNode.removeChild(openEditor.el);
+    openEditor = null;
+  }
   const tpl = document.getElementById("tag-editor-template");
   const el = tpl.content.firstElementChild.cloneNode(true);
   const list = el.querySelector(".tag-editor-list");
   const form = el.querySelector(".tag-editor-new");
   const input = el.querySelector(".tag-editor-input");
 
-  const s = itemState(item.id);
+  function ensureItem() {
+    let it = Store.byNewsId(item.id);
+    if (!it) it = Store.addCurated(item, "want");
+    return it;
+  }
   function refreshList() {
     list.innerHTML = "";
-    if (store.customTags.length === 0) {
+    const it = Store.byNewsId(item.id);
+    const all = Store.allTags();
+    if (all.length === 0) {
       const empty = document.createElement("div");
       empty.className = "tag-editor-empty";
-      empty.textContent = "No custom tags yet.";
+      empty.textContent = "No tags yet — add one below.";
       list.appendChild(empty);
       return;
     }
-    store.customTags.slice().sort((a, b) => a.localeCompare(b)).forEach((t) => {
+    all.forEach((t) => {
       const row = document.createElement("label");
       row.className = "tag-editor-row";
       const cb = document.createElement("input");
       cb.type = "checkbox";
-      cb.checked = s.tags.includes(t);
+      cb.checked = !!it && it.tags.includes(t);
       cb.addEventListener("change", () => {
-        if (cb.checked) {
-          if (!s.tags.includes(t)) s.tags.push(t);
-        } else {
-          s.tags = s.tags.filter((x) => x !== t);
-        }
-        saveStore();
+        const cur = ensureItem();
+        Store.toggleTag(cur.id, t);
         renderUserTags(usertags, item);
         renderTagFilters();
       });
@@ -370,10 +377,9 @@ function toggleTagEditor(item, actionsWrap, usertags) {
     e.preventDefault();
     const name = input.value.trim().replace(/^#/, "").replace(/\s+/g, "-").toLowerCase();
     if (!name) return;
-    if (!store.customTags.includes(name)) store.customTags.push(name);
-    if (!s.tags.includes(name)) s.tags.push(name);
+    const cur = ensureItem();
+    if (!cur.tags.includes(name)) Store.toggleTag(cur.id, name);
     input.value = "";
-    saveStore();
     refreshList();
     renderUserTags(usertags, item);
     renderTagFilters();
@@ -386,7 +392,6 @@ function toggleTagEditor(item, actionsWrap, usertags) {
 
 /* ---------- main render ---------- */
 function render() {
-  closeEditor();
   renderCategoryFilters();
   renderTagFilters();
 
@@ -394,7 +399,6 @@ function render() {
   const highlights = matched.filter((i) => i.significance === "high");
   const rest = matched.filter((i) => i.significance !== "high");
 
-  // Highlights
   const hSection = document.getElementById("highlights-section");
   const hGrid = document.getElementById("highlights-grid");
   hGrid.innerHTML = "";
@@ -405,7 +409,6 @@ function render() {
     hSection.hidden = true;
   }
 
-  // Grouped main list
   const groups = document.getElementById("groups");
   groups.innerHTML = "";
   if (filters.category === "all") {
@@ -415,11 +418,9 @@ function render() {
       groups.appendChild(groupHeader(c.label, inCat.length));
       groups.appendChild(gridOf(inCat));
     });
-  } else {
-    if (rest.length > 0) {
-      groups.appendChild(groupHeader(categoryLabel(filters.category), rest.length));
-      groups.appendChild(gridOf(rest));
-    }
+  } else if (rest.length > 0) {
+    groups.appendChild(groupHeader(categoryLabel(filters.category), rest.length));
+    groups.appendChild(gridOf(rest));
   }
 
   document.getElementById("empty-state").hidden = matched.length > 0;
@@ -444,14 +445,12 @@ function gridOf(items) {
 function updateHeader(shownCount) {
   const total = DATA.items.length;
   const lu = document.getElementById("last-updated");
-  if (DATA.meta && DATA.meta.generated) {
-    lu.textContent = "Updated " + fmtDate(DATA.meta.generated);
-  }
+  if (DATA.meta && DATA.meta.generated) lu.textContent = "Updated " + fmtDate(DATA.meta.generated);
   const ic = document.getElementById("item-count");
   ic.textContent = shownCount === total ? total + " items" : shownCount + " of " + total + " items";
 }
 
-/* ---------- global listeners ---------- */
+/* ---------- listeners ---------- */
 document.addEventListener("click", (e) => {
   if (openEditor && !e.target.closest(".tag-editor") && !e.target.closest(".action-btn")) {
     closeEditor();
@@ -459,6 +458,10 @@ document.addEventListener("click", (e) => {
 });
 document.addEventListener("keydown", (e) => {
   if (e.key === "Escape") closeEditor();
+});
+document.addEventListener("store-changed", () => {
+  if (openEditor) return; // editor does its own incremental updates
+  render();
 });
 
 /* ---------- boot ---------- */
