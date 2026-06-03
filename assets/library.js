@@ -652,6 +652,121 @@ function libRender() {
       : "No items match your filters.";
 }
 
+/* ---------- guest-merge dialog ---------- */
+let libMergeOpen = false;
+function libShowGuestMerge(guestItems, resolve) {
+  if (libMergeOpen) {
+    resolve([]); // a dialog is already up; don't stack
+    return;
+  }
+  libMergeOpen = true;
+
+  const overlay = document.createElement("div");
+  overlay.className = "modal-overlay";
+  const modal = document.createElement("div");
+  modal.className = "modal";
+  modal.setAttribute("role", "dialog");
+  modal.setAttribute("aria-modal", "true");
+  modal.setAttribute("aria-label", "Add your guest links");
+
+  const h = document.createElement("h2");
+  h.className = "modal-title";
+  h.textContent = "Add your guest links?";
+  const sub = document.createElement("p");
+  sub.className = "modal-sub";
+  sub.textContent =
+    "You saved " +
+    guestItems.length +
+    (guestItems.length === 1 ? " link" : " links") +
+    " while browsing as a guest. Choose which to add to your account — unselected links won’t be saved.";
+
+  const tools = document.createElement("div");
+  tools.className = "modal-tools";
+  const selAll = document.createElement("button");
+  selAll.type = "button";
+  selAll.className = "modal-link";
+  selAll.textContent = "Select all";
+  const selNone = document.createElement("button");
+  selNone.type = "button";
+  selNone.className = "modal-link";
+  selNone.textContent = "Select none";
+  tools.appendChild(selAll);
+  tools.appendChild(selNone);
+
+  const list = document.createElement("div");
+  list.className = "modal-list";
+  const checks = [];
+  guestItems.forEach((it) => {
+    const row = document.createElement("label");
+    row.className = "modal-row";
+    const cb = document.createElement("input");
+    cb.type = "checkbox";
+    cb.checked = true;
+    cb.value = it.id;
+    const meta = document.createElement("div");
+    meta.className = "modal-row-meta";
+    const t = document.createElement("div");
+    t.className = "modal-row-title";
+    t.textContent = it.title || libHostOf(it.url) || it.url;
+    const s = document.createElement("div");
+    s.className = "modal-row-sub";
+    s.textContent = (it.source || libHostOf(it.url)) + (it.folder ? " · " + it.folder : "");
+    meta.appendChild(t);
+    meta.appendChild(s);
+    row.appendChild(cb);
+    row.appendChild(meta);
+    list.appendChild(row);
+    checks.push(cb);
+    cb.addEventListener("change", updateCount);
+  });
+
+  const btns = document.createElement("div");
+  btns.className = "modal-buttons";
+  const dont = document.createElement("button");
+  dont.type = "button";
+  dont.className = "ml-cancel-btn";
+  dont.textContent = "Don’t add";
+  const add = document.createElement("button");
+  add.type = "button";
+  add.className = "ml-add-btn";
+  btns.appendChild(dont);
+  btns.appendChild(add);
+
+  function selectedIds() {
+    return checks.filter((c) => c.checked).map((c) => c.value);
+  }
+  function updateCount() {
+    const n = selectedIds().length;
+    add.textContent = n ? "Add selected (" + n + ")" : "Add selected";
+    add.disabled = n === 0;
+  }
+  updateCount();
+  selAll.addEventListener("click", () => {
+    checks.forEach((c) => (c.checked = true));
+    updateCount();
+  });
+  selNone.addEventListener("click", () => {
+    checks.forEach((c) => (c.checked = false));
+    updateCount();
+  });
+
+  function finish(ids) {
+    if (overlay.parentNode) overlay.parentNode.removeChild(overlay);
+    libMergeOpen = false;
+    resolve(ids);
+  }
+  add.addEventListener("click", () => finish(selectedIds()));
+  dont.addEventListener("click", () => finish([]));
+
+  modal.appendChild(h);
+  modal.appendChild(sub);
+  modal.appendChild(tools);
+  modal.appendChild(list);
+  modal.appendChild(btns);
+  overlay.appendChild(modal);
+  document.body.appendChild(overlay);
+}
+
 /* ---------- view toggle ---------- */
 function setView(view) {
   const isLib = view === "library";
@@ -697,6 +812,11 @@ function setView(view) {
   document.addEventListener("cloud-auth", () => {
     libRenderAccount();
     libUpdateStatusText();
+  });
+  document.addEventListener("guest-merge-needed", (e) => {
+    e.preventDefault();
+    setView("library"); // show the library behind the dialog for context
+    libShowGuestMerge(e.detail.items, e.detail.resolve);
   });
 
   document.addEventListener("click", (e) => {

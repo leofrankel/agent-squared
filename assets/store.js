@@ -22,6 +22,7 @@
   const LS_USER = "agent2:library:user:v1"; // signed-in cache; cleared on sign-out
   const LS_LEGACY = "agent2:library:v1"; // pre-split single key
   let signedInMode = false;
+  let syncing = false;
 
   // One-time migration: fold the old single-key store into the guest cache.
   try {
@@ -247,7 +248,29 @@
   };
 
   /* ----- cloud sync ----- */
+  // Ask the UI which guest items to adopt. The UI handles "guest-merge-needed"
+  // (calls preventDefault + resolves with the chosen ids). If nothing handles it,
+  // we fall back to adopting all (legacy behavior).
+  function requestGuestMergeChoice(guestItems) {
+    return new Promise((resolve) => {
+      let settled = false;
+      const done = (ids) => {
+        if (settled) return;
+        settled = true;
+        resolve(Array.isArray(ids) ? ids : guestItems.map((i) => i.id));
+      };
+      const ev = new CustomEvent("guest-merge-needed", {
+        cancelable: true,
+        detail: { items: guestItems, resolve: done },
+      });
+      const notPrevented = document.dispatchEvent(ev);
+      if (notPrevented) done(guestItems.map((i) => i.id));
+    });
+  }
+
   async function syncOnSignIn() {
+    if (syncing) return;
+    syncing = true;
     signedInMode = true;
     try {
       // Instant render from the signed-in cache if we have one.
@@ -259,28 +282,39 @@
       const cloud = (await window.Cloud.fetchAll()).map(normalize);
       const cloudIds = new Set(cloud.map((i) => i.id));
       const cloudNews = new Set(cloud.filter((i) => i.origin === "curated" && i.news_id).map((i) => i.news_id));
-      // Adopt anything not already in the cloud: guest items (LS_ANON) and any
-      // offline edits made while signed in (LS_USER). LS_USER is always this same
-      // user's (it's cleared on sign-out), so adopting it is safe.
-      const pending = [].concat(readKey(LS_ANON) || [], readKey(LS_USER) || []);
+      const isNew = (it) => {
+        if (it.origin === "curated" && it.news_id && cloudNews.has(it.news_id)) return false;
+        if (cloudIds.has(it.id)) return false;
+        return true;
+      };
+
+      // Offline edits made while signed in (LS_USER, same user) re-sync silently.
+      const offline = (readKey(LS_USER) || []).filter(isNew);
+      // Guest items (LS_ANON) need the user's explicit choice before joining the account.
+      const guest = (readKey(LS_ANON) || []).filter(isNew);
+
+      let toUpload = offline.slice();
+      if (guest.length) {
+        const chosen = new Set(await requestGuestMergeChoice(guest));
+        toUpload = toUpload.concat(guest.filter((g) => chosen.has(g.id)));
+      }
+
       const seen = new Set();
-      for (const local of pending) {
+      for (const local of toUpload) {
         if (seen.has(local.id)) continue;
         seen.add(local.id);
-        if (local.origin === "curated" && local.news_id && cloudNews.has(local.news_id)) continue;
-        if (cloudIds.has(local.id)) continue;
         if (!isUuid(local.id)) local.id = uid();
         await window.Cloud.upsert(local);
         cloud.push(local);
-        cloudIds.add(local.id);
-        if (local.news_id) cloudNews.add(local.news_id);
       }
       items = cloud;
       persist(); // → LS_USER
-      clearKey(LS_ANON); // guest items adopted; don't let the next user re-adopt them
+      clearKey(LS_ANON); // guest cache resolved (adopted and/or discarded); don't let it linger
       emit();
     } catch (e) {
       console.warn("Library sync on sign-in failed:", e);
+    } finally {
+      syncing = false;
     }
   }
 
