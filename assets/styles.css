@@ -230,6 +230,28 @@ a { color: inherit; }
 }
 .ml-sync-btn.primary-soft:hover { background: rgba(111, 151, 214, 0.26); }
 
+/* Google sign-in button — dark theme (Google branding allows dark variants;
+   the 4-color logo is kept unaltered on a small white chip for legibility). */
+.google-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  height: 40px;
+  padding: 0 16px 0 13px;
+  background: var(--navy-soft);
+  color: var(--text);
+  border: 1px solid var(--navy-line);
+  border-radius: var(--radius-sm);
+  font-family: "Roboto", var(--sans);
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.14s, border-color 0.14s;
+}
+.google-btn:hover { background: rgba(111, 151, 214, 0.26); border-color: var(--navy); }
+.google-btn svg { width: 18px; height: 18px; display: block; flex: none; }
+.google-btn span { line-height: 1; }
+
 /* Library: caption + status chip */
 .lib-add-caption { color: var(--text-dim); font-size: 13px; margin: 0 0 10px; }
 .status-chip {
