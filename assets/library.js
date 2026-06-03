@@ -524,7 +524,7 @@ function libRenderAccount() {
 
   const status = document.createElement("span");
   status.className = "ml-account-status";
-  status.textContent = "Your library is saved in this browser.";
+  status.textContent = "You’re in guest mode — sign in to save your library.";
   host.appendChild(status);
 
   if (!libAuthFormOpen) {
@@ -596,7 +596,7 @@ function libUpdateStatusText() {
   const n = Store.all().length;
   const count = n + (n === 1 ? " item" : " items");
   if (libCloudReady() && window.Cloud.isSignedIn()) el.textContent = count + " · synced to your account";
-  else el.textContent = count + " · stored in this browser";
+  else el.textContent = count;
 }
 
 /* ---------- main render ---------- */
