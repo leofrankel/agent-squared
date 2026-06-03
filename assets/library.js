@@ -524,7 +524,7 @@ function libRenderAccount() {
 
   const status = document.createElement("span");
   status.className = "ml-account-status";
-  status.textContent = "You’re in guest mode — sign in to save your library.";
+  status.textContent = "You’re in guest mode - sign in to save your library.";
   host.appendChild(status);
 
   if (!libAuthFormOpen) {
