@@ -8,17 +8,34 @@
  *   - custom links the user adds   (origin "custom")
  * Each item has user tags and a status: "want" (to read) or "read".
  *
- * Local-first: the source of truth is localStorage. When signed in (window.Cloud),
- * Supabase becomes the source of truth and every write mirrors to the cloud.
- * Any change dispatches a "store-changed" event so every view re-renders in sync.
+ * Local-first with per-identity caches:
+ *   - LS_ANON  — a guest's data (signed-out). Persists, and on first sign-in its
+ *                items are adopted into the account.
+ *   - LS_USER  — a cache of the signed-in user's cloud data (for offline/instant
+ *                render). Cleared on sign-out so nothing leaks to the next user
+ *                on a shared browser.
+ * When signed in (window.Cloud), Supabase is the source of truth and every write
+ * mirrors to it. Any change dispatches "store-changed" so views re-render in sync.
  * -------------------------------------------------------------------------- */
 (function () {
-  const LS_KEY = "agent2:library:v1";
-  let items = load();
+  const LS_ANON = "agent2:library:anon:v1"; // guest (signed-out) cache
+  const LS_USER = "agent2:library:user:v1"; // signed-in cache; cleared on sign-out
+  const LS_LEGACY = "agent2:library:v1"; // pre-split single key
+  let signedInMode = false;
 
-  function load() {
+  // One-time migration: fold the old single-key store into the guest cache.
+  try {
+    if (localStorage.getItem(LS_LEGACY) && !localStorage.getItem(LS_ANON) && !localStorage.getItem(LS_USER)) {
+      localStorage.setItem(LS_ANON, localStorage.getItem(LS_LEGACY));
+      localStorage.removeItem(LS_LEGACY);
+    }
+  } catch (e) {}
+
+  let items = readKey(LS_ANON) || [];
+
+  function readKey(key) {
     try {
-      const raw = localStorage.getItem(LS_KEY);
+      const raw = localStorage.getItem(key);
       if (raw) {
         const p = JSON.parse(raw);
         if (Array.isArray(p.items)) return p.items.map(normalize);
@@ -26,14 +43,19 @@
     } catch (e) {
       console.warn("Could not read library store:", e);
     }
-    return [];
+    return null;
   }
   function persist() {
     try {
-      localStorage.setItem(LS_KEY, JSON.stringify({ items }));
+      localStorage.setItem(signedInMode ? LS_USER : LS_ANON, JSON.stringify({ items }));
     } catch (e) {
       console.warn("Could not save library store:", e);
     }
+  }
+  function clearKey(key) {
+    try {
+      localStorage.removeItem(key);
+    } catch (e) {}
   }
   function emit() {
     document.dispatchEvent(new CustomEvent("store-changed"));
@@ -226,19 +248,36 @@
 
   /* ----- cloud sync ----- */
   async function syncOnSignIn() {
+    signedInMode = true;
     try {
+      // Instant render from the signed-in cache if we have one.
+      const cached = readKey(LS_USER);
+      if (cached && cached.length) {
+        items = cached;
+        emit();
+      }
       const cloud = (await window.Cloud.fetchAll()).map(normalize);
       const cloudIds = new Set(cloud.map((i) => i.id));
       const cloudNews = new Set(cloud.filter((i) => i.origin === "curated" && i.news_id).map((i) => i.news_id));
-      for (const local of items) {
+      // Adopt anything not already in the cloud: guest items (LS_ANON) and any
+      // offline edits made while signed in (LS_USER). LS_USER is always this same
+      // user's (it's cleared on sign-out), so adopting it is safe.
+      const pending = [].concat(readKey(LS_ANON) || [], readKey(LS_USER) || []);
+      const seen = new Set();
+      for (const local of pending) {
+        if (seen.has(local.id)) continue;
+        seen.add(local.id);
         if (local.origin === "curated" && local.news_id && cloudNews.has(local.news_id)) continue;
         if (cloudIds.has(local.id)) continue;
         if (!isUuid(local.id)) local.id = uid();
         await window.Cloud.upsert(local);
         cloud.push(local);
+        cloudIds.add(local.id);
+        if (local.news_id) cloudNews.add(local.news_id);
       }
       items = cloud;
-      persist();
+      persist(); // → LS_USER
+      clearKey(LS_ANON); // guest items adopted; don't let the next user re-adopt them
       emit();
     } catch (e) {
       console.warn("Library sync on sign-in failed:", e);
@@ -246,8 +285,18 @@
   }
 
   document.addEventListener("cloud-auth", function () {
-    if (cloudOn()) syncOnSignIn();
-    else emit();
+    if (cloudOn()) {
+      syncOnSignIn();
+    } else {
+      // Signed out, or an anonymous page load.
+      if (signedInMode) {
+        // A real sign-out: drop the signed-in cache so it can't leak to the next user.
+        clearKey(LS_USER);
+        signedInMode = false;
+      }
+      items = readKey(LS_ANON) || [];
+      emit();
+    }
   });
 
   window.Store = Store;
