@@ -76,6 +76,10 @@
       const redirect = window.location.href.split("#")[0];
       return client.auth.signInWithOtp({ email, options: { emailRedirectTo: redirect } });
     },
+    signInWithGoogle() {
+      const redirect = window.location.href.split("#")[0];
+      return client.auth.signInWithOAuth({ provider: "google", options: { redirectTo: redirect } });
+    },
     signOut() {
       return client.auth.signOut();
     },

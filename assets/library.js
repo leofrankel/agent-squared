@@ -519,15 +519,23 @@ function libRenderAccount() {
   host.appendChild(status);
 
   if (!libAuthFormOpen) {
-    const btn = document.createElement("button");
-    btn.type = "button";
-    btn.className = "ml-sync-btn primary-soft";
-    btn.textContent = "Sign in to sync across devices";
-    btn.addEventListener("click", () => {
+    const google = document.createElement("button");
+    google.type = "button";
+    google.className = "ml-sync-btn primary-soft";
+    google.textContent = "Continue with Google";
+    google.addEventListener("click", () => window.Cloud.signInWithGoogle());
+
+    const emailBtn = document.createElement("button");
+    emailBtn.type = "button";
+    emailBtn.className = "ml-sync-btn";
+    emailBtn.textContent = "Use email instead";
+    emailBtn.addEventListener("click", () => {
       libAuthFormOpen = true;
       libRenderAccount();
     });
-    host.appendChild(btn);
+
+    host.appendChild(google);
+    host.appendChild(emailBtn);
     return;
   }
 
