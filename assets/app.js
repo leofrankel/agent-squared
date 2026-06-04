@@ -464,6 +464,69 @@ document.addEventListener("store-changed", () => {
   render();
 });
 
+/* ---------- favicon ---------- */
+function drawFavicon() {
+  const size = 128;
+  const canvas = document.createElement("canvas");
+  canvas.width = size;
+  canvas.height = size;
+  const ctx = canvas.getContext("2d");
+
+  // Rounded-square background
+  const r = 26;
+  ctx.fillStyle = "#0c1320";
+  ctx.beginPath();
+  ctx.moveTo(r, 0);
+  ctx.lineTo(size - r, 0);
+  ctx.quadraticCurveTo(size, 0, size, r);
+  ctx.lineTo(size, size - r);
+  ctx.quadraticCurveTo(size, size, size - r, size);
+  ctx.lineTo(r, size);
+  ctx.quadraticCurveTo(0, size, 0, size - r);
+  ctx.lineTo(0, r);
+  ctx.quadraticCurveTo(0, 0, r, 0);
+  ctx.closePath();
+  ctx.fill();
+
+  // Measure at reference size to find scale factor
+  const supRatio = 0.55;
+  const refSize = 100;
+  const pad = 7;
+  ctx.font = `600 ${refSize}px "Fraunces"`;
+  const aRefWidth = ctx.measureText("a").width;
+  ctx.font = `600 ${refSize * supRatio}px "Fraunces"`;
+  const twoRefWidth = ctx.measureText("2").width;
+
+  // Solve: aWidth + twoWidth = size - 2*pad
+  const scale = (size - 2 * pad) / (aRefWidth + twoRefWidth);
+  const aFontSize = refSize * scale;
+  const twoFontSize = aFontSize * supRatio;
+
+  // Measure final widths and ascents
+  ctx.font = `600 ${aFontSize}px "Fraunces"`;
+  const aM = ctx.measureText("a");
+  ctx.font = `600 ${twoFontSize}px "Fraunces"`;
+  const twoM = ctx.measureText("2");
+
+  // "a" flush bottom-left
+  ctx.fillStyle = "#e6d8b8";
+  ctx.font = `600 ${aFontSize}px "Fraunces"`;
+  ctx.textBaseline = "alphabetic";
+  ctx.textAlign = "left";
+  ctx.fillText("a", pad, size - pad);
+
+  // "2" flush top-right, left edge touching right edge of "a"
+  ctx.fillStyle = "#6f97d6";
+  ctx.font = `600 ${twoFontSize}px "Fraunces"`;
+  ctx.fillText("2", pad + aM.width, pad + twoM.actualBoundingBoxAscent);
+
+  const link = document.getElementById("favicon");
+  if (link) {
+    link.type = "image/png";
+    link.href = canvas.toDataURL("image/png");
+  }
+}
+
 /* ---------- boot ---------- */
 (async function init() {
   await loadData();
@@ -473,4 +536,7 @@ document.addEventListener("store-changed", () => {
     render();
   });
   render();
+  // Draw favicon once fonts are ready, or after 3s if they never resolve
+  const faviconTimer = setTimeout(drawFavicon, 3000);
+  document.fonts.ready.then(() => { clearTimeout(faviconTimer); drawFavicon(); });
 })();
