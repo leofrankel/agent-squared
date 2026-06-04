@@ -655,7 +655,9 @@ function libRender() {
 /* ---------- guest-merge dialog ---------- */
 let libMergeOpen = false;
 function libShowGuestMerge(guestItems, resolve) {
+  console.log("[MERGE-DEBUG] libShowGuestMerge", { libMergeOpen, count: guestItems.length });
   if (libMergeOpen) {
+    console.log("[MERGE-DEBUG] libShowGuestMerge EARLY-RETURN (dialog already open) -> resolving []");
     resolve([]); // a dialog is already up; don't stack
     return;
   }
@@ -814,6 +816,7 @@ function setView(view) {
     libUpdateStatusText();
   });
   document.addEventListener("guest-merge-needed", (e) => {
+    console.log("[MERGE-DEBUG] library guest-merge-needed handler fired", { count: e.detail.items.length });
     e.preventDefault();
     setView("library"); // show the library behind the dialog for context
     libShowGuestMerge(e.detail.items, e.detail.resolve);

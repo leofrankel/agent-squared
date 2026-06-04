@@ -264,11 +264,13 @@
         detail: { items: guestItems, resolve: done },
       });
       const notPrevented = document.dispatchEvent(ev);
+      console.log("[MERGE-DEBUG] guest-merge-needed dispatched", { notPrevented, handlerWillShowDialog: !notPrevented });
       if (notPrevented) done(guestItems.map((i) => i.id));
     });
   }
 
   async function syncOnSignIn() {
+    console.log("[MERGE-DEBUG] syncOnSignIn called", { syncing });
     if (syncing) return;
     syncing = true;
     signedInMode = true;
@@ -280,6 +282,7 @@
         emit();
       }
       const cloud = (await window.Cloud.fetchAll()).map(normalize);
+      console.log("[MERGE-DEBUG] fetchAll returned", { cloudCount: cloud.length });
       const cloudIds = new Set(cloud.map((i) => i.id));
       const cloudNews = new Set(cloud.filter((i) => i.origin === "curated" && i.news_id).map((i) => i.news_id));
       const isNew = (it) => {
@@ -294,8 +297,11 @@
       const guest = (readKey(LS_ANON) || []).filter(isNew);
 
       let toUpload = offline.slice();
+      console.log("[MERGE-DEBUG] sync branch counts", { offline: offline.length, guest: guest.length });
       if (guest.length) {
+        console.log("[MERGE-DEBUG] requesting guest merge choice…");
         const chosen = new Set(await requestGuestMergeChoice(guest));
+        console.log("[MERGE-DEBUG] guest merge resolved", { chosen: Array.from(chosen) });
         toUpload = toUpload.concat(guest.filter((g) => chosen.has(g.id)));
       }
 
@@ -308,10 +314,12 @@
         cloud.push(local);
       }
       items = cloud;
+      console.log("[MERGE-DEBUG] sync complete, items set to cloud", { itemsCount: items.length });
       persist(); // → LS_USER
       clearKey(LS_ANON); // guest cache resolved (adopted and/or discarded); don't let it linger
       emit();
     } catch (e) {
+      console.log("[MERGE-DEBUG] syncOnSignIn THREW", e);
       console.warn("Library sync on sign-in failed:", e);
     } finally {
       syncing = false;
@@ -319,10 +327,12 @@
   }
 
   document.addEventListener("cloud-auth", function () {
+    console.log("[MERGE-DEBUG] store cloud-auth handler", { cloudOn: cloudOn(), signedInMode, syncing, itemsNow: items.length });
     if (cloudOn()) {
       syncOnSignIn();
     } else {
       // Signed out, or an anonymous page load.
+      console.log("[MERGE-DEBUG] store ELSE-branch (not signed in) -> overwriting items with LS_ANON");
       if (signedInMode) {
         // A real sign-out: drop the signed-in cache so it can't leak to the next user.
         clearKey(LS_USER);
