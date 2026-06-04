@@ -24,8 +24,7 @@
   const client = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
   let currentUser = null;
 
-  function emit(srcEvent) {
-    console.log("[MERGE-DEBUG] cloud.emit", { srcEvent: srcEvent || "(getSession)", signedIn: !!currentUser, userId: currentUser && currentUser.id });
+  function emit() {
     document.dispatchEvent(
       new CustomEvent("cloud-auth", { detail: { signedIn: !!currentUser, user: currentUser } })
     );
@@ -109,7 +108,7 @@
 
   client.auth.onAuthStateChange((_event, session) => {
     currentUser = session && session.user ? session.user : null;
-    emit(_event);
+    emit();
   });
   client.auth.getSession().then(({ data }) => {
     currentUser = data && data.session && data.session.user ? data.session.user : null;
