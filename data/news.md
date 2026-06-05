@@ -2,10 +2,12 @@
 
 # agent-squared — curated AI news
 
-_Last updated: 2026-05-29 · 31 items_
+_Last updated: 2026-06-05 · 41 items_
 
 ## ★ Highlights
 
+- **[Multi-Agent Computer Use](https://arxiv.org/abs/2606.01533)** — arXiv · 2026-06-01 · _Research_
+  Introduces MACU, a framework where a manager model decomposes tasks into dependency DAGs executed by parallel subagents; achieves 3.4–25.5% gains across OSWorld, Mind2Web, WebTailBench, and Odysseys benchmarks with ~1.5× faster wall-clock completion on long-horizon tasks versus single-agent baselines.
 - **[Google Antigravity 2.0: agent-first development platform](https://blog.google/innovation-and-ai/technology/developers-tools/google-io-2026-developer-highlights/)** — Google · 2026-05-19 · _Agent Framework_
   At Google I/O 2026, Google launched Antigravity 2.0, a standalone desktop app built around orchestrating multiple agents in parallel, alongside an Antigravity CLI, SDK, Managed Agents in the Gemini API, and enterprise support.
 - **[Introducing Claude Opus 4.8](https://www.anthropic.com/news/claude-opus-4-8)** — Anthropic · 2026-05-28 · _Model Release_
@@ -24,6 +26,8 @@ _Last updated: 2026-05-29 · 31 items_
 
 ## Agent Framework
 
+- **[Hermes Agent v0.15.0 — The Velocity Release](https://github.com/NousResearch/hermes-agent/releases/tag/v2026.5.28)** — GitHub · 2026-05-28
+  Major Nous Research update to the open-source Hermes agent: multi-agent kanban with auto-decomposition and swarm topology, session_search rebuilt as a zero-LLM tool (4,500× faster), 63% cold-start reduction, and promptware injection defenses.
 - **[Datasette Agent: an extensible AI assistant for Datasette](https://simonwillison.net/2026/May/21/datasette-agent/)** — Simon Willison · 2026-05-21
   Simon Willison's open-source Datasette plugin providing a conversational interface over SQLite, built on the LLM library with support for hundreds of tool-calling models from frontier and open-weight vendors.
 - **[Google Antigravity 2.0: agent-first development platform](https://blog.google/innovation-and-ai/technology/developers-tools/google-io-2026-developer-highlights/)** — Google · 2026-05-19
@@ -37,6 +41,8 @@ _Last updated: 2026-05-29 · 31 items_
 
 ## Tooling & Infra
 
+- **[Statewright: State Machine Guardrails for AI Agents](https://github.com/statewright/statewright)** — GitHub · 
+  Open-source tool that enforces phase-based tool access for coding agents — planning gets read-only tools, implementation unlocks edits, testing restricts to test commands — via MCP integration; works with Claude Code, Codex, Cursor, and others.
 - **[The 2026-07-28 MCP Specification Release Candidate](https://blog.modelcontextprotocol.io/posts/2026-07-28-release-candidate/)** — Model Context Protocol Blog · 2026-05-21
   Release candidate for the next Model Context Protocol spec: a stateless protocol core, an Extensions framework, a Tasks lifecycle, and OAuth-aligned authorization. Final spec targeted for July 28, 2026.
 - **[Introducing Claude Design by Anthropic Labs](https://www.anthropic.com/news/claude-design-anthropic-labs)** — Anthropic · 2026-04-17
@@ -46,6 +52,20 @@ _Last updated: 2026-05-29 · 31 items_
 
 ## Research
 
+- **[Channel Fracture: Architectural Blind Spots in Scheduled Cross-Agent Memory Injection](https://arxiv.org/abs/2606.04896)** — arXiv · 2026-06-03
+  Identifies a silent failure mode in multi-agent deployments where cron-scheduled agents cannot write to another agent's persistent memory due to hardcoded isolation guards; tested on a production Hermes Agent deployment and proposes CADVP v1.1, a 13-dimension verification framework.
+- **[Capability Advertisement as a Market for Lemons: A Trust Layer for Heterogeneous Agent Networks](https://arxiv.org/abs/2606.03034)** — arXiv · 2026-06-02
+  Argues that agent capability claims in MCP/A2A delegation suffer from Akerlof's market-for-lemons problem — callers cannot distinguish reliable providers from fluent impostors — and proposes a protocol-agnostic trust layer using probabilistic descriptors, screening, and reputation mechanisms.
+- **[Multi-Agent Computer Use](https://arxiv.org/abs/2606.01533)** — arXiv · 2026-06-01
+  Introduces MACU, a framework where a manager model decomposes tasks into dependency DAGs executed by parallel subagents; achieves 3.4–25.5% gains across OSWorld, Mind2Web, WebTailBench, and Odysseys benchmarks with ~1.5× faster wall-clock completion on long-horizon tasks versus single-agent baselines.
+- **[MetaForge: A Self-Evolving Multimodal Agent that Retrieves, Adapts, and Forges Tools On Demand](https://arxiv.org/abs/2606.01801)** — arXiv · 2026-06-01
+  An agent framework that dynamically synthesizes new tools when existing ones are insufficient, penalizes unnecessary tool calls, and makes forged tools reusable; evaluated on 12 benchmarks with improvements in accuracy, efficiency, and generalization to unfamiliar scenarios.
+- **[Doing What They Say, Not What They Reason: Locating the Faithfulness Gap in LLM Agents](https://arxiv.org/abs/2606.00476)** — arXiv · 2026-05-30
+  Uses a Texas Poker simulator as a ground-truth testbed to measure whether agents act on their stated reasoning; finds the gap divides into reasoning-to-conclusion and conclusion-to-action stages that behave oppositely, with implications for using LLMs in social simulation.
+- **[ForeSci: Evaluating LLM Agents for Forward-Looking AI Research Judgment](https://arxiv.org/abs/2606.00644)** — arXiv · 2026-05-30
+  A 500-task benchmark spanning four AI domains and four decision categories that tests whether LLM agents can make research predictions from historical information; finds 'evidence-decision decoupling' — agents cite relevant sources but still forecast incorrect outcomes.
+- **[Scaling Behavior of Single LLM-Driven Multi-Agent Systems](https://arxiv.org/abs/2606.00655)** — arXiv · 2026-05-30
+  Studies how LLM-based multi-agent systems scale with agent count using the SIMAS framework; finds diminishing returns rather than linear gains, driven by coordination overhead rather than context length, with optimal agent count varying significantly by task type.
 - **[AI Research Agents Narrow Scientific Exploration](https://arxiv.org/abs/2605.27905)** — arXiv · 2026-05-27
   Analyzes 37,802 ideas from four AI research-agent frameworks and six LLMs, finding generated ideas concentrate around existing work rather than broadening exploration.
 - **[Paris 2.0: A Decentralized Diffusion Model for Video Generation](https://arxiv.org/abs/2605.26064)** — arXiv · 2026-05-25
@@ -88,6 +108,8 @@ _Last updated: 2026-05-29 · 31 items_
 
 ## Community & Discussion
 
+- **[Designing Agentic Memory in 2026](https://thenuancedperspective.substack.com/p/designing-agentic-memory-in-2026)** — The Nuanced Perspective · 2026-05-16
+  Substantive Substack analysis of five memory design mistakes in production agent systems — collapsing distinct memory types, using human-trained retrievers, not compounding memory across sessions, and ignoring poisoning vulnerabilities — grounded in four 2026 research papers.
 - **[I think Anthropic and OpenAI have found product-market fit](https://simonwillison.net/2026/May/27/product-market-fit/)** — Simon Willison · 2026-05-27
   Simon Willison argues coding agents (Claude Code/Cowork, Codex) have become daily drivers for well-paid professionals, citing his own ~$2,180/month in usage and April 2026 as the revenue inflection point.
 - **[Live blog: Code w/ Claude 2026](https://simonwillison.net/2026/May/6/code-w-claude-2026/)** — Simon Willison · 2026-05-06
