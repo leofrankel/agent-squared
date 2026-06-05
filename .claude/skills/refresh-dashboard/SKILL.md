@@ -15,7 +15,7 @@ You touch **only the curated news data** (`data/news.json` and its two mirrors).
 - `data/news.js` — generated mirror: `window.__NEWS__ = <same object as news.json>`. Lets the dashboard open from `file://` with no server. **Regenerate from news.json every time.**
 - `data/news.md` — generated human-readable mirror for browsing in git. **Regenerate from news.json every time.**
 - `index.html`, `assets/styles.css`, `assets/app.js` — the UI. You normally do **not** touch these during a refresh; only edit if the user asks for UI changes or the schema changes.
-- `assets/store.js`, `assets/cloud.js`, `assets/library.js` — the user's personal **Library** feature (saved dashboard items + custom links; local-first with optional Supabase sync). Personal data lives client-side / in the user's account, never in the repo. **Off-limits to this skill** — never read, edit, or stage these during a news refresh.
+- `assets/store.js`, `assets/cloud.js`, `assets/library.js` — the user's personal **Library** feature (saved dashboard items + custom links). Local-first with a split per-identity cache: a guest (signed-out) cache and a signed-in cache that's cleared on sign-out; on first sign-in a guest's items are adopted into the account. When signed in, Supabase is the source of truth and every write mirrors to it. Personal data lives client-side / in the user's account, never in the repo. **Off-limits to this skill** — never read, edit, or stage these during a news refresh.
 
 These three **news** files (`news.json` / `news.js` / `news.md`) must always stay in sync. `news.js` and `news.md` are derived 100% from `news.json`. **`news.js` is what the deployed site actually serves** (it's loaded via a `<script>` tag as `window.__NEWS__`; `news.json` is only a fallback), so regenerating it is production-critical, not just a `file://` nicety.
 
@@ -42,7 +42,7 @@ The dashboard sorts by `date_added` desc, then `published` desc. Within a catego
 
 ### The `id` is sacred
 
-When a user adds a dashboard item to their **Library** (or marks it read / tags it), that personal record references the item by this `id` (stored as `news_id`). For signed-in users it is **synced to Supabase**, keyed by `news_id`, across all their devices. So **never change or reuse an existing `id`** — doing so orphans that item's saved/read/tag state both locally and in the user's cloud account. Treat every existing id as immutable; only ever *add* new items. Derive new ids from a stable slug of the title or URL (lowercase, hyphenated), e.g. `claude-opus-4-8`, `groupmembench-arxiv-2605-14498`.
+When a user adds a dashboard item to their **Library** (or marks it read / tags it), that personal record references the item by this `id` (stored as a `news_id` column on the Library record). For signed-in users that record is **synced to Supabase** (the `library` table) across all their devices, and resolving its saved/read/tag state back to a dashboard item relies on `news_id` still matching. So **never change or reuse an existing `id`** — doing so orphans that item's saved/read/tag state both locally and in the user's cloud account. Treat every existing id as immutable; only ever *add* new items. Derive new ids from a stable slug of the title or URL (lowercase, hyphenated), e.g. `claude-opus-4-8`, `groupmembench-arxiv-2605-14498`.
 
 ## Categories
 
@@ -63,18 +63,29 @@ You may **add categories or relabel existing ones** as the landscape shifts (e.g
 Read `data/news.json`. Note every existing `id`, `url`, and `title` — this is your de-dupe set. Note the most recent `date_added` / `published` so you know how far back to look.
 
 ### 2. Find candidates
-Search the web for developments since the last refresh (or the last ~2–4 weeks if unsure). Cast a wide net across where developers actually post:
 
-- **Primary sources (preferred):** official blogs — anthropic.com/news, openai.com, blog.google / deepmind.google, microsoft devblogs, nvidia, meta AI; official docs/changelogs; the MCP blog (blog.modelcontextprotocol.io).
-- **Code:** GitHub releases/trending, notable new repos.
-- **Research:** arXiv (cs.AI, cs.CL, cs.LG), papers with code.
-- **Discussion:** Hacker News, reputable newsletters (e.g. Air Street's State of AI), well-known practitioner blogs (e.g. Simon Willison), high-signal social posts.
+**Primary focus: agentic AI.** The audience is building a research radar specifically for agentic AI — autonomous agents, multi-agent systems, tool use, agent planning, agent memory, agent evaluation, agent safety, and the frameworks that underpin them. Prioritize this topic over general AI/ML news; only include model releases, tooling, or lab updates when they have direct agent relevance.
 
-Small/niche is fine and often desirable. Aim for breadth across categories, not just big-lab headlines.
+Search for developments since the last refresh. For nightly runs this is 1–2 days; otherwise look back 2–4 weeks.
+
+**Research papers (highest priority):** Aim for the majority of new items each refresh to be papers.
+- Browse arXiv listing pages directly: `arxiv.org/list/cs.AI/current`, `arxiv.org/list/cs.MA/current`, `arxiv.org/list/cs.CL/current`. Skim titles for agent-relevant keywords: agent, multi-agent, tool use, planning, memory, benchmark, evaluation, autonomous, harness, orchestration, tool synthesis.
+- Search arXiv by topic: e.g. `"agentic" OR "agent" site:arxiv.org`, `multi-agent LLM coordination`, `LLM tool use benchmark`, `agent memory architecture`.
+- Papers with Code and Semantic Scholar for cross-referencing.
+
+**Agent frameworks and tooling:** GitHub releases from active agent projects (NousResearch/hermes-agent, openai/openai-agents-python, microsoft/agent-framework, HKUDS/OpenHarness, and similar); trending repos in the agent space; notable new repos from smaller or academic teams.
+
+**Less official sources — actively seek these out:**
+- **Hacker News:** "Show HN" and "Ask HN" posts about agent tools, architectures, or experiments; discussion threads with genuine technical signal on agentic topics.
+- **Practitioner Substacks and independent blogs:** The Nuanced Perspective, The AI Agent Architect, Simon Willison, and similar. A well-argued post grounded in concrete evidence or a real system is a valid item.
+- **Researcher personal blogs and posts:** Output from academic labs (CMU, HKU, Stanford, MIT, AI2, EleutherAI) and independent researchers — especially when linked to a paper or repo.
+- **Smaller lab announcements:** Nous Research, EleutherAI, AI2, Cohere, and similar — not just the big-five labs.
+
+**Official lab sources** (Anthropic, OpenAI, Google DeepMind, Microsoft, Meta AI) are still valid but deprioritized — prefer their research output over product announcements.
 
 ### 3. Vet for legitimacy & quality — DISCARD aggressively
 - Prefer primary sources. Treat SEO/aggregator/listicle sites ("best X of 2026", auto-generated "news" blogs) as **leads to verify, not citations.** Trace claims back to the primary source and link that instead.
-- **Verify every link resolves** to the right content with **WebFetch** (`gh` is **not** installed in this environment). For pages that return a bot 403 (e.g. some openai.com URLs), use **WebSearch with `allowed_domains`** to confirm the canonical published path — a bot 403 doesn't mean the link is dead in a browser, but confirm the URL is a real published path before trusting it.
+- **Verify every link resolves** to the right content with **WebFetch** (`gh` is **not** installed in this environment). For pages that return a bot 403 (e.g. some openai.com URLs), use **WebSearch with `allowed_domains`** to confirm the canonical published path — a bot 403 doesn't mean the link is dead in a browser, but confirm the URL is a real published path before trusting it. Links that require an institutional or university login to read are acceptable — include them and verify only that the URL is a real published path, not that you can read the full content.
 - **Verify the date** and only include items dated **on or before today.** Do not include things dated in the future (a post can describe a future release; use the post's publish date, not the title's date).
 - Drop anything you can't confirm: vague rumors, unverifiable leaks, fabricated-looking metrics, content farms.
 - **Never invent** titles, URLs, dates, or descriptions. If you only know the month, omit `published` rather than guessing a day.
@@ -118,7 +129,7 @@ Pushing publishes straight to production (Vercel auto-deploys on push to `main`)
 **Dry-run / manual mode:** if invoked with a `--no-push` argument (or the user explicitly asks for a manual/preview run), do everything *except* the push — report the diff and the pre-flight results so the user can review and push themselves.
 
 ## Guardrails
-- Quality over quantity. A handful of high-signal, verified items beats a long list of filler.
+- Lean toward more items rather than fewer — the goal is building a research radar, so breadth matters. Still skip genuine filler: SEO listicles, non-agentic AI news, vague rumors.
 - Keep descriptions factual and link-first — the user reads the source themselves.
 - Don't churn ids or rewrite existing items unnecessarily.
 - Keep the three data files in sync, every time.
