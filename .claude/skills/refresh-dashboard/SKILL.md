@@ -29,6 +29,8 @@ These three **news** files (`news.json` / `news.js` / `news.md`) must always sta
   "url": "https://…",                 // the source link; must resolve
   "source": "Anthropic | OpenAI | Google DeepMind | GitHub | arXiv | Hacker News | <site/author>",
   "category": "model-release | agent-framework | tooling | research | lab-update | community",
+  "research_subcategory": "research-agents | research-benchmarks | research-safety | research-science | research-multimodal | research-efficiency | research-training | research-interpretability",
+                                       // REQUIRED for category:"research" items. See research_subcategories registry below.
   "significance": "high | normal",     // "high" pins it to the Highlights band
   "published": "YYYY-MM-DD",            // original publish date; omit only if genuinely unknown
   "date_added": "YYYY-MM-DD",           // the date you add it to the dashboard (today). PRIMARY sort key.
@@ -56,6 +58,23 @@ Current registry (in `news.json` → `categories`):
 - `community` — discussion, newsletters, notable blog posts, conference recaps
 
 You may **add categories or relabel existing ones** as the landscape shifts (e.g. add `robotics`, `evals`, `safety`). If you do: update the `categories` array in `news.json` and re-categorize affected items. Changing a category's `label` is safe — but **keep category `id`s stable**. The Library snapshots each saved item's category `id` and resolves its label from this registry, so renaming an `id` degrades the label on items users have already saved (locally and in the cloud), the same way changing an item id would. Don't remove a category that still has items without re-homing them. The UI reads the registry dynamically — no code change needed.
+
+## Research subcategories
+
+All `category:"research"` items **must** have a `research_subcategory` field. The UI uses this for subgroup display within the Research section and for a dedicated "Research Topic" filter row.
+
+Current registry (in `news.json` → `research_subcategories`):
+
+- `research-agents` — agent architectures, multi-agent systems, tool use, planning, memory
+- `research-benchmarks` — evaluation methodology, benchmark suites, reproducibility
+- `research-safety` — AI safety, alignment, reward hacking, privacy, trust, fairness
+- `research-science` — AI applied to science (biology, physics, chemistry, mathematics)
+- `research-multimodal` — multimodal models, video/image generation, world models
+- `research-efficiency` — quantization, efficient inference, on-device AI, pruning, sparsity
+- `research-training` — reinforcement learning, post-training, fine-tuning, learning methods
+- `research-interpretability` — mechanistic interpretability, circuits, activation analysis
+
+You may add subcategories as new research themes emerge. Keep subcategory `id`s stable for the same reason as category ids. If you add one, add it to the `research_subcategories` array in `news.json`. When a paper doesn't cleanly fit an existing subcat, prefer the closest match over creating a new one for a single item.
 
 ## Process
 
@@ -115,7 +134,7 @@ Pushing publishes straight to production (Vercel auto-deploys on push to `main`)
 **Pre-flight checks (all must pass):**
 - **Valid JSON** — `news.json` parses (step 8).
 - **Mirrors in sync** — `news.js` item count, `news.md` item count, and `meta.count` all equal `items.length` (step 8).
-- **Schema complete** — every item has `id`, `title`, `url`, `source`, `category`; `category` is in the registry; `significance` ∈ {`high`, `normal`}; `published`/`date_added` are `YYYY-MM-DD`; no `published` date is in the future.
+- **Schema complete** — every item has `id`, `title`, `url`, `source`, `category`; `category` is in the registry; `significance` ∈ {`high`, `normal`}; `published`/`date_added` are `YYYY-MM-DD`; no `published` date is in the future. Every `category:"research"` item has a `research_subcategory` that is in the `research_subcategories` registry.
 - **No duplicates** — no repeated `id`; no repeated `url` (ignoring protocol/query/trailing slash).
 - **ID stability (critical)** — every pre-existing item `id` and category `id` recorded in step 1 still exists, unchanged. This run only *added* items; it never modified or removed an existing id (which would orphan users' synced Library state).
 - **Links resolve** — each *new* item's `url` was fetched/confirmed in step 3.

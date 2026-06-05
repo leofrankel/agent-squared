@@ -8,8 +8,8 @@
  * Dashboard and Library stay in sync and sync to the cloud when signed in.
  * -------------------------------------------------------------------------- */
 
-let DATA = { meta: {}, categories: [], items: [] };
-const filters = { category: "all", tag: "all", q: "" };
+let DATA = { meta: {}, categories: [], research_subcategories: [], items: [] };
+const filters = { category: "all", researchSubcat: "all", tag: "all", q: "" };
 let openEditor = null; // { el, itemId } of the open tag popover
 
 const TAG_BUILTINS = [
@@ -37,6 +37,10 @@ async function loadData() {
 function categoryLabel(id) {
   const c = DATA.categories.find((c) => c.id === id);
   return c ? c.label : id;
+}
+function researchSubcatLabel(id) {
+  const s = (DATA.research_subcategories || []).find((s) => s.id === id);
+  return s ? s.label : id;
 }
 function fmtDate(iso) {
   if (!iso) return "";
@@ -69,6 +73,10 @@ function matchesSearch(item) {
 function matchesCategory(item) {
   return filters.category === "all" || item.category === filters.category;
 }
+function matchesResearchSubcat(item) {
+  if (filters.researchSubcat === "all") return true;
+  return item.category === "research" && item.research_subcategory === filters.researchSubcat;
+}
 function matchesTag(item) {
   const it = Store.byNewsId(item.id);
   switch (filters.tag) {
@@ -85,7 +93,7 @@ function matchesTag(item) {
   }
 }
 function passesAll(item) {
-  return matchesSearch(item) && matchesCategory(item) && matchesTag(item);
+  return matchesSearch(item) && matchesCategory(item) && matchesResearchSubcat(item) && matchesTag(item);
 }
 
 /* ---------- filter bars ---------- */
@@ -121,6 +129,41 @@ function renderCategoryFilters() {
     host.appendChild(
       makePill(c.label, filters.category === c.id, n, () => {
         filters.category = c.id;
+        render();
+      })
+    );
+  });
+}
+function renderResearchSubcatFilters() {
+  const host = document.getElementById("research-subcat-filters");
+  const block = document.getElementById("research-subcat-block");
+  if (!host || !block) return;
+
+  // Base: items matching search + category + tag (not subcategory itself)
+  const base = sortedItems().filter((i) => matchesSearch(i) && matchesCategory(i) && matchesTag(i) && i.category === "research");
+  const totalResearch = sortedItems().filter((i) => matchesSearch(i) && matchesCategory(i) && matchesTag(i) && i.category === "research").length;
+
+  // Hide the entire block if there are no research items in the current view
+  block.hidden = totalResearch === 0 && filters.researchSubcat === "all";
+
+  host.innerHTML = "";
+  const allCount = base.length;
+  host.appendChild(
+    makePill("All topics", filters.researchSubcat === "all", allCount, () => {
+      filters.researchSubcat = "all";
+      render();
+    })
+  );
+  (DATA.research_subcategories || []).forEach((s) => {
+    const n = base.filter((i) => i.research_subcategory === s.id).length;
+    if (n === 0 && filters.researchSubcat !== s.id) return;
+    host.appendChild(
+      makePill(s.label, filters.researchSubcat === s.id, n, () => {
+        filters.researchSubcat = s.id;
+        // Also switch category view to research for clarity
+        if (filters.category !== "research") {
+          filters.category = "all";
+        }
         render();
       })
     );
@@ -182,6 +225,13 @@ function buildCard(item) {
   badge.className = "badge";
   badge.textContent = categoryLabel(item.category);
   top.appendChild(badge);
+  if (item.category === "research" && item.research_subcategory) {
+    const sub = document.createElement("span");
+    sub.className = "badge-sub";
+    sub.textContent = researchSubcatLabel(item.research_subcategory);
+    sub.title = "Research topic";
+    top.appendChild(sub);
+  }
   if (item.significance === "high") {
     const star = document.createElement("span");
     star.className = "sig-star";
@@ -393,6 +443,7 @@ function toggleTagEditor(item, actionsWrap, usertags) {
 /* ---------- main render ---------- */
 function render() {
   renderCategoryFilters();
+  renderResearchSubcatFilters();
   renderTagFilters();
 
   const matched = sortedItems().filter(passesAll);
@@ -411,24 +462,70 @@ function render() {
 
   const groups = document.getElementById("groups");
   groups.innerHTML = "";
-  if (filters.category === "all") {
+
+  const showingResearch = filters.category === "research" ||
+    (filters.category === "all" && filters.researchSubcat !== "all");
+
+  if (filters.category === "all" && filters.researchSubcat === "all") {
+    // Default: group by top-level category; Research section groups by subcategory
     DATA.categories.forEach((c) => {
       const inCat = rest.filter((i) => i.category === c.id);
       if (inCat.length === 0) return;
-      groups.appendChild(groupHeader(c.label, inCat.length));
-      groups.appendChild(gridOf(inCat));
+      if (c.id === "research") {
+        groups.appendChild(groupHeader(c.label, inCat.length));
+        renderResearchGroups(groups, inCat);
+      } else {
+        groups.appendChild(groupHeader(c.label, inCat.length));
+        groups.appendChild(gridOf(inCat));
+      }
     });
+  } else if (filters.category === "research" && filters.researchSubcat === "all") {
+    // Research category selected, no subcat filter: group by subcategory
+    if (rest.length > 0) {
+      groups.appendChild(groupHeader("Research", rest.length));
+      renderResearchGroups(groups, rest);
+    }
   } else if (rest.length > 0) {
-    groups.appendChild(groupHeader(categoryLabel(filters.category), rest.length));
+    const label = filters.researchSubcat !== "all"
+      ? researchSubcatLabel(filters.researchSubcat)
+      : categoryLabel(filters.category);
+    groups.appendChild(groupHeader(label, rest.length));
     groups.appendChild(gridOf(rest));
   }
 
   document.getElementById("empty-state").hidden = matched.length > 0;
   updateHeader(matched.length);
 }
+function renderResearchGroups(container, items) {
+  const subcats = DATA.research_subcategories || [];
+  let hasGrouped = false;
+  subcats.forEach((s) => {
+    const inSub = items.filter((i) => i.research_subcategory === s.id);
+    if (inSub.length === 0) return;
+    hasGrouped = true;
+    container.appendChild(subgroupHeader(s.label, inSub.length));
+    container.appendChild(gridOf(inSub));
+  });
+  // Fallback: items without a subcategory
+  const unclassified = items.filter((i) => !i.research_subcategory);
+  if (unclassified.length > 0) {
+    if (hasGrouped) container.appendChild(subgroupHeader("Other", unclassified.length));
+    container.appendChild(gridOf(unclassified));
+  }
+}
 function groupHeader(label, count) {
   const h = document.createElement("h2");
   h.className = "group-title";
+  h.appendChild(document.createTextNode(label));
+  const c = document.createElement("span");
+  c.className = "group-count";
+  c.textContent = count;
+  h.appendChild(c);
+  return h;
+}
+function subgroupHeader(label, count) {
+  const h = document.createElement("h3");
+  h.className = "subgroup-title";
   h.appendChild(document.createTextNode(label));
   const c = document.createElement("span");
   c.className = "group-count";

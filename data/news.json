@@ -4,12 +4,30 @@
     "count": 41
   },
   "categories": [
-    { "id": "model-release", "label": "Model Release" },
-    { "id": "agent-framework", "label": "Agent Framework" },
-    { "id": "tooling", "label": "Tooling & Infra" },
-    { "id": "research", "label": "Research" },
-    { "id": "lab-update", "label": "Big Lab Update" },
-    { "id": "community", "label": "Community & Discussion" }
+    {
+      "id": "model-release",
+      "label": "Model Release"
+    },
+    {
+      "id": "agent-framework",
+      "label": "Agent Framework"
+    },
+    {
+      "id": "tooling",
+      "label": "Tooling & Infra"
+    },
+    {
+      "id": "research",
+      "label": "Research"
+    },
+    {
+      "id": "lab-update",
+      "label": "Big Lab Update"
+    },
+    {
+      "id": "community",
+      "label": "Community & Discussion"
+    }
   ],
   "items": [
     {
@@ -22,7 +40,12 @@
       "significance": "high",
       "published": "2026-05-28",
       "date_added": "2026-05-28",
-      "topics": ["claude", "opus", "frontier model", "coding"]
+      "topics": [
+        "claude",
+        "opus",
+        "frontier model",
+        "coding"
+      ]
     },
     {
       "id": "mcp-spec-rc-2026-07-28",
@@ -34,7 +57,12 @@
       "significance": "high",
       "published": "2026-05-21",
       "date_added": "2026-05-28",
-      "topics": ["mcp", "protocol", "tools", "standards"]
+      "topics": [
+        "mcp",
+        "protocol",
+        "tools",
+        "standards"
+      ]
     },
     {
       "id": "gemini-3-5-action",
@@ -46,7 +74,12 @@
       "significance": "high",
       "published": "2026-05-19",
       "date_added": "2026-05-28",
-      "topics": ["gemini", "google", "agents", "frontier model"]
+      "topics": [
+        "gemini",
+        "google",
+        "agents",
+        "frontier model"
+      ]
     },
     {
       "id": "groupmembench-arxiv-2605-14498",
@@ -58,7 +91,13 @@
       "significance": "normal",
       "published": "2026-05-14",
       "date_added": "2026-05-28",
-      "topics": ["benchmark", "memory", "multi-agent", "evaluation"]
+      "topics": [
+        "benchmark",
+        "memory",
+        "multi-agent",
+        "evaluation"
+      ],
+      "research_subcategory": "research-benchmarks"
     },
     {
       "id": "nvidia-hermes-self-improving-agents",
@@ -70,7 +109,12 @@
       "significance": "normal",
       "published": "2026-05-13",
       "date_added": "2026-05-28",
-      "topics": ["hermes", "nous research", "local agents", "self-improving"]
+      "topics": [
+        "hermes",
+        "nous research",
+        "local agents",
+        "self-improving"
+      ]
     },
     {
       "id": "ms-agent-framework-python-1-7-0",
@@ -82,7 +126,12 @@
       "significance": "normal",
       "published": "2026-05-28",
       "date_added": "2026-05-28",
-      "topics": ["microsoft", "orchestration", "a2a", "framework"]
+      "topics": [
+        "microsoft",
+        "orchestration",
+        "a2a",
+        "framework"
+      ]
     },
     {
       "id": "code-with-claude-2026-swillison",
@@ -94,7 +143,12 @@
       "significance": "normal",
       "published": "2026-05-06",
       "date_added": "2026-05-28",
-      "topics": ["anthropic", "claude code", "managed agents", "conference"]
+      "topics": [
+        "anthropic",
+        "claude code",
+        "managed agents",
+        "conference"
+      ]
     },
     {
       "id": "alphaevolve-impact",
@@ -106,7 +160,13 @@
       "significance": "normal",
       "published": "2026-05-07",
       "date_added": "2026-05-28",
-      "topics": ["alphaevolve", "coding agent", "deepmind", "science"]
+      "topics": [
+        "alphaevolve",
+        "coding agent",
+        "deepmind",
+        "science"
+      ],
+      "research_subcategory": "research-science"
     },
     {
       "id": "state-of-ai-may-2026",
@@ -118,7 +178,12 @@
       "significance": "normal",
       "published": "2026-05-04",
       "date_added": "2026-05-28",
-      "topics": ["newsletter", "industry", "analysis", "open weights"]
+      "topics": [
+        "newsletter",
+        "industry",
+        "analysis",
+        "open weights"
+      ]
     },
     {
       "id": "anthropic-series-h",
@@ -130,7 +195,11 @@
       "significance": "normal",
       "published": "2026-05-28",
       "date_added": "2026-05-28",
-      "topics": ["anthropic", "funding", "industry"]
+      "topics": [
+        "anthropic",
+        "funding",
+        "industry"
+      ]
     },
     {
       "id": "claude-design-anthropic-labs",
@@ -142,7 +211,11 @@
       "significance": "normal",
       "published": "2026-04-17",
       "date_added": "2026-05-28",
-      "topics": ["anthropic labs", "design", "prototyping"]
+      "topics": [
+        "anthropic labs",
+        "design",
+        "prototyping"
+      ]
     },
     {
       "id": "openai-codex-almost-everything",
@@ -154,7 +227,12 @@
       "significance": "normal",
       "published": "2026-04-16",
       "date_added": "2026-05-28",
-      "topics": ["openai", "codex", "computer use", "coding agent"]
+      "topics": [
+        "openai",
+        "codex",
+        "computer use",
+        "coding agent"
+      ]
     },
     {
       "id": "google-antigravity-2-0",
@@ -166,7 +244,13 @@
       "significance": "high",
       "published": "2026-05-19",
       "date_added": "2026-05-29",
-      "topics": ["google", "antigravity", "agent orchestration", "ide", "cli"]
+      "topics": [
+        "google",
+        "antigravity",
+        "agent orchestration",
+        "ide",
+        "cli"
+      ]
     },
     {
       "id": "anthropic-gates-foundation-partnership",
@@ -178,19 +262,30 @@
       "significance": "normal",
       "published": "2026-05-14",
       "date_added": "2026-05-29",
-      "topics": ["anthropic", "gates foundation", "global health", "partnership"]
+      "topics": [
+        "anthropic",
+        "gates foundation",
+        "global health",
+        "partnership"
+      ]
     },
     {
       "id": "cattle-trade-arxiv-2605-14537",
       "title": "Cattle Trade: A Multi-Agent Benchmark for LLM Bluffing, Bidding, and Bargaining",
-      "description": "An arXiv benchmark evaluating LLMs as strategic agents under imperfect information across a 50–60 turn game of auctions, bargaining, and bluffing; some heuristic code agents outperformed most tested LLMs.",
+      "description": "An arXiv benchmark evaluating LLMs as strategic agents under imperfect information across a 50\u201360 turn game of auctions, bargaining, and bluffing; some heuristic code agents outperformed most tested LLMs.",
       "url": "https://arxiv.org/abs/2605.14537",
       "source": "arXiv",
       "category": "research",
       "significance": "normal",
       "published": "2026-05-14",
       "date_added": "2026-05-29",
-      "topics": ["benchmark", "multi-agent", "strategy", "evaluation"]
+      "topics": [
+        "benchmark",
+        "multi-agent",
+        "strategy",
+        "evaluation"
+      ],
+      "research_subcategory": "research-benchmarks"
     },
     {
       "id": "llm-agent-benchmark-audit-arxiv-2605-21404",
@@ -202,7 +297,13 @@
       "significance": "normal",
       "published": "2026-05-20",
       "date_added": "2026-05-29",
-      "topics": ["benchmark", "reproducibility", "evaluation", "methodology"]
+      "topics": [
+        "benchmark",
+        "reproducibility",
+        "evaluation",
+        "methodology"
+      ],
+      "research_subcategory": "research-benchmarks"
     },
     {
       "id": "swillison-product-market-fit-2026-05",
@@ -214,7 +315,13 @@
       "significance": "normal",
       "published": "2026-05-27",
       "date_added": "2026-05-29",
-      "topics": ["coding agents", "industry", "claude code", "codex", "analysis"]
+      "topics": [
+        "coding agents",
+        "industry",
+        "claude code",
+        "codex",
+        "analysis"
+      ]
     },
     {
       "id": "gemini-spark-personal-agent",
@@ -226,7 +333,13 @@
       "significance": "normal",
       "published": "2026-05-19",
       "date_added": "2026-05-29",
-      "topics": ["gemini", "google", "personal agent", "mcp", "long-horizon"]
+      "topics": [
+        "gemini",
+        "google",
+        "personal agent",
+        "mcp",
+        "long-horizon"
+      ]
     },
     {
       "id": "datasette-agent-0-1",
@@ -238,7 +351,13 @@
       "significance": "normal",
       "published": "2026-05-21",
       "date_added": "2026-05-29",
-      "topics": ["datasette", "sqlite", "llm library", "open source", "tool calling"]
+      "topics": [
+        "datasette",
+        "sqlite",
+        "llm library",
+        "open source",
+        "tool calling"
+      ]
     },
     {
       "id": "rethinking-rl-llm-reasoning-arxiv-2605-06241",
@@ -250,7 +369,13 @@
       "significance": "normal",
       "published": "2026-05-07",
       "date_added": "2026-05-29",
-      "topics": ["reinforcement learning", "reasoning", "post-training", "efficiency"]
+      "topics": [
+        "reinforcement learning",
+        "reasoning",
+        "post-training",
+        "efficiency"
+      ],
+      "research_subcategory": "research-training"
     },
     {
       "id": "patch-effect-graph-kernels-arxiv-2605-06480",
@@ -262,7 +387,13 @@
       "significance": "normal",
       "published": "2026-05-07",
       "date_added": "2026-05-29",
-      "topics": ["interpretability", "mechanistic", "activation patching", "circuits"]
+      "topics": [
+        "interpretability",
+        "mechanistic",
+        "activation patching",
+        "circuits"
+      ],
+      "research_subcategory": "research-interpretability"
     },
     {
       "id": "nano-world-models-arxiv-2605-23993",
@@ -274,7 +405,13 @@
       "significance": "normal",
       "published": "2026-05-17",
       "date_added": "2026-05-29",
-      "topics": ["world models", "video prediction", "diffusion", "reproducibility"]
+      "topics": [
+        "world models",
+        "video prediction",
+        "diffusion",
+        "reproducibility"
+      ],
+      "research_subcategory": "research-multimodal"
     },
     {
       "id": "paris-2-decentralized-diffusion-arxiv-2605-26064",
@@ -286,7 +423,13 @@
       "significance": "normal",
       "published": "2026-05-25",
       "date_added": "2026-05-29",
-      "topics": ["decentralized training", "video generation", "diffusion", "distributed"]
+      "topics": [
+        "decentralized training",
+        "video generation",
+        "diffusion",
+        "distributed"
+      ],
+      "research_subcategory": "research-multimodal"
     },
     {
       "id": "quant-npu-arxiv-2605-20295",
@@ -298,19 +441,31 @@
       "significance": "normal",
       "published": "2026-05-19",
       "date_added": "2026-05-29",
-      "topics": ["quantization", "on-device", "npu", "efficient inference"]
+      "topics": [
+        "quantization",
+        "on-device",
+        "npu",
+        "efficient inference"
+      ],
+      "research_subcategory": "research-efficiency"
     },
     {
       "id": "compute-where-it-counts-arxiv-2605-10875",
       "title": "Compute Where it Counts: Self-Optimizing Language Models",
-      "description": "Pairs a frozen LLM with a lightweight policy network that allocates compute per token by controlling attention sparsity, activation pruning, and quantization bit-width, improving the quality–efficiency frontier.",
+      "description": "Pairs a frozen LLM with a lightweight policy network that allocates compute per token by controlling attention sparsity, activation pruning, and quantization bit-width, improving the quality\u2013efficiency frontier.",
       "url": "https://arxiv.org/abs/2605.10875",
       "source": "arXiv",
       "category": "research",
       "significance": "normal",
       "published": "2026-05-11",
       "date_added": "2026-05-29",
-      "topics": ["adaptive compute", "efficiency", "inference", "sparsity"]
+      "topics": [
+        "adaptive compute",
+        "efficiency",
+        "inference",
+        "sparsity"
+      ],
+      "research_subcategory": "research-efficiency"
     },
     {
       "id": "agentic-ai-interaction-topology-arxiv-2605-01147",
@@ -322,7 +477,13 @@
       "significance": "normal",
       "published": "2026-05-01",
       "date_added": "2026-05-29",
-      "topics": ["ai safety", "multi-agent", "fairness", "agentic systems"]
+      "topics": [
+        "ai safety",
+        "multi-agent",
+        "fairness",
+        "agentic systems"
+      ],
+      "research_subcategory": "research-safety"
     },
     {
       "id": "protein-thoughts-arxiv-2605-21522",
@@ -334,7 +495,13 @@
       "significance": "normal",
       "published": "2026-05-19",
       "date_added": "2026-05-29",
-      "topics": ["ai for science", "biology", "protein", "tree of thoughts"]
+      "topics": [
+        "ai for science",
+        "biology",
+        "protein",
+        "tree of thoughts"
+      ],
+      "research_subcategory": "research-science"
     },
     {
       "id": "ai-research-agents-narrow-exploration-arxiv-2605-27905",
@@ -346,7 +513,13 @@
       "significance": "normal",
       "published": "2026-05-27",
       "date_added": "2026-05-29",
-      "topics": ["ai for science", "research agents", "ideation", "evaluation"]
+      "topics": [
+        "ai for science",
+        "research agents",
+        "ideation",
+        "evaluation"
+      ],
+      "research_subcategory": "research-science"
     },
     {
       "id": "reward-hacking-benchmark-arxiv-2605-02964",
@@ -358,7 +531,13 @@
       "significance": "normal",
       "published": "2026-05-03",
       "date_added": "2026-05-29",
-      "topics": ["reward hacking", "tool use", "agent evaluation", "safety"]
+      "topics": [
+        "reward hacking",
+        "tool use",
+        "agent evaluation",
+        "safety"
+      ],
+      "research_subcategory": "research-safety"
     },
     {
       "id": "mamoda-2-5-unified-multimodal-arxiv-2605-02641",
@@ -370,7 +549,13 @@
       "significance": "normal",
       "published": "2026-05-04",
       "date_added": "2026-05-29",
-      "topics": ["multimodal", "diffusion transformer", "mixture of experts", "video"]
+      "topics": [
+        "multimodal",
+        "diffusion transformer",
+        "mixture of experts",
+        "video"
+      ],
+      "research_subcategory": "research-multimodal"
     },
     {
       "id": "privacy-preserving-fl-personalized-dp-arxiv-2605-02372",
@@ -382,19 +567,32 @@
       "significance": "normal",
       "published": "2026-05-04",
       "date_added": "2026-05-29",
-      "topics": ["federated learning", "differential privacy", "privacy", "tabular"]
+      "topics": [
+        "federated learning",
+        "differential privacy",
+        "privacy",
+        "tabular"
+      ],
+      "research_subcategory": "research-safety"
     },
     {
       "id": "multi-agent-computer-use-arxiv-2606-01533",
       "title": "Multi-Agent Computer Use",
-      "description": "Introduces MACU, a framework where a manager model decomposes tasks into dependency DAGs executed by parallel subagents; achieves 3.4–25.5% gains across OSWorld, Mind2Web, WebTailBench, and Odysseys benchmarks with ~1.5× faster wall-clock completion on long-horizon tasks versus single-agent baselines.",
+      "description": "Introduces MACU, a framework where a manager model decomposes tasks into dependency DAGs executed by parallel subagents; achieves 3.4\u201325.5% gains across OSWorld, Mind2Web, WebTailBench, and Odysseys benchmarks with ~1.5\u00d7 faster wall-clock completion on long-horizon tasks versus single-agent baselines.",
       "url": "https://arxiv.org/abs/2606.01533",
       "source": "arXiv",
       "category": "research",
       "significance": "high",
       "published": "2026-06-01",
       "date_added": "2026-06-05",
-      "topics": ["multi-agent", "computer use", "planning", "dag", "benchmark"]
+      "topics": [
+        "multi-agent",
+        "computer use",
+        "planning",
+        "dag",
+        "benchmark"
+      ],
+      "research_subcategory": "research-agents"
     },
     {
       "id": "faithfulness-gap-llm-agents-arxiv-2606-00476",
@@ -406,19 +604,34 @@
       "significance": "normal",
       "published": "2026-05-30",
       "date_added": "2026-06-05",
-      "topics": ["faithfulness", "reasoning", "agent behavior", "evaluation", "social simulation"]
+      "topics": [
+        "faithfulness",
+        "reasoning",
+        "agent behavior",
+        "evaluation",
+        "social simulation"
+      ],
+      "research_subcategory": "research-agents"
     },
     {
       "id": "capability-lemons-trust-layer-arxiv-2606-03034",
       "title": "Capability Advertisement as a Market for Lemons: A Trust Layer for Heterogeneous Agent Networks",
-      "description": "Argues that agent capability claims in MCP/A2A delegation suffer from Akerlof's market-for-lemons problem — callers cannot distinguish reliable providers from fluent impostors — and proposes a protocol-agnostic trust layer using probabilistic descriptors, screening, and reputation mechanisms.",
+      "description": "Argues that agent capability claims in MCP/A2A delegation suffer from Akerlof's market-for-lemons problem \u2014 callers cannot distinguish reliable providers from fluent impostors \u2014 and proposes a protocol-agnostic trust layer using probabilistic descriptors, screening, and reputation mechanisms.",
       "url": "https://arxiv.org/abs/2606.03034",
       "source": "arXiv",
       "category": "research",
       "significance": "normal",
       "published": "2026-06-02",
       "date_added": "2026-06-05",
-      "topics": ["trust", "multi-agent", "mcp", "a2a", "capability verification", "protocol"]
+      "topics": [
+        "trust",
+        "multi-agent",
+        "mcp",
+        "a2a",
+        "capability verification",
+        "protocol"
+      ],
+      "research_subcategory": "research-safety"
     },
     {
       "id": "metaforge-self-evolving-agent-arxiv-2606-01801",
@@ -430,19 +643,33 @@
       "significance": "normal",
       "published": "2026-06-01",
       "date_added": "2026-06-05",
-      "topics": ["tool synthesis", "tool use", "multimodal", "self-evolving", "agent framework"]
+      "topics": [
+        "tool synthesis",
+        "tool use",
+        "multimodal",
+        "self-evolving",
+        "agent framework"
+      ],
+      "research_subcategory": "research-agents"
     },
     {
       "id": "foresci-agent-research-judgment-arxiv-2606-00644",
       "title": "ForeSci: Evaluating LLM Agents for Forward-Looking AI Research Judgment",
-      "description": "A 500-task benchmark spanning four AI domains and four decision categories that tests whether LLM agents can make research predictions from historical information; finds 'evidence-decision decoupling' — agents cite relevant sources but still forecast incorrect outcomes.",
+      "description": "A 500-task benchmark spanning four AI domains and four decision categories that tests whether LLM agents can make research predictions from historical information; finds 'evidence-decision decoupling' \u2014 agents cite relevant sources but still forecast incorrect outcomes.",
       "url": "https://arxiv.org/abs/2606.00644",
       "source": "arXiv",
       "category": "research",
       "significance": "normal",
       "published": "2026-05-30",
       "date_added": "2026-06-05",
-      "topics": ["benchmark", "research agents", "evaluation", "prediction", "rag"]
+      "topics": [
+        "benchmark",
+        "research agents",
+        "evaluation",
+        "prediction",
+        "rag"
+      ],
+      "research_subcategory": "research-benchmarks"
     },
     {
       "id": "scaling-llm-multi-agent-arxiv-2606-00655",
@@ -454,7 +681,14 @@
       "significance": "normal",
       "published": "2026-05-30",
       "date_added": "2026-06-05",
-      "topics": ["multi-agent", "scaling", "coordination", "evaluation", "emergence"]
+      "topics": [
+        "multi-agent",
+        "scaling",
+        "coordination",
+        "evaluation",
+        "emergence"
+      ],
+      "research_subcategory": "research-agents"
     },
     {
       "id": "channel-fracture-arxiv-2606-04896",
@@ -466,42 +700,101 @@
       "significance": "normal",
       "published": "2026-06-03",
       "date_added": "2026-06-05",
-      "topics": ["hermes", "memory", "multi-agent", "architecture", "failure modes"]
+      "topics": [
+        "hermes",
+        "memory",
+        "multi-agent",
+        "architecture",
+        "failure modes"
+      ],
+      "research_subcategory": "research-agents"
     },
     {
       "id": "hermes-agent-v0-15-0-velocity",
-      "title": "Hermes Agent v0.15.0 — The Velocity Release",
-      "description": "Major Nous Research update to the open-source Hermes agent: multi-agent kanban with auto-decomposition and swarm topology, session_search rebuilt as a zero-LLM tool (4,500× faster), 63% cold-start reduction, and promptware injection defenses.",
+      "title": "Hermes Agent v0.15.0 \u2014 The Velocity Release",
+      "description": "Major Nous Research update to the open-source Hermes agent: multi-agent kanban with auto-decomposition and swarm topology, session_search rebuilt as a zero-LLM tool (4,500\u00d7 faster), 63% cold-start reduction, and promptware injection defenses.",
       "url": "https://github.com/NousResearch/hermes-agent/releases/tag/v2026.5.28",
       "source": "GitHub",
       "category": "agent-framework",
       "significance": "normal",
       "published": "2026-05-28",
       "date_added": "2026-06-05",
-      "topics": ["hermes", "nous research", "multi-agent", "kanban", "performance"]
+      "topics": [
+        "hermes",
+        "nous research",
+        "multi-agent",
+        "kanban",
+        "performance"
+      ]
     },
     {
       "id": "statewright-state-machine-agents",
       "title": "Statewright: State Machine Guardrails for AI Agents",
-      "description": "Open-source tool that enforces phase-based tool access for coding agents — planning gets read-only tools, implementation unlocks edits, testing restricts to test commands — via MCP integration; works with Claude Code, Codex, Cursor, and others.",
+      "description": "Open-source tool that enforces phase-based tool access for coding agents \u2014 planning gets read-only tools, implementation unlocks edits, testing restricts to test commands \u2014 via MCP integration; works with Claude Code, Codex, Cursor, and others.",
       "url": "https://github.com/statewright/statewright",
       "source": "GitHub",
       "category": "tooling",
       "significance": "normal",
       "date_added": "2026-06-05",
-      "topics": ["state machines", "reliability", "guardrails", "mcp", "claude code"]
+      "topics": [
+        "state machines",
+        "reliability",
+        "guardrails",
+        "mcp",
+        "claude code"
+      ]
     },
     {
       "id": "designing-agentic-memory-2026-nuanced-perspective",
       "title": "Designing Agentic Memory in 2026",
-      "description": "Substantive Substack analysis of five memory design mistakes in production agent systems — collapsing distinct memory types, using human-trained retrievers, not compounding memory across sessions, and ignoring poisoning vulnerabilities — grounded in four 2026 research papers.",
+      "description": "Substantive Substack analysis of five memory design mistakes in production agent systems \u2014 collapsing distinct memory types, using human-trained retrievers, not compounding memory across sessions, and ignoring poisoning vulnerabilities \u2014 grounded in four 2026 research papers.",
       "url": "https://thenuancedperspective.substack.com/p/designing-agentic-memory-in-2026",
       "source": "The Nuanced Perspective",
       "category": "community",
       "significance": "normal",
       "published": "2026-05-16",
       "date_added": "2026-06-05",
-      "topics": ["memory", "agent architecture", "security", "retrieval", "production"]
+      "topics": [
+        "memory",
+        "agent architecture",
+        "security",
+        "retrieval",
+        "production"
+      ]
+    }
+  ],
+  "research_subcategories": [
+    {
+      "id": "research-agents",
+      "label": "Agents & Multi-Agent"
+    },
+    {
+      "id": "research-benchmarks",
+      "label": "Benchmarks & Evals"
+    },
+    {
+      "id": "research-safety",
+      "label": "Safety & Alignment"
+    },
+    {
+      "id": "research-science",
+      "label": "AI for Science"
+    },
+    {
+      "id": "research-multimodal",
+      "label": "Multimodal & Generation"
+    },
+    {
+      "id": "research-efficiency",
+      "label": "Efficiency & Inference"
+    },
+    {
+      "id": "research-training",
+      "label": "Training & Learning"
+    },
+    {
+      "id": "research-interpretability",
+      "label": "Interpretability"
     }
   ]
 }
