@@ -2,10 +2,14 @@
 
 # agent² — AI news
 
-_Last updated: 2026-06-05 · 41 items_
+_Last updated: 2026-06-07 · 64 items_
 
 ## ★ Highlights
 
+- **[The Rise and Potential of Large Language Model Based Agents: A Survey](https://arxiv.org/abs/2309.07864)** — arXiv · 2023-09-14
+  Comprehensive, frequently-cited survey covering the brain-perception-action agent framework, single- vs. multi-agent settings, agent society, and open problems — arguably the best single entry point for orienting in agentic AI.
+- **[ReAct: Synergizing Reasoning and Acting in Language Models](https://arxiv.org/abs/2210.03629)** — arXiv · 2022-10-06
+  The foundational paper interleaving chain-of-thought reasoning with tool/action steps in a single loop, establishing the reason-act-observe paradigm that underpins most modern LLM agents.
 - **[Multi-Agent Computer Use](https://arxiv.org/abs/2606.01533)** — arXiv · 2026-06-01
   Introduces MACU, a framework where a manager model decomposes tasks into dependency DAGs executed by parallel subagents; achieves 3.4–25.5% gains across OSWorld, Mind2Web, WebTailBench, and Odysseys benchmarks with ~1.5× faster wall-clock completion on long-horizon tasks versus single-agent baselines.
 - **[Google Antigravity 2.0: agent-first development platform](https://blog.google/innovation-and-ai/technology/developers-tools/google-io-2026-developer-highlights/)** — Google · 2026-05-19
@@ -41,7 +45,7 @@ _Last updated: 2026-06-05 · 41 items_
 
 ## Tooling & Infra
 
-- **[Statewright: State Machine Guardrails for AI Agents](https://github.com/statewright/statewright)** — GitHub
+- **[Statewright: State Machine Guardrails for AI Agents](https://github.com/statewright/statewright)** — GitHub · 2026-06-05
   Open-source tool that enforces phase-based tool access for coding agents — planning gets read-only tools, implementation unlocks edits, testing restricts to test commands — via MCP integration; works with Claude Code, Codex, Cursor, and others.
 - **[The 2026-07-28 MCP Specification Release Candidate](https://blog.modelcontextprotocol.io/posts/2026-07-28-release-candidate/)** — Model Context Protocol Blog · 2026-05-21
   Release candidate for the next Model Context Protocol spec: a stateless protocol core, an Extensions framework, a Tasks lifecycle, and OAuth-aligned authorization. Final spec targeted for July 28, 2026.
@@ -54,6 +58,42 @@ _Last updated: 2026-06-05 · 41 items_
 
 ### Agents & Multi-Agent
 
+- **[Agent Memory: Characterization and System Implications of Stateful Long-Horizon Workloads](https://arxiv.org/abs/2606.06448)** — arXiv · 2026-06-04
+  A systems-level characterization of agent memory architectures for long-horizon workloads, offering a taxonomy spanning flat retrieval, LLM-mediated extraction, and consolidating fact stores, plus a profiling methodology.
+- **[Exploring the Topology and Memory of Consensus: How LLM Agents Agree, Fragment, or Settle When Forming Conventions](https://arxiv.org/abs/2606.04197)** — arXiv · 2026-06-02
+  Runs 432 naming-game simulations varying agent memory depth and network structure, finding that memory length and topology interact to determine whether multi-agent populations converge on shared conventions or fragment.
+- **[SWE-agent: Agent-Computer Interfaces Enable Automated Software Engineering](https://arxiv.org/abs/2405.15793)** — arXiv · 2024-05-06
+  Foundational work showing that a well-designed Agent-Computer Interface (custom commands for viewing, editing, and running code) dramatically boosts an LLM agent's ability to resolve real GitHub issues on SWE-bench.
+- **[MemGPT: Towards LLMs as Operating Systems](https://arxiv.org/abs/2310.08560)** — arXiv · 2023-10-12
+  Foundational memory architecture treating the context window like RAM and external stores like disk, with the LLM managing paging between tiers via function calls to handle unbounded context — basis of the Letta project.
+- **[The Rise and Potential of Large Language Model Based Agents: A Survey](https://arxiv.org/abs/2309.07864)** — arXiv · 2023-09-14
+  Comprehensive, frequently-cited survey covering the brain-perception-action agent framework, single- vs. multi-agent settings, agent society, and open problems — arguably the best single entry point for orienting in agentic AI.
+- **[Cognitive Architectures for Language Agents (CoALA)](https://arxiv.org/abs/2309.02427)** — arXiv · 2023-09-05
+  Foundational conceptual framework organizing language agents along modular memory, structured action space (internal vs. external), and a generalized decision-making loop — useful scaffolding for reasoning about agent design.
+- **[A Survey on Large Language Model based Autonomous Agents](https://arxiv.org/abs/2308.11432)** — arXiv · 2023-08-22
+  Widely-cited survey organizing LLM agent research around a unified construction framework (profile, memory, planning, action) and reviewing applications and evaluation — a solid orientation map for the field.
+- **[AutoGen: Enabling Next-Gen LLM Applications via Multi-Agent Conversation](https://arxiv.org/abs/2308.08155)** — arXiv · 2023-08-16
+  Foundational framework (now a major Microsoft project) modeling applications as conversations among customizable, conversable agents that mix LLMs, tools, and humans — a cornerstone of multi-agent orchestration.
+- **[MetaGPT: Meta Programming for A Multi-Agent Collaborative Framework](https://arxiv.org/abs/2308.00352)** — arXiv · 2023-08-01
+  Foundational multi-agent framework encoding human Standardized Operating Procedures into prompts so role-specialized agents (PM, architect, engineer) collaborate with structured intermediate artifacts to reduce error cascades.
+- **[ToolLLM: Facilitating Large Language Models to Master 16000+ Real-world APIs](https://arxiv.org/abs/2307.16789)** — arXiv · 2023-07-31
+  Foundational tool-learning work introducing ToolBench (instruction data over 16k+ real REST APIs) and a depth-first search-based decision tree for multi-tool reasoning, plus the ToolEval evaluator.
+- **[Voyager: An Open-Ended Embodied Agent with Large Language Models](https://arxiv.org/abs/2305.16291)** — arXiv · 2023-05-25
+  Seminal lifelong-learning agent in Minecraft that explores autonomously, writes and stores reusable executable skills in a growing library, and self-improves via environment feedback — a key reference for skill acquisition.
+- **[Gorilla: Large Language Model Connected with Massive APIs](https://arxiv.org/abs/2305.15334)** — arXiv · 2023-05-24
+  Foundational tool-use work fine-tuning an LLM to accurately call from a large, changing catalog of real APIs using retrieval-aware training, reducing hallucinated calls — an antecedent of today's tool/function calling.
+- **[Tree of Thoughts: Deliberate Problem Solving with Large Language Models](https://arxiv.org/abs/2305.10601)** — arXiv · 2023-05-17
+  Foundational reasoning framework that generalizes chain-of-thought into a search over a tree of intermediate 'thoughts' with lookahead and backtracking, a core building block for agent planning.
+- **[Generative Agents: Interactive Simulacra of Human Behavior](https://arxiv.org/abs/2304.03442)** — arXiv · 2023-04-07
+  Seminal work placing 25 LLM-driven agents in a sandbox town with memory, reflection, and planning, producing believable emergent social behavior — a touchstone for agent memory architectures and social simulation.
+- **[CAMEL: Communicative Agents for "Mind" Exploration of Large Language Model Society](https://arxiv.org/abs/2303.17760)** — arXiv · 2023-03-31
+  Early multi-agent framework introducing role-playing and inception prompting so two agents (e.g. an AI user and AI assistant) autonomously cooperate to complete a task — a seminal reference for agent-to-agent communication.
+- **[Reflexion: Language Agents with Verbal Reinforcement Learning](https://arxiv.org/abs/2303.11366)** — arXiv · 2023-03-20
+  Foundational self-improvement method where an agent reflects in natural language on failed attempts and stores those reflections in episodic memory to do better on retries, without updating model weights.
+- **[Toolformer: Language Models Can Teach Themselves to Use Tools](https://arxiv.org/abs/2302.04761)** — arXiv · 2023-02-09
+  Foundational work showing an LLM can learn, in a self-supervised way, when and how to call external APIs (calculator, search, QA, translation) by inserting API calls into its own training data.
+- **[ReAct: Synergizing Reasoning and Acting in Language Models](https://arxiv.org/abs/2210.03629)** — arXiv · 2022-10-06
+  The foundational paper interleaving chain-of-thought reasoning with tool/action steps in a single loop, establishing the reason-act-observe paradigm that underpins most modern LLM agents.
 - **[Channel Fracture: Architectural Blind Spots in Scheduled Cross-Agent Memory Injection](https://arxiv.org/abs/2606.04896)** — arXiv · 2026-06-03
   Identifies a silent failure mode in multi-agent deployments where cron-scheduled agents cannot write to another agent's persistent memory due to hardcoded isolation guards; tested on a production Hermes Agent deployment and proposes CADVP v1.1, a 13-dimension verification framework.
 - **[Multi-Agent Computer Use](https://arxiv.org/abs/2606.01533)** — arXiv · 2026-06-01
@@ -67,6 +107,14 @@ _Last updated: 2026-06-05 · 41 items_
 
 ### Benchmarks & Evals
 
+- **[τ-bench: A Benchmark for Tool-Agent-User Interaction in Real-World Domains](https://arxiv.org/abs/2406.12045)** — arXiv · 2024-06-17
+  Foundational benchmark testing agents on dynamic conversations with a simulated user and domain-specific API rules (retail, airline), with a pass^k metric that exposes the unreliability of agents over repeated trials.
+- **[GAIA: a benchmark for General AI Assistants](https://arxiv.org/abs/2311.12983)** — arXiv · 2023-11-21
+  Foundational benchmark of real-world questions that are conceptually simple for humans but require multi-step reasoning, web browsing, multimodality, and tool use — a standard measure of general assistant agents.
+- **[SWE-bench: Can Language Models Resolve Real-World GitHub Issues?](https://arxiv.org/abs/2310.06770)** — arXiv · 2023-10-10
+  Foundational coding-agent benchmark of 2,294 real GitHub issue/PR tasks across popular Python repos, evaluated by running the projects' own test suites — the de facto standard for measuring software-engineering agents.
+- **[WebArena: A Realistic Web Environment for Building Autonomous Agents](https://arxiv.org/abs/2307.13854)** — arXiv · 2023-07-25
+  Foundational web-agent benchmark providing a reproducible, self-hosted environment of functional websites (e-commerce, forums, CMS, GitLab) with task-completion-based evaluation — a standard testbed for browser agents.
 - **[ForeSci: Evaluating LLM Agents for Forward-Looking AI Research Judgment](https://arxiv.org/abs/2606.00644)** — arXiv · 2026-05-30
   A 500-task benchmark spanning four AI domains and four decision categories that tests whether LLM agents can make research predictions from historical information; finds 'evidence-decision decoupling' — agents cite relevant sources but still forecast incorrect outcomes.
 - **[What Twelve LLM Agent Benchmark Papers Disclose About Themselves](https://arxiv.org/abs/2605.21404)** — arXiv · 2026-05-20
@@ -114,6 +162,8 @@ _Last updated: 2026-06-05 · 41 items_
 
 ### Training & Learning
 
+- **[The Landscape of Agentic Reinforcement Learning for LLMs: A Survey](https://arxiv.org/abs/2509.02547)** — arXiv · 2025-09-02
+  Recent survey framing the shift from RLHF on static LLMs to agentic RL, with a taxonomy of core capabilities (planning, tool use, memory, reasoning, self-improvement, perception) — a strong roadmap for picking a research direction.
 - **[Rethinking RL for LLM Reasoning: It's Sparse Policy Selection, Not Capability Learning](https://arxiv.org/abs/2605.06241)** — arXiv · 2026-05-07
   Argues RL improves reasoning by sparsely selecting policy at uncertain decision points rather than teaching new capabilities, motivating a far cheaper post-training method (ReasonMaxxer).
 
