@@ -1,8 +1,8 @@
 // GENERATED FILE — do not edit by hand. Edit data/news.json and regenerate.
 window.__NEWS__ = {
   "meta": {
-    "generated": "2026-06-07T22:36:16Z",
-    "count": 64
+    "generated": "2026-06-15T14:30:00Z",
+    "count": 76
   },
   "categories": [
     {
@@ -31,6 +31,232 @@ window.__NEWS__ = {
     }
   ],
   "items": [
+    {
+      "id": "deepmind-multi-agent-safety-research-initiative",
+      "title": "Google DeepMind and Partners Launch $10M Multi-Agent AI Safety Research Call",
+      "description": "Google DeepMind, Schmidt Sciences, Cooperative AI Foundation, ARIA, and Google.org launch a $10M funding call for multi-agent AI safety research, targeting sandboxes and testbeds, agent network science, cross-platform identity/reputation protocols, and collective oversight methods for deployed agent populations.",
+      "url": "https://deepmind.google/blog/investing-in-multi-agent-ai-safety-research/",
+      "source": "Google DeepMind",
+      "category": "lab-update",
+      "significance": "high",
+      "published": "2026-06-11",
+      "date_added": "2026-06-15",
+      "topics": [
+        "multi-agent",
+        "safety",
+        "funding",
+        "research initiative",
+        "google deepmind"
+      ]
+    },
+    {
+      "id": "hermes-agent-v0-16-0-surface",
+      "title": "Hermes Agent v0.16.0 — The Surface Release",
+      "description": "Nous Research ships a native desktop app (macOS/Linux/Windows) with one-click install and in-app self-update, remote gateway support via OAuth, and a full web dashboard admin panel replacing SSH-based config. Also adds /undo, a fuzzy model picker unified across all interfaces, and Simplified Chinese i18n.",
+      "url": "https://github.com/NousResearch/hermes-agent/releases/tag/v2026.6.5",
+      "source": "GitHub",
+      "category": "agent-framework",
+      "significance": "normal",
+      "published": "2026-06-05",
+      "date_added": "2026-06-15",
+      "topics": [
+        "hermes",
+        "nous research",
+        "desktop app",
+        "remote gateway",
+        "open source"
+      ]
+    },
+    {
+      "id": "silent-failure-entropy-arxiv-2606-08162",
+      "title": "Silent Failure in LLM Agent Systems: The Entropy Principle",
+      "description": "Based on 40,000+ controlled trials across 22 intrinsic agent-system properties, proposes that autonomous agents accumulate 'Intelligence Entropy' predictably over time (formalized as S(t) = S₀·eᵅᵗ); introduces the PIG Engine and ADE protocol suite to govern and counteract entropy-driven degradation without code changes.",
+      "url": "https://arxiv.org/abs/2606.08162",
+      "source": "arXiv",
+      "category": "research",
+      "significance": "normal",
+      "published": "2026-06-06",
+      "date_added": "2026-06-15",
+      "topics": [
+        "failure modes",
+        "agent reliability",
+        "entropy",
+        "governance",
+        "autonomous agents"
+      ],
+      "research_subcategory": "research-safety"
+    },
+    {
+      "id": "ocl-execution-governance-arxiv-2606-04306",
+      "title": "Organizational Control Layer: Governance at the Agent Execution Boundary",
+      "description": "Proposes OCL, a model-agnostic governance layer that intercepts LLM-generated actions before execution via policy enforcement and escalation; reduces unsafe executions from 88% to near-zero while raising valid task success from 12% to 96% across multiple LLM backends.",
+      "url": "https://arxiv.org/abs/2606.04306",
+      "source": "arXiv",
+      "category": "research",
+      "significance": "normal",
+      "published": "2026-06-03",
+      "date_added": "2026-06-15",
+      "topics": [
+        "governance",
+        "agent safety",
+        "policy enforcement",
+        "execution boundary",
+        "autonomous agents"
+      ],
+      "research_subcategory": "research-safety"
+    },
+    {
+      "id": "ahoy-multiagent-protocols-arxiv-2606-05390",
+      "title": "Ahoy: LLMs Enacting Multiagent Interaction Protocols",
+      "description": "Enables LLM-based agents to dynamically select and concurrently enact multiple declarative interaction protocols without specialized training or protocol-specific implementations, decoupling agent intelligence from protocol details.",
+      "url": "https://arxiv.org/abs/2606.05390",
+      "source": "arXiv",
+      "category": "research",
+      "significance": "normal",
+      "published": "2026-06-03",
+      "date_added": "2026-06-15",
+      "topics": [
+        "multi-agent",
+        "protocols",
+        "declarative",
+        "interaction",
+        "agent coordination"
+      ],
+      "research_subcategory": "research-agents"
+    },
+    {
+      "id": "agentops-system-operations-arxiv-2606-01581",
+      "title": "Agent System Operations: Categorization, Challenges, and Future Directions",
+      "description": "Introduces AgentOps, the first systematic framework for operating deployed LLM agent systems, categorizing anomalies as intra-agent or inter-agent and spanning monitoring, anomaly detection, root-cause localization, and resolution across the agent lifecycle.",
+      "url": "https://arxiv.org/abs/2606.01581",
+      "source": "arXiv",
+      "category": "research",
+      "significance": "normal",
+      "published": "2026-06-01",
+      "date_added": "2026-06-15",
+      "topics": [
+        "agent operations",
+        "anomaly detection",
+        "reliability",
+        "deployment",
+        "monitoring"
+      ],
+      "research_subcategory": "research-agents"
+    },
+    {
+      "id": "dysco-sparse-multiagent-comm-arxiv-2606-01828",
+      "title": "DySCo: Dynamic Trust-Aware Sparse Communication for LLM Multi-Agent Consensus",
+      "description": "Replaces fully connected multi-agent communication (which scales quadratically) with trust-weighted edge selection based on agent reliability, answer divergence, and task relevance; preserves error-correction interactions while enabling early consensus termination.",
+      "url": "https://arxiv.org/abs/2606.01828",
+      "source": "arXiv",
+      "category": "research",
+      "significance": "normal",
+      "published": "2026-06-01",
+      "date_added": "2026-06-15",
+      "topics": [
+        "multi-agent",
+        "communication",
+        "trust",
+        "consensus",
+        "efficiency"
+      ],
+      "research_subcategory": "research-agents"
+    },
+    {
+      "id": "trace-trajectory-risk-arxiv-2606-00611",
+      "title": "TRACE: Trajectory Risk-Aware Compression for Long-Horizon Agent Safety",
+      "description": "Treats long-horizon agent safety detection as trajectory-level evidence compression: a Compressor encodes full trajectories into compact evidence states that a Reader judges for risk, gaining up to 12.6 percentage points over per-step local moderators across multiple benchmarks.",
+      "url": "https://arxiv.org/abs/2606.00611",
+      "source": "arXiv",
+      "category": "research",
+      "significance": "normal",
+      "published": "2026-05-30",
+      "date_added": "2026-06-15",
+      "topics": [
+        "agent safety",
+        "long-horizon",
+        "trajectory",
+        "safety detection",
+        "compression"
+      ],
+      "research_subcategory": "research-safety"
+    },
+    {
+      "id": "comic-cloud-edge-memory-arxiv-2606-00756",
+      "title": "CoMIC: Collaborative Memory and Insights Circulation for Long-Horizon LLM Agents",
+      "description": "Centralized-Reflection, Decentralized-Execution design for deploying LLMs at the edge: edge agents maintain subgoal-oriented hierarchical memory while a cloud-side LLM critic asynchronously filters cross-agent experience and distributes guidance back, enabling long-horizon execution without fine-tuning.",
+      "url": "https://arxiv.org/abs/2606.00756",
+      "source": "arXiv",
+      "category": "research",
+      "significance": "normal",
+      "published": "2026-05-30",
+      "date_added": "2026-06-15",
+      "topics": [
+        "memory",
+        "cloud-edge",
+        "long-horizon",
+        "distributed agents",
+        "deployment"
+      ],
+      "research_subcategory": "research-agents"
+    },
+    {
+      "id": "mempro-evolvable-memory-arxiv-2606-00619",
+      "title": "MemPro: Agentic Memory Systems as Evolvable Programs",
+      "description": "Rather than adapting only a memory bank or prompt post-deployment, MemPro treats the full memory-construction-retrieval pipeline as an evolvable program: an Evolving Agent maintains a version tree of runnable implementations and applies failure-mode-guided refinement to continuously improve performance across tasks.",
+      "url": "https://arxiv.org/abs/2606.00619",
+      "source": "arXiv",
+      "category": "research",
+      "significance": "normal",
+      "published": "2026-05-30",
+      "date_added": "2026-06-15",
+      "topics": [
+        "memory",
+        "self-improving",
+        "pipeline evolution",
+        "retrieval",
+        "agent architecture"
+      ],
+      "research_subcategory": "research-agents"
+    },
+    {
+      "id": "selskill-selective-invocation-arxiv-2606-00510",
+      "title": "Skill or Skip? Selective Skill Invocation in Agentic Tasks",
+      "description": "Frames skill use as a binary invoke-or-skip decision at each step via SelSkill: uncertainty-prioritized candidate selection and dual-granularity preference learning (trajectory + step level) avoid unhelpful invocations that disrupt correct agent execution, gaining ~11 pp on ALFWorld and 5.7 pp on BFCL.",
+      "url": "https://arxiv.org/abs/2606.00510",
+      "source": "arXiv",
+      "category": "research",
+      "significance": "normal",
+      "published": "2026-05-30",
+      "date_added": "2026-06-15",
+      "topics": [
+        "skill invocation",
+        "tool use",
+        "preference learning",
+        "agent execution",
+        "decision making"
+      ],
+      "research_subcategory": "research-agents"
+    },
+    {
+      "id": "deterministic-horizon-tool-delegation-arxiv-2606-00376",
+      "title": "The Deterministic Horizon: When Extended Reasoning Fails and Tool Delegation Becomes Necessary",
+      "description": "Identifies an Attention Bottleneck in decoder-only models causing chain-of-thought to collapse beyond roughly 19–31 reasoning steps (the 'Deterministic Horizon'); tool-integrated reasoning reaches 86–94% accuracy on state-tracking tasks versus 24–42% for pure neural reasoning, framing tool delegation as architecturally necessary.",
+      "url": "https://arxiv.org/abs/2606.00376",
+      "source": "arXiv",
+      "category": "research",
+      "significance": "normal",
+      "published": "2026-05-29",
+      "date_added": "2026-06-15",
+      "topics": [
+        "tool use",
+        "reasoning",
+        "attention",
+        "architectural limits",
+        "chain of thought"
+      ],
+      "research_subcategory": "research-agents"
+    },
     {
       "id": "claude-opus-4-8",
       "title": "Introducing Claude Opus 4.8",
