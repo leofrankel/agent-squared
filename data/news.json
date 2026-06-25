@@ -1,7 +1,7 @@
 {
   "meta": {
-    "generated": "2026-06-15T14:30:00Z",
-    "count": 76
+    "generated": "2026-06-25T12:00:00Z",
+    "count": 86
   },
   "categories": [
     {
@@ -30,6 +30,199 @@
     }
   ],
   "items": [
+    {
+      "id": "anthropic-claude-tag-slack",
+      "title": "Introducing Claude Tag",
+      "description": "Anthropic's Slack-native team agent: @Claude joins as a persistent channel member with proactive ambient initiative, async task scheduling over hours or days, and cross-member context that accumulates without re-explanation. At Anthropic, 65% of the product team's code is already produced by an internal version of Claude Tag.",
+      "url": "https://www.anthropic.com/news/introducing-claude-tag",
+      "source": "Anthropic",
+      "category": "agent-framework",
+      "significance": "high",
+      "published": "2026-06-23",
+      "date_added": "2026-06-25",
+      "topics": [
+        "anthropic",
+        "claude",
+        "slack",
+        "team agent",
+        "ambient",
+        "async"
+      ]
+    },
+    {
+      "id": "hermes-agent-v0-17-0-reach",
+      "title": "Hermes Agent v0.17.0 — The Reach Release",
+      "description": "Nous Research ships iMessage via Photon (no Mac relay), official WhatsApp Business Cloud API, and the Raft agent network as a gateway channel; the desktop app gains live subagent watch-windows that stream a delegated agent's activity into its own pane, background/async subagent delegation, and Automation Blueprints for scheduling without cron syntax.",
+      "url": "https://github.com/NousResearch/hermes-agent/releases/tag/v2026.6.19",
+      "source": "GitHub",
+      "category": "agent-framework",
+      "significance": "normal",
+      "published": "2026-06-19",
+      "date_added": "2026-06-25",
+      "topics": [
+        "hermes",
+        "nous research",
+        "multi-agent",
+        "messaging channels",
+        "subagent delegation",
+        "automation"
+      ]
+    },
+    {
+      "id": "deepmind-ai-control-roadmap",
+      "title": "Securing the Future of AI Agents",
+      "description": "Google DeepMind introduces an AI Control Roadmap framing advanced AI agents as potential insider threats: a threat taxonomy built on MITRE ATT&CK, a dual-layer detection/prevention system validated against one million coding agent tasks, and a companion Three Layers of Agent Security framework for policymakers covering individual agents, multi-agent systems, and broader cyber resilience.",
+      "url": "https://deepmind.google/blog/securing-the-future-of-ai-agents/",
+      "source": "Google DeepMind",
+      "category": "lab-update",
+      "significance": "normal",
+      "published": "2026-06-18",
+      "date_added": "2026-06-25",
+      "topics": [
+        "agent security",
+        "ai control",
+        "insider threat",
+        "mitre",
+        "governance",
+        "policy"
+      ]
+    },
+    {
+      "id": "multi-agent-transactive-memory-arxiv-2606-19911",
+      "title": "Multi-Agent Transactive Memory",
+      "description": "Extends retrieval-augmented generation to population-level experience sharing: agents store and retrieve full trajectories from a shared repository, letting newly created agents benefit from prior agents' solutions without redundant problem-solving; demonstrated to improve task performance and reduce interaction steps on ALFWorld and WebArena.",
+      "url": "https://arxiv.org/abs/2606.19911",
+      "source": "arXiv",
+      "category": "research",
+      "research_subcategory": "research-agents",
+      "significance": "normal",
+      "published": "2026-06-18",
+      "date_added": "2026-06-25",
+      "topics": [
+        "memory",
+        "multi-agent",
+        "retrieval",
+        "knowledge sharing",
+        "heterogeneous agents"
+      ]
+    },
+    {
+      "id": "llm-agent-comm-protocols-taxonomy-arxiv-2606-19135",
+      "title": "A Technical Taxonomy of LLM Agent Communication Protocols",
+      "description": "Systematically analyzes nine open-source agent communication protocols (including MCP, A2A, and others) across five dimensions—counterparty, payload, interaction state, discovery mechanism, and schema flexibility—identifying recurring hybrid-payload and session-state patterns and predicting evolution toward a federated, layered protocol stack rather than a single universal standard.",
+      "url": "https://arxiv.org/abs/2606.19135",
+      "source": "arXiv",
+      "category": "research",
+      "research_subcategory": "research-agents",
+      "significance": "normal",
+      "published": "2026-06-17",
+      "date_added": "2026-06-25",
+      "topics": [
+        "communication protocols",
+        "mcp",
+        "a2a",
+        "multi-agent",
+        "interoperability",
+        "taxonomy"
+      ]
+    },
+    {
+      "id": "stategen-synthetic-data-tool-llms-arxiv-2606-16307",
+      "title": "State-Grounded Multi-Agent Synthetic Data Generation for Tool-Augmented LLMs",
+      "description": "StateGen orchestrates a four-role LLM loop—persona-conditioned user simulator, agent under test, state-grounded tool simulator, and multi-axis judge—to produce scored, reasoning-trace-rich training data; a central state manager enforcing a backend-is-truth invariant eliminates the dominant class of tool-call hallucinations by construction, and the architecture generalizes to hierarchical multi-agent settings.",
+      "url": "https://arxiv.org/abs/2606.16307",
+      "source": "arXiv",
+      "category": "research",
+      "research_subcategory": "research-training",
+      "significance": "normal",
+      "published": "2026-06-15",
+      "date_added": "2026-06-25",
+      "topics": [
+        "synthetic data",
+        "tool use",
+        "training",
+        "multi-agent",
+        "hallucination"
+      ]
+    },
+    {
+      "id": "emergence-world-platform-arxiv-2606-08367",
+      "title": "Emergence World: A Platform for Evaluating Long-Horizon Multi-Agent Autonomy",
+      "description": "A continuously-running multi-agent simulation platform grounding LLM-driven agents in a shared spatial environment with live external data, 120+ tools, persistent memory, and democratic self-governance; a 15-day study across five model families produced radically different outcomes from stable governance to population collapse, revealing long-horizon dynamics invisible in short evaluation windows.",
+      "url": "https://arxiv.org/abs/2606.08367",
+      "source": "arXiv",
+      "category": "research",
+      "research_subcategory": "research-benchmarks",
+      "significance": "high",
+      "published": "2026-06-06",
+      "date_added": "2026-06-25",
+      "topics": [
+        "long-horizon",
+        "multi-agent",
+        "evaluation",
+        "simulation",
+        "emergence",
+        "governance"
+      ]
+    },
+    {
+      "id": "skillaxe-agent-skill-refinement-arxiv-2606-10546",
+      "title": "SkillAxe: Sharpening LLM-Authored Agent Skills Through Evaluation-Guided Self-Refinement",
+      "description": "Introduces an unsupervised method for iteratively diagnosing and refining LLM-generated skill documents along four quality dimensions without labeled data, achieving a 28% relative improvement over unimproved LLM skills on SkillsBench and recovering nearly half the performance gap between machine- and human-authored instructions.",
+      "url": "https://arxiv.org/abs/2606.10546",
+      "source": "arXiv",
+      "category": "research",
+      "research_subcategory": "research-agents",
+      "significance": "normal",
+      "published": "2026-06-09",
+      "date_added": "2026-06-25",
+      "topics": [
+        "skill documents",
+        "self-refinement",
+        "agent frameworks",
+        "self-improving",
+        "evaluation"
+      ]
+    },
+    {
+      "id": "agent-planning-benchmark-arxiv-2606-04874",
+      "title": "Agent Planning Benchmark: A Diagnostic Framework for Planning Capabilities in LLM Agents",
+      "description": "Introduces APB, a 4,209-case multimodal diagnostic benchmark across 22 domains that decomposes agent evaluation below end-to-end success into goal decomposition, tool selection, constraint reasoning, and calibrated refusal; testing 12 MLLMs reveals systematic weaknesses in long-horizon planning, tool-noise robustness, and inference-time refinement, with APB-guided feedback consistently improving downstream execution.",
+      "url": "https://arxiv.org/abs/2606.04874",
+      "source": "arXiv",
+      "category": "research",
+      "research_subcategory": "research-benchmarks",
+      "significance": "normal",
+      "published": "2026-06-03",
+      "date_added": "2026-06-25",
+      "topics": [
+        "benchmark",
+        "planning",
+        "tool use",
+        "evaluation",
+        "diagnostic"
+      ]
+    },
+    {
+      "id": "agent-traces-trust-survey-arxiv-2606-04990",
+      "title": "From Agent Traces to Trust: A Survey of Evidence Tracing and Execution Provenance in LLM Agents",
+      "description": "Surveys execution provenance and evidence tracing as frameworks for auditing autonomous LLM agent decisions, covering retrieval grounding, tool safety, memory lineage, and failure diagnosis under a unified approach; provides a taxonomy of provenance methods and guidance for building auditable, recoverable agent systems.",
+      "url": "https://arxiv.org/abs/2606.04990",
+      "source": "arXiv",
+      "category": "research",
+      "research_subcategory": "research-safety",
+      "significance": "normal",
+      "published": "2026-06-03",
+      "date_added": "2026-06-25",
+      "topics": [
+        "provenance",
+        "tracing",
+        "auditing",
+        "debugging",
+        "trust",
+        "reliability"
+      ]
+    },
     {
       "id": "deepmind-multi-agent-safety-research-initiative",
       "title": "Google DeepMind and Partners Launch $10M Multi-Agent AI Safety Research Call",

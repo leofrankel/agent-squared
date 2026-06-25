@@ -1,8 +1,14 @@
 <!-- GENERATED FILE — do not edit by hand. Edit data/news.json and regenerate. -->
 # agent² AI News Dashboard
-_Last updated: 2026-06-15 · 76 items_
+_Last updated: 2026-06-25 · 86 items_
 
 ## ★ Highlights
+
+- **[Introducing Claude Tag](https://www.anthropic.com/news/introducing-claude-tag)** — Anthropic · 2026-06-23
+  Anthropic's Slack-native team agent: @Claude joins as a persistent channel member with proactive ambient initiative, async task scheduling over hours or days, and cross-member context that accumulates without re-explanation. At Anthropic, 65% of the product team's code is already produced by an internal version of Claude Tag.
+
+- **[Emergence World: A Platform for Evaluating Long-Horizon Multi-Agent Autonomy](https://arxiv.org/abs/2606.08367)** — arXiv · 2026-06-06
+  A continuously-running multi-agent simulation platform grounding LLM-driven agents in a shared spatial environment with live external data, 120+ tools, persistent memory, and democratic self-governance; a 15-day study across five model families produced radically different outcomes from stable governance to population collapse, revealing long-horizon dynamics invisible in short evaluation windows.
 
 - **[Google DeepMind and Partners Launch $10M Multi-Agent AI Safety Research Call](https://deepmind.google/blog/investing-in-multi-agent-ai-safety-research/)** — Google DeepMind · 2026-06-11
   Google DeepMind, Schmidt Sciences, Cooperative AI Foundation, ARIA, and Google.org launch a $10M funding call for multi-agent AI safety research, targeting sandboxes and testbeds, agent network science, cross-platform identity/reputation protocols, and collective oversight methods for deployed agent populations.
@@ -36,7 +42,14 @@ _Last updated: 2026-06-15 · 76 items_
 - **[Gemini 3.5: frontier intelligence with action](https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-3-5/)** — Google · 2026-05-19
   Google's new Gemini model series balancing high speed with stronger agentic, action-taking capabilities; unveiled at Google I/O 2026.
 
+
 ## Agent Framework
+
+- **[Introducing Claude Tag](https://www.anthropic.com/news/introducing-claude-tag)** — Anthropic · 2026-06-23
+  Anthropic's Slack-native team agent: @Claude joins as a persistent channel member with proactive ambient initiative, async task scheduling over hours or days, and cross-member context that accumulates without re-explanation. At Anthropic, 65% of the product team's code is already produced by an internal version of Claude Tag.
+
+- **[Hermes Agent v0.17.0 — The Reach Release](https://github.com/NousResearch/hermes-agent/releases/tag/v2026.6.19)** — GitHub · 2026-06-19
+  Nous Research ships iMessage via Photon (no Mac relay), official WhatsApp Business Cloud API, and the Raft agent network as a gateway channel; the desktop app gains live subagent watch-windows that stream a delegated agent's activity into its own pane, background/async subagent delegation, and Automation Blueprints for scheduling without cron syntax.
 
 - **[Hermes Agent v0.16.0 — The Surface Release](https://github.com/NousResearch/hermes-agent/releases/tag/v2026.6.5)** — GitHub · 2026-06-05
   Nous Research ships a native desktop app (macOS/Linux/Windows) with one-click install and in-app self-update, remote gateway support via OAuth, and a full web dashboard admin panel replacing SSH-based config. Also adds /undo, a fuzzy model picker unified across all interfaces, and Simplified Chinese i18n.
@@ -59,9 +72,10 @@ _Last updated: 2026-06-15 · 76 items_
 - **[Hermes Unlocks Self-Improving AI Agents on NVIDIA RTX PCs and DGX Spark](https://blogs.nvidia.com/blog/rtx-ai-garage-hermes-agent-dgx-spark/)** — NVIDIA Blog · 2026-05-13
   Nous Research's open-source Hermes framework for reliable, self-improving agents optimized to run locally on NVIDIA RTX PCs and DGX Spark.
 
+
 ## Tooling & Infra
 
-- **[Statewright: State Machine Guardrails for AI Agents](https://github.com/statewright/statewright)** — GitHub · 
+- **[Statewright: State Machine Guardrails for AI Agents](https://github.com/statewright/statewright)** — GitHub · 2026-06-05
   Open-source tool that enforces phase-based tool access for coding agents — planning gets read-only tools, implementation unlocks edits, testing restricts to test commands — via MCP integration; works with Claude Code, Codex, Cursor, and others.
 
 - **[The 2026-07-28 MCP Specification Release Candidate](https://blog.modelcontextprotocol.io/posts/2026-07-28-release-candidate/)** — Model Context Protocol Blog · 2026-05-21
@@ -73,7 +87,29 @@ _Last updated: 2026-06-15 · 76 items_
 - **[Codex for (almost) everything](https://openai.com/index/codex-for-almost-everything/)** — OpenAI · 2026-04-16
   Major Codex update: it can now operate your computer alongside you, work natively with the web via an in-app browser, and adds 90+ new plugins.
 
+
 ## Research
+
+- **[Multi-Agent Transactive Memory](https://arxiv.org/abs/2606.19911)** — arXiv · 2026-06-18
+  Extends retrieval-augmented generation to population-level experience sharing: agents store and retrieve full trajectories from a shared repository, letting newly created agents benefit from prior agents' solutions without redundant problem-solving; demonstrated to improve task performance and reduce interaction steps on ALFWorld and WebArena.
+
+- **[A Technical Taxonomy of LLM Agent Communication Protocols](https://arxiv.org/abs/2606.19135)** — arXiv · 2026-06-17
+  Systematically analyzes nine open-source agent communication protocols (including MCP, A2A, and others) across five dimensions—counterparty, payload, interaction state, discovery mechanism, and schema flexibility—identifying recurring hybrid-payload and session-state patterns and predicting evolution toward a federated, layered protocol stack rather than a single universal standard.
+
+- **[State-Grounded Multi-Agent Synthetic Data Generation for Tool-Augmented LLMs](https://arxiv.org/abs/2606.16307)** — arXiv · 2026-06-15
+  StateGen orchestrates a four-role LLM loop—persona-conditioned user simulator, agent under test, state-grounded tool simulator, and multi-axis judge—to produce scored, reasoning-trace-rich training data; a central state manager enforcing a backend-is-truth invariant eliminates the dominant class of tool-call hallucinations by construction, and the architecture generalizes to hierarchical multi-agent settings.
+
+- **[SkillAxe: Sharpening LLM-Authored Agent Skills Through Evaluation-Guided Self-Refinement](https://arxiv.org/abs/2606.10546)** — arXiv · 2026-06-09
+  Introduces an unsupervised method for iteratively diagnosing and refining LLM-generated skill documents along four quality dimensions without labeled data, achieving a 28% relative improvement over unimproved LLM skills on SkillsBench and recovering nearly half the performance gap between machine- and human-authored instructions.
+
+- **[Emergence World: A Platform for Evaluating Long-Horizon Multi-Agent Autonomy](https://arxiv.org/abs/2606.08367)** — arXiv · 2026-06-06
+  A continuously-running multi-agent simulation platform grounding LLM-driven agents in a shared spatial environment with live external data, 120+ tools, persistent memory, and democratic self-governance; a 15-day study across five model families produced radically different outcomes from stable governance to population collapse, revealing long-horizon dynamics invisible in short evaluation windows.
+
+- **[Agent Planning Benchmark: A Diagnostic Framework for Planning Capabilities in LLM Agents](https://arxiv.org/abs/2606.04874)** — arXiv · 2026-06-03
+  Introduces APB, a 4,209-case multimodal diagnostic benchmark across 22 domains that decomposes agent evaluation below end-to-end success into goal decomposition, tool selection, constraint reasoning, and calibrated refusal; testing 12 MLLMs reveals systematic weaknesses in long-horizon planning, tool-noise robustness, and inference-time refinement, with APB-guided feedback consistently improving downstream execution.
+
+- **[From Agent Traces to Trust: A Survey of Evidence Tracing and Execution Provenance in LLM Agents](https://arxiv.org/abs/2606.04990)** — arXiv · 2026-06-03
+  Surveys execution provenance and evidence tracing as frameworks for auditing autonomous LLM agent decisions, covering retrieval grounding, tool safety, memory lineage, and failure diagnosis under a unified approach; provides a taxonomy of provenance methods and guidance for building auditable, recoverable agent systems.
 
 - **[Silent Failure in LLM Agent Systems: The Entropy Principle](https://arxiv.org/abs/2606.08162)** — arXiv · 2026-06-06
   Based on 40,000+ controlled trials across 22 intrinsic agent-system properties, proposes that autonomous agents accumulate 'Intelligence Entropy' predictably over time (formalized as S(t) = S₀·eᵅᵗ); introduces the PIG Engine and ADE protocol suite to govern and counteract entropy-driven degradation without code changes.
@@ -243,7 +279,11 @@ _Last updated: 2026-06-15 · 76 items_
 - **[AlphaEvolve: a Gemini-powered coding agent scaling impact across fields](https://deepmind.google/blog/alphaevolve-impact/)** — Google DeepMind · 2026-05-07
   Google DeepMind's Gemini-powered coding agent shows real-world impact across genomics, power-grid optimization, quantum physics, and mathematics.
 
+
 ## Big Lab Update
+
+- **[Securing the Future of AI Agents](https://deepmind.google/blog/securing-the-future-of-ai-agents/)** — Google DeepMind · 2026-06-18
+  Google DeepMind introduces an AI Control Roadmap framing advanced AI agents as potential insider threats: a threat taxonomy built on MITRE ATT&CK, a dual-layer detection/prevention system validated against one million coding agent tasks, and a companion Three Layers of Agent Security framework for policymakers covering individual agents, multi-agent systems, and broader cyber resilience.
 
 - **[Google DeepMind and Partners Launch $10M Multi-Agent AI Safety Research Call](https://deepmind.google/blog/investing-in-multi-agent-ai-safety-research/)** — Google DeepMind · 2026-06-11
   Google DeepMind, Schmidt Sciences, Cooperative AI Foundation, ARIA, and Google.org launch a $10M funding call for multi-agent AI safety research, targeting sandboxes and testbeds, agent network science, cross-platform identity/reputation protocols, and collective oversight methods for deployed agent populations.
@@ -253,6 +293,7 @@ _Last updated: 2026-06-15 · 76 items_
 
 - **[Anthropic raises $65B Series H at $965B post-money valuation](https://www.anthropic.com/news/series-h)** — Anthropic · 2026-05-28
   Anthropic's latest raise signals continued scaling of compute and research investment.
+
 
 ## Community & Discussion
 
