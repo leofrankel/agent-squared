@@ -11,7 +11,16 @@
  * -------------------------------------------------------------------------- */
 
 let DATA = { meta: {}, categories: [], research_subcategories: [], items: [] };
-const filters = { category: "all", researchSubcat: "all", tag: "all", q: "" };
+const filters = { category: "all", researchSubcat: "all", tag: "all", dateRange: "all", customDate: null, q: "" };
+
+const DATE_RANGES = [
+  { id: "all",    label: "All time" },
+  { id: "7d",     label: "Last 7 days" },
+  { id: "30d",    label: "Last 30 days" },
+  { id: "90d",    label: "Last 90 days" },
+  { id: "year",   label: "This year" },
+  { id: "custom", label: "Custom…" },
+];
 let openEditor = null; // { el, itemId } of the open tag popover
 
 const TAG_BUILTINS = [
@@ -80,6 +89,32 @@ function matchesResearchSubcat(item) {
   if (filters.researchSubcat === "all") return true;
   return item.category === "research" && item.research_subcategory === filters.researchSubcat;
 }
+function dateRangeCutoff(rangeId) {
+  const now = new Date();
+  if (rangeId === "7d")   { const d = new Date(now); d.setDate(d.getDate() - 7);   return d; }
+  if (rangeId === "30d")  { const d = new Date(now); d.setDate(d.getDate() - 30);  return d; }
+  if (rangeId === "90d")  { const d = new Date(now); d.setDate(d.getDate() - 90);  return d; }
+  if (rangeId === "year") { return new Date(now.getFullYear(), 0, 1); }
+  return null;
+}
+function itemDate(item) {
+  const raw = item.published || item.date_added;
+  if (!raw) return null;
+  const d = new Date(raw.length <= 10 ? raw + "T00:00:00" : raw);
+  return isNaN(d) ? null : d;
+}
+function matchesDateRange(item) {
+  if (filters.dateRange === "all") return true;
+  if (filters.dateRange === "custom") {
+    if (!filters.customDate) return true;
+    const d = itemDate(item);
+    return !!d && d >= filters.customDate;
+  }
+  const d = itemDate(item);
+  if (!d) return false;
+  const cutoff = dateRangeCutoff(filters.dateRange);
+  return cutoff ? d >= cutoff : true;
+}
 function matchesTag(item) {
   const it = Store.byNewsId(item.id);
   switch (filters.tag) {
@@ -96,7 +131,7 @@ function matchesTag(item) {
   }
 }
 function passesAll(item) {
-  return matchesSearch(item) && matchesCategory(item) && matchesResearchSubcat(item) && matchesTag(item);
+  return matchesSearch(item) && matchesCategory(item) && matchesResearchSubcat(item) && matchesTag(item) && matchesDateRange(item);
 }
 
 /* ---------- filter bars ---------- */
@@ -119,7 +154,7 @@ function makePill(label, active, count, onClick, isTag) {
 function renderCategoryFilters() {
   const host = document.getElementById("category-filters");
   host.innerHTML = "";
-  const base = sortedItems().filter((i) => matchesSearch(i) && matchesTag(i));
+  const base = sortedItems().filter((i) => matchesSearch(i) && matchesTag(i) && matchesDateRange(i));
   host.appendChild(
     makePill("All", filters.category === "all", base.length, () => {
       filters.category = "all";
@@ -143,8 +178,8 @@ function renderResearchSubcatFilters() {
   if (!host || !block) return;
 
   // Base: items matching search + category + tag (not subcategory itself)
-  const base = sortedItems().filter((i) => matchesSearch(i) && matchesCategory(i) && matchesTag(i) && i.category === "research");
-  const totalResearch = sortedItems().filter((i) => matchesSearch(i) && matchesCategory(i) && matchesTag(i) && i.category === "research").length;
+  const base = sortedItems().filter((i) => matchesSearch(i) && matchesCategory(i) && matchesTag(i) && matchesDateRange(i) && i.category === "research");
+  const totalResearch = base.length;
 
   // Hide the entire block if there are no research items in the current view
   block.hidden = totalResearch === 0 && filters.researchSubcat === "all";
@@ -185,7 +220,7 @@ function tagCount(tagId, base) {
 function renderTagFilters() {
   const host = document.getElementById("tag-filters");
   host.innerHTML = "";
-  const base = sortedItems().filter((i) => matchesSearch(i) && matchesCategory(i));
+  const base = sortedItems().filter((i) => matchesSearch(i) && matchesCategory(i) && matchesDateRange(i));
   host.appendChild(
     makePill("All", filters.tag === "all", tagCount("all", base), () => {
       filters.tag = "all";
@@ -210,6 +245,178 @@ function renderTagFilters() {
       }, true)
     );
   });
+}
+
+/* ---------- calendar popover ---------- */
+let calendarEl = null;
+const calendarView = { year: 0, month: 0 };
+
+function closeCalendar() {
+  const overlay = document.querySelector(".dp-overlay");
+  if (overlay && overlay.parentNode) overlay.parentNode.removeChild(overlay);
+  if (calendarEl && calendarEl.parentNode) calendarEl.parentNode.removeChild(calendarEl);
+  calendarEl = null;
+}
+
+function buildCalendarEl() {
+  const ref = filters.customDate || new Date();
+  calendarView.year = ref.getFullYear();
+  calendarView.month = ref.getMonth();
+
+  const el = document.createElement("div");
+  el.className = "date-picker";
+
+  function draw() {
+    el.innerHTML = "";
+
+    // — header: prev / month+year / next —
+    const hdr = document.createElement("div");
+    hdr.className = "dp-header";
+
+    const prev = document.createElement("button");
+    prev.type = "button"; prev.className = "dp-nav"; prev.textContent = "‹";
+    prev.addEventListener("click", (e) => {
+      e.stopPropagation();
+      if (--calendarView.month < 0) { calendarView.month = 11; calendarView.year--; }
+      draw();
+    });
+
+    const title = document.createElement("span");
+    title.className = "dp-title";
+    title.textContent = new Date(calendarView.year, calendarView.month)
+      .toLocaleDateString(undefined, { month: "long", year: "numeric" });
+
+    const next = document.createElement("button");
+    next.type = "button"; next.className = "dp-nav"; next.textContent = "›";
+    next.addEventListener("click", (e) => {
+      e.stopPropagation();
+      if (++calendarView.month > 11) { calendarView.month = 0; calendarView.year++; }
+      draw();
+    });
+
+    hdr.appendChild(prev); hdr.appendChild(title); hdr.appendChild(next);
+    el.appendChild(hdr);
+
+    // — weekday labels —
+    const wdays = document.createElement("div");
+    wdays.className = "dp-weekdays";
+    ["Su","Mo","Tu","We","Th","Fr","Sa"].forEach((d) => {
+      const s = document.createElement("span"); s.textContent = d; wdays.appendChild(s);
+    });
+    el.appendChild(wdays);
+
+    // — day grid —
+    const grid = document.createElement("div");
+    grid.className = "dp-grid";
+
+    const firstDow = new Date(calendarView.year, calendarView.month, 1).getDay();
+    const daysInMonth = new Date(calendarView.year, calendarView.month + 1, 0).getDate();
+    const today = new Date();
+    const selY = filters.customDate ? filters.customDate.getFullYear() : -1;
+    const selM = filters.customDate ? filters.customDate.getMonth()    : -1;
+    const selD = filters.customDate ? filters.customDate.getDate()     : -1;
+
+    for (let i = 0; i < firstDow; i++) {
+      const sp = document.createElement("span"); sp.className = "dp-cell"; grid.appendChild(sp);
+    }
+    for (let d = 1; d <= daysInMonth; d++) {
+      const btn = document.createElement("button");
+      btn.type = "button"; btn.className = "dp-cell dp-day"; btn.textContent = d;
+      if (today.getFullYear() === calendarView.year && today.getMonth() === calendarView.month && today.getDate() === d)
+        btn.classList.add("dp-today");
+      if (selY === calendarView.year && selM === calendarView.month && selD === d)
+        btn.classList.add("dp-selected");
+      btn.addEventListener("click", (e) => {
+        e.stopPropagation();
+        filters.customDate = new Date(calendarView.year, calendarView.month, d);
+        filters.dateRange = "custom";
+        closeCalendar();
+        render();
+      });
+      grid.appendChild(btn);
+    }
+    el.appendChild(grid);
+  }
+
+  draw();
+  return el;
+}
+
+function openCalendar() {
+  const host = document.getElementById("date-filters");
+  if (!host) return;
+  // Transparent full-page overlay catches outside clicks without blocking the
+  // date-filter pills (which sit in a higher stacking context via z-index).
+  const overlay = document.createElement("div");
+  overlay.className = "dp-overlay";
+  // Defer listener by one tick so the opening click can't immediately close us.
+  setTimeout(() => overlay.addEventListener("click", () => {
+    closeCalendar();
+    if (!filters.customDate) { filters.dateRange = "all"; render(); }
+  }), 0);
+  document.body.appendChild(overlay);
+  calendarEl = buildCalendarEl();
+  host.appendChild(calendarEl);
+}
+
+function renderDateFilters() {
+  const host = document.getElementById("date-filters");
+  if (!host) return;
+  host.innerHTML = "";
+  const base = sortedItems().filter((i) => matchesSearch(i) && matchesCategory(i) && matchesResearchSubcat(i) && matchesTag(i));
+
+  DATE_RANGES.forEach((r) => {
+    if (r.id === "custom") {
+      const isActive = filters.dateRange === "custom";
+      const btn = document.createElement("button");
+      btn.type = "button";
+      btn.className = "pill" + (isActive ? " active" : "");
+
+      const labelSpan = document.createElement("span");
+      labelSpan.textContent = (isActive && filters.customDate)
+        ? "From " + fmtDate(filters.customDate.toISOString().slice(0, 10))
+        : "Custom…";
+      btn.appendChild(labelSpan);
+
+      if (isActive && filters.customDate) {
+        const countSpan = document.createElement("span");
+        countSpan.className = "count";
+        countSpan.textContent = base.filter((i) => { const d = itemDate(i); return d && d >= filters.customDate; }).length;
+        btn.appendChild(countSpan);
+      }
+
+      btn.addEventListener("click", (e) => {
+        e.stopPropagation();
+        if (calendarEl) {
+          closeCalendar();
+          if (!filters.customDate) { filters.dateRange = "all"; render(); }
+          return;
+        }
+        filters.dateRange = "custom";
+        // Update pill appearance without a full re-render (avoids DOM detach
+        // issues that cause the outside-click guard to fire immediately).
+        btn.classList.add("active");
+        openCalendar();
+      });
+      host.appendChild(btn);
+      return;
+    }
+
+    const n = r.id === "all"
+      ? base.length
+      : base.filter((i) => { const d = itemDate(i); return d && d >= dateRangeCutoff(r.id); }).length;
+    if (n === 0 && filters.dateRange !== r.id && r.id !== "all") return;
+    host.appendChild(
+      makePill(r.label, filters.dateRange === r.id, r.id === "all" ? undefined : n, () => {
+        filters.dateRange = r.id;
+        closeCalendar();
+        render();
+      })
+    );
+  });
+
+  // Re-attach the calendar popover if it was open before this rebuild
+  if (calendarEl) host.appendChild(calendarEl);
 }
 
 /* ---------- cards ---------- */
@@ -448,6 +655,7 @@ function render() {
   renderCategoryFilters();
   renderResearchSubcatFilters();
   renderTagFilters();
+  renderDateFilters();
 
   const matched = sortedItems().filter(passesAll);
   const highlights = matched.filter((i) => i.significance === "high");
@@ -557,7 +765,7 @@ document.addEventListener("click", (e) => {
   }
 });
 document.addEventListener("keydown", (e) => {
-  if (e.key === "Escape") closeEditor();
+  if (e.key === "Escape") { closeEditor(); closeCalendar(); }
 });
 document.addEventListener("store-changed", () => {
   if (openEditor) return; // editor does its own incremental updates

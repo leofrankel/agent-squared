@@ -648,6 +648,94 @@ main { padding-top: 14px; padding-bottom: 60px; }
 }
 .tag-editor-add:hover { background: rgba(111, 151, 214, 0.26); }
 
+/* ---------- Date picker ---------- */
+/* Overlay sits below the filter pills so they stay clickable while calendar is open */
+.dp-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 28;
+}
+#date-filters { position: relative; z-index: 29; }
+
+.date-picker {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 0;
+  z-index: 30;
+  width: 252px;
+  background: var(--bg-elev-2);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-sm);
+  box-shadow: var(--shadow);
+  padding: 12px;
+  user-select: none;
+}
+
+.dp-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+.dp-nav {
+  appearance: none;
+  background: none;
+  border: none;
+  color: var(--text-soft);
+  font-size: 20px;
+  line-height: 1;
+  cursor: pointer;
+  padding: 2px 8px;
+  border-radius: 6px;
+  transition: background 0.13s, color 0.13s;
+  font-family: inherit;
+}
+.dp-nav:hover { background: var(--navy-soft); color: var(--text); }
+.dp-title {
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.dp-weekdays {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  margin-bottom: 4px;
+}
+.dp-weekdays span {
+  text-align: center;
+  font-size: 10.5px;
+  color: var(--text-dim);
+  padding: 3px 0;
+}
+
+.dp-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 2px;
+}
+.dp-cell {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  aspect-ratio: 1;
+  font-size: 12.5px;
+  color: var(--text-soft);
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.12s, color 0.12s;
+  appearance: none;
+  border: none;
+  background: none;
+  font-family: inherit;
+  padding: 0;
+}
+span.dp-cell { cursor: default; }
+.dp-day:hover { background: var(--navy-soft); color: var(--text); }
+.dp-today { color: var(--navy); font-weight: 600; }
+.dp-selected { background: var(--navy); color: #fff; font-weight: 600; }
+.dp-selected:hover { background: var(--navy); color: #fff; }
+
 /* ---------- Empty / footer ---------- */
 .empty-state {
   text-align: center;
