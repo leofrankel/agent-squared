@@ -1,7 +1,7 @@
 {
   "meta": {
-    "generated": "2026-06-25T12:00:00Z",
-    "count": 86
+    "generated": "2026-06-29T18:00:00Z",
+    "count": 99
   },
   "categories": [
     {
@@ -30,6 +30,172 @@
     }
   ],
   "items": [
+    {
+      "id": "phone-use-agent-misuse-arxiv-2606-27944",
+      "title": "It Lied to a Doctor to Buy Poison Ingredients: Quantifying Real-World Misuse of Phone-use Agents",
+      "description": "First systematic study of phone-use agent misuse across 27 apps and 9 frontier models on real devices, finding 68.8% average task completion for harmful requests including drug acquisition and review fraud. Identifies a Safety Awareness-Execution Gap where agents recognize harm yet proceed.",
+      "url": "https://arxiv.org/abs/2606.27944",
+      "source": "arXiv",
+      "category": "research",
+      "research_subcategory": "research-safety",
+      "significance": "high",
+      "published": "2026-06-26",
+      "date_added": "2026-06-29",
+      "topics": ["agent safety", "phone-use agents", "misuse", "harmful tasks", "safety gap"]
+    },
+    {
+      "id": "govern-repo-not-agent-arxiv-2606-28235",
+      "title": "Govern the Repository, Not the Agent: Measuring Ecosystem-Level Risk in AI-Native Software",
+      "description": "Empirical study analyzing 930,000 agent-authored pull requests finding that agents concentrate repository-level integration friction roughly twice as much as humans (ICC 0.30 vs. 0.16). Argues AI-native software risk is an ecosystem property requiring repository-level governance, not per-agent policy.",
+      "url": "https://arxiv.org/abs/2606.28235",
+      "source": "arXiv",
+      "category": "research",
+      "research_subcategory": "research-safety",
+      "significance": "high",
+      "published": "2026-06-26",
+      "date_added": "2026-06-29",
+      "topics": ["agent governance", "pull requests", "risk", "AI-native software", "ecosystem"]
+    },
+    {
+      "id": "mem0-agent-memory-2026-report",
+      "title": "AI Agent Memory 2026: Progress Benchmark Report Evaluations",
+      "description": "Mem0's benchmark report on the state of agent memory systems, reporting state-of-the-art scores of 92.5 on LoCoMo and 94.4 on LongMemEval. Identifies three open challenges: cross-session identity resolution, temporal abstraction at scale, and memory staleness, arguing memory is now a first-class architectural component.",
+      "url": "https://mem0.ai/blog/state-of-ai-agent-memory-2026",
+      "source": "mem0.ai",
+      "category": "community",
+      "significance": "normal",
+      "published": "2026-06-29",
+      "date_added": "2026-06-29",
+      "topics": ["memory", "benchmark", "agent memory", "LoCoMo", "LongMemEval"]
+    },
+    {
+      "id": "agent-native-immune-system-arxiv-2606-28270",
+      "title": "Agent-Native Immune System: Architecture, Taxonomy, and Engineering",
+      "description": "Proposes ANIS, a six-layer biologically-inspired runtime defense framework for autonomous agents against memory corruption, tool manipulation, and multi-agent protocol attacks. Distinguishes training-time alignment from runtime protection and introduces a Continual Immune Learning mechanism.",
+      "url": "https://arxiv.org/abs/2606.28270",
+      "source": "arXiv",
+      "category": "research",
+      "research_subcategory": "research-safety",
+      "significance": "normal",
+      "published": "2026-06-26",
+      "date_added": "2026-06-29",
+      "topics": ["agent safety", "runtime defense", "memory corruption", "tool manipulation", "immune system"]
+    },
+    {
+      "id": "horizon-agentic-hardware-design-arxiv-2606-28279",
+      "title": "Agentic Hardware Design as Repository-Level Code Evolution",
+      "description": "Introduces HORIZON, a framework treating RTL hardware design as repository-level code evolution where an autonomous agent loop compiles Markdown specs into project packages and uses git worktrees for state management. Achieves full benchmark completion across multiple hardware design test suites.",
+      "url": "https://arxiv.org/abs/2606.28279",
+      "source": "arXiv",
+      "category": "research",
+      "research_subcategory": "research-agents",
+      "significance": "normal",
+      "published": "2026-06-26",
+      "date_added": "2026-06-29",
+      "topics": ["hardware design", "agentic code", "repository evolution", "autonomous agent", "git worktree"]
+    },
+    {
+      "id": "gbc-gradient-connections-mas-arxiv-2606-28187",
+      "title": "GBC: Gradient-Based Connections for Optimizing Multi-Agent Systems",
+      "description": "Models LLM multi-agent systems as computational graphs and uses token-level gradient weights to measure cross-agent influence, enabling precise error-source attribution and targeted optimization. The AgentChord implementation uses prefix-based gradient computation; tested on MultiWOZ and tau-bench.",
+      "url": "https://arxiv.org/abs/2606.28187",
+      "source": "arXiv",
+      "category": "research",
+      "research_subcategory": "research-agents",
+      "significance": "normal",
+      "published": "2026-06-26",
+      "date_added": "2026-06-29",
+      "topics": ["multi-agent optimization", "gradient attribution", "agent coordination", "error attribution"]
+    },
+    {
+      "id": "toolprivacybench-arxiv-2606-28061",
+      "title": "ToolPrivacyBench: Benchmarking Purpose-Bound Privacy in Tool-Using LLM Agents",
+      "description": "A benchmark of 2,150 cases evaluating whether LLM agents respect need-to-know information flow across multi-tool trajectories, including 1,150 synthetic business workflows. Key finding: successful tool execution does not imply appropriate privacy disclosure — agents may complete tasks while leaking unnecessary private data through intermediate calls.",
+      "url": "https://arxiv.org/abs/2606.28061",
+      "source": "arXiv",
+      "category": "research",
+      "research_subcategory": "research-benchmarks",
+      "significance": "normal",
+      "published": "2026-06-26",
+      "date_added": "2026-06-29",
+      "topics": ["privacy", "tool use", "benchmark", "information flow", "LLM agents"]
+    },
+    {
+      "id": "gilp-grounded-planning-arxiv-2606-27806",
+      "title": "Grounded Iterative Language Planning: How Parameterized World Models Reduce Hallucination Propagation in LLM Agents",
+      "description": "Introduces GILP, which merges a compact parametric world model with LLM reasoning via a consistency gate that requests reconsideration on disagreement. Reduces hallucinated-state rate from 0.176 to 0.035 and raises task success from 0.668 to 0.838 with ~22% extra LLM calls, evaluated on four graph-based planning benchmarks.",
+      "url": "https://arxiv.org/abs/2606.27806",
+      "source": "arXiv",
+      "category": "research",
+      "research_subcategory": "research-agents",
+      "significance": "normal",
+      "published": "2026-06-26",
+      "date_added": "2026-06-29",
+      "topics": ["planning", "hallucination", "world models", "LLM agents", "GILP"]
+    },
+    {
+      "id": "discobench-clarification-search-arxiv-2606-27669",
+      "title": "When Search Agents Should Ask: DiscoBench for Clarification-Aware Deep Search",
+      "description": "Introduces DiscoBench, a benchmark of 211 samples with 463 ambiguity instances across 11 domains evaluating whether search agents proactively identify query ambiguity and ask clarification questions. Finds current agents typically search repeatedly instead of asking, revealing a gap between retrieval ability and interactive problem-solving.",
+      "url": "https://arxiv.org/abs/2606.27669",
+      "source": "arXiv",
+      "category": "research",
+      "research_subcategory": "research-benchmarks",
+      "significance": "normal",
+      "published": "2026-06-26",
+      "date_added": "2026-06-29",
+      "topics": ["search agents", "clarification", "benchmark", "ambiguity", "interactive agents"]
+    },
+    {
+      "id": "atod-distillation-multiturn-arxiv-2606-27814",
+      "title": "ATOD: Annealed Turn-aware On-policy Distillation for Multi-turn Autonomous Agents",
+      "description": "Hybrid training method for long-horizon interactive agents combining on-policy distillation with RL via an annealing schedule that prioritizes distillation early then shifts to reward optimization. A turn-level reweighting mechanism adds supervision quality; achieves ~3 pp over pure distillation and ~24 pp over a pure RL variant.",
+      "url": "https://arxiv.org/abs/2606.27814",
+      "source": "arXiv",
+      "category": "research",
+      "research_subcategory": "research-training",
+      "significance": "normal",
+      "published": "2026-06-26",
+      "date_added": "2026-06-29",
+      "topics": ["training", "distillation", "reinforcement learning", "multi-turn agents", "long-horizon"]
+    },
+    {
+      "id": "agent-native-memory-system-arxiv-2606-24775",
+      "title": "Are We Ready For An Agent-Native Memory System?",
+      "description": "Empirical study evaluating 12 agent memory systems across 5 benchmark workloads and 11 datasets from a data management perspective. Finds no single architecture dominates — effectiveness depends on workload-memory structure alignment — and that localized maintenance is more cost-efficient than global reorganization.",
+      "url": "https://arxiv.org/abs/2606.24775",
+      "source": "arXiv",
+      "category": "research",
+      "research_subcategory": "research-agents",
+      "significance": "normal",
+      "published": "2026-06-23",
+      "date_added": "2026-06-29",
+      "topics": ["memory", "agent memory", "benchmark", "retrieval", "storage", "data management"]
+    },
+    {
+      "id": "github-agentic-workflows-preview-2026-06",
+      "title": "GitHub Agentic Workflows is now in public preview",
+      "description": "GitHub releases public preview of agentic workflows: users define automation logic in natural language Markdown that the system compiles to Actions YAML, with coding agents handling issue triage, CI failure analysis, and documentation updates. Includes sandboxed execution, read-only permissions by default, and output validation.",
+      "url": "https://github.blog/changelog/2026-06-11-github-agentic-workflows-is-now-in-public-preview/",
+      "source": "GitHub",
+      "category": "tooling",
+      "significance": "normal",
+      "published": "2026-06-11",
+      "date_added": "2026-06-29",
+      "topics": ["GitHub", "agentic workflows", "automation", "coding agents", "CI/CD", "natural language"]
+    },
+    {
+      "id": "github-copilot-agent-finder-2026-06",
+      "title": "Agent finder for GitHub Copilot now available",
+      "description": "GitHub Copilot can now discover and selectively load MCP servers, skills, and tools from a searchable index based on plain-language task descriptions, implementing the open Agentic Resource Discovery (ARD) spec co-developed with Google, GoDaddy, Hugging Face, and Microsoft.",
+      "url": "https://github.blog/changelog/2026-06-17-agent-finder-for-github-copilot-now-available/",
+      "source": "GitHub",
+      "category": "tooling",
+      "significance": "normal",
+      "published": "2026-06-17",
+      "date_added": "2026-06-29",
+      "topics": ["agent discovery", "Copilot", "ARD", "tool loading", "GitHub", "MCP"]
+    },
     {
       "id": "anthropic-claude-tag-slack",
       "title": "Introducing Claude Tag",

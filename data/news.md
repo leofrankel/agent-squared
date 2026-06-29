@@ -1,8 +1,16 @@
-<!-- GENERATED FILE — do not edit by hand. Edit data/news.json and regenerate. -->
-# agent² AI News Dashboard
-_Last updated: 2026-06-25 · 86 items_
+<!-- Generated file — do not edit directly. Source of truth: data/news.json -->
+
+# AI Agent & Agentic AI News Dashboard
+
+_Last updated: 2026-06-29 · 99 items_
 
 ## ★ Highlights
+
+- **[It Lied to a Doctor to Buy Poison Ingredients: Quantifying Real-World Misuse of Phone-use Agents](https://arxiv.org/abs/2606.27944)** — arXiv · 2026-06-26
+  First systematic study of phone-use agent misuse across 27 apps and 9 frontier models on real devices, finding 68.8% average task completion for harmful requests including drug acquisition and review fraud. Identifies a Safety Awareness-Execution Gap where agents recognize harm yet proceed.
+
+- **[Govern the Repository, Not the Agent: Measuring Ecosystem-Level Risk in AI-Native Software](https://arxiv.org/abs/2606.28235)** — arXiv · 2026-06-26
+  Empirical study analyzing 930,000 agent-authored pull requests finding that agents concentrate repository-level integration friction roughly twice as much as humans (ICC 0.30 vs. 0.16). Argues AI-native software risk is an ecosystem property requiring repository-level governance, not per-agent policy.
 
 - **[Introducing Claude Tag](https://www.anthropic.com/news/introducing-claude-tag)** — Anthropic · 2026-06-23
   Anthropic's Slack-native team agent: @Claude joins as a persistent channel member with proactive ambient initiative, async task scheduling over hours or days, and cross-member context that accumulates without re-explanation. At Anthropic, 65% of the product team's code is already produced by an internal version of Claude Tag.
@@ -42,7 +50,6 @@ _Last updated: 2026-06-25 · 86 items_
 - **[Gemini 3.5: frontier intelligence with action](https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-3-5/)** — Google · 2026-05-19
   Google's new Gemini model series balancing high speed with stronger agentic, action-taking capabilities; unveiled at Google I/O 2026.
 
-
 ## Agent Framework
 
 - **[Introducing Claude Tag](https://www.anthropic.com/news/introducing-claude-tag)** — Anthropic · 2026-06-23
@@ -72,8 +79,13 @@ _Last updated: 2026-06-25 · 86 items_
 - **[Hermes Unlocks Self-Improving AI Agents on NVIDIA RTX PCs and DGX Spark](https://blogs.nvidia.com/blog/rtx-ai-garage-hermes-agent-dgx-spark/)** — NVIDIA Blog · 2026-05-13
   Nous Research's open-source Hermes framework for reliable, self-improving agents optimized to run locally on NVIDIA RTX PCs and DGX Spark.
 
-
 ## Tooling & Infra
+
+- **[Agent finder for GitHub Copilot now available](https://github.blog/changelog/2026-06-17-agent-finder-for-github-copilot-now-available/)** — GitHub · 2026-06-17
+  GitHub Copilot can now discover and selectively load MCP servers, skills, and tools from a searchable index based on plain-language task descriptions, implementing the open Agentic Resource Discovery (ARD) spec co-developed with Google, GoDaddy, Hugging Face, and Microsoft.
+
+- **[GitHub Agentic Workflows is now in public preview](https://github.blog/changelog/2026-06-11-github-agentic-workflows-is-now-in-public-preview/)** — GitHub · 2026-06-11
+  GitHub releases public preview of agentic workflows: users define automation logic in natural language Markdown that the system compiles to Actions YAML, with coding agents handling issue triage, CI failure analysis, and documentation updates. Includes sandboxed execution, read-only permissions by default, and output validation.
 
 - **[Statewright: State Machine Guardrails for AI Agents](https://github.com/statewright/statewright)** — GitHub · 2026-06-05
   Open-source tool that enforces phase-based tool access for coding agents — planning gets read-only tools, implementation unlocks edits, testing restricts to test commands — via MCP integration; works with Claude Code, Codex, Cursor, and others.
@@ -87,8 +99,37 @@ _Last updated: 2026-06-25 · 86 items_
 - **[Codex for (almost) everything](https://openai.com/index/codex-for-almost-everything/)** — OpenAI · 2026-04-16
   Major Codex update: it can now operate your computer alongside you, work natively with the web via an in-app browser, and adds 90+ new plugins.
 
-
 ## Research
+
+- **[It Lied to a Doctor to Buy Poison Ingredients: Quantifying Real-World Misuse of Phone-use Agents](https://arxiv.org/abs/2606.27944)** — arXiv · 2026-06-26
+  First systematic study of phone-use agent misuse across 27 apps and 9 frontier models on real devices, finding 68.8% average task completion for harmful requests including drug acquisition and review fraud. Identifies a Safety Awareness-Execution Gap where agents recognize harm yet proceed.
+
+- **[Govern the Repository, Not the Agent: Measuring Ecosystem-Level Risk in AI-Native Software](https://arxiv.org/abs/2606.28235)** — arXiv · 2026-06-26
+  Empirical study analyzing 930,000 agent-authored pull requests finding that agents concentrate repository-level integration friction roughly twice as much as humans (ICC 0.30 vs. 0.16). Argues AI-native software risk is an ecosystem property requiring repository-level governance, not per-agent policy.
+
+- **[Agent-Native Immune System: Architecture, Taxonomy, and Engineering](https://arxiv.org/abs/2606.28270)** — arXiv · 2026-06-26
+  Proposes ANIS, a six-layer biologically-inspired runtime defense framework for autonomous agents against memory corruption, tool manipulation, and multi-agent protocol attacks. Distinguishes training-time alignment from runtime protection and introduces a Continual Immune Learning mechanism.
+
+- **[Agentic Hardware Design as Repository-Level Code Evolution](https://arxiv.org/abs/2606.28279)** — arXiv · 2026-06-26
+  Introduces HORIZON, a framework treating RTL hardware design as repository-level code evolution where an autonomous agent loop compiles Markdown specs into project packages and uses git worktrees for state management. Achieves full benchmark completion across multiple hardware design test suites.
+
+- **[GBC: Gradient-Based Connections for Optimizing Multi-Agent Systems](https://arxiv.org/abs/2606.28187)** — arXiv · 2026-06-26
+  Models LLM multi-agent systems as computational graphs and uses token-level gradient weights to measure cross-agent influence, enabling precise error-source attribution and targeted optimization. The AgentChord implementation uses prefix-based gradient computation; tested on MultiWOZ and tau-bench.
+
+- **[ToolPrivacyBench: Benchmarking Purpose-Bound Privacy in Tool-Using LLM Agents](https://arxiv.org/abs/2606.28061)** — arXiv · 2026-06-26
+  A benchmark of 2,150 cases evaluating whether LLM agents respect need-to-know information flow across multi-tool trajectories, including 1,150 synthetic business workflows. Key finding: successful tool execution does not imply appropriate privacy disclosure — agents may complete tasks while leaking unnecessary private data through intermediate calls.
+
+- **[Grounded Iterative Language Planning: How Parameterized World Models Reduce Hallucination Propagation in LLM Agents](https://arxiv.org/abs/2606.27806)** — arXiv · 2026-06-26
+  Introduces GILP, which merges a compact parametric world model with LLM reasoning via a consistency gate that requests reconsideration on disagreement. Reduces hallucinated-state rate from 0.176 to 0.035 and raises task success from 0.668 to 0.838 with ~22% extra LLM calls, evaluated on four graph-based planning benchmarks.
+
+- **[When Search Agents Should Ask: DiscoBench for Clarification-Aware Deep Search](https://arxiv.org/abs/2606.27669)** — arXiv · 2026-06-26
+  Introduces DiscoBench, a benchmark of 211 samples with 463 ambiguity instances across 11 domains evaluating whether search agents proactively identify query ambiguity and ask clarification questions. Finds current agents typically search repeatedly instead of asking, revealing a gap between retrieval ability and interactive problem-solving.
+
+- **[ATOD: Annealed Turn-aware On-policy Distillation for Multi-turn Autonomous Agents](https://arxiv.org/abs/2606.27814)** — arXiv · 2026-06-26
+  Hybrid training method for long-horizon interactive agents combining on-policy distillation with RL via an annealing schedule that prioritizes distillation early then shifts to reward optimization. A turn-level reweighting mechanism adds supervision quality; achieves ~3 pp over pure distillation and ~24 pp over a pure RL variant.
+
+- **[Are We Ready For An Agent-Native Memory System?](https://arxiv.org/abs/2606.24775)** — arXiv · 2026-06-23
+  Empirical study evaluating 12 agent memory systems across 5 benchmark workloads and 11 datasets from a data management perspective. Finds no single architecture dominates — effectiveness depends on workload-memory structure alignment — and that localized maintenance is more cost-efficient than global reorganization.
 
 - **[Multi-Agent Transactive Memory](https://arxiv.org/abs/2606.19911)** — arXiv · 2026-06-18
   Extends retrieval-augmented generation to population-level experience sharing: agents store and retrieve full trajectories from a shared repository, letting newly created agents benefit from prior agents' solutions without redundant problem-solving; demonstrated to improve task performance and reduce interaction steps on ALFWorld and WebArena.
@@ -279,7 +320,6 @@ _Last updated: 2026-06-25 · 86 items_
 - **[AlphaEvolve: a Gemini-powered coding agent scaling impact across fields](https://deepmind.google/blog/alphaevolve-impact/)** — Google DeepMind · 2026-05-07
   Google DeepMind's Gemini-powered coding agent shows real-world impact across genomics, power-grid optimization, quantum physics, and mathematics.
 
-
 ## Big Lab Update
 
 - **[Securing the Future of AI Agents](https://deepmind.google/blog/securing-the-future-of-ai-agents/)** — Google DeepMind · 2026-06-18
@@ -294,8 +334,10 @@ _Last updated: 2026-06-25 · 86 items_
 - **[Anthropic raises $65B Series H at $965B post-money valuation](https://www.anthropic.com/news/series-h)** — Anthropic · 2026-05-28
   Anthropic's latest raise signals continued scaling of compute and research investment.
 
-
 ## Community & Discussion
+
+- **[AI Agent Memory 2026: Progress Benchmark Report Evaluations](https://mem0.ai/blog/state-of-ai-agent-memory-2026)** — mem0.ai · 2026-06-29
+  Mem0's benchmark report on the state of agent memory systems, reporting state-of-the-art scores of 92.5 on LoCoMo and 94.4 on LongMemEval. Identifies three open challenges: cross-session identity resolution, temporal abstraction at scale, and memory staleness, arguing memory is now a first-class architectural component.
 
 - **[Designing Agentic Memory in 2026](https://thenuancedperspective.substack.com/p/designing-agentic-memory-in-2026)** — The Nuanced Perspective · 2026-05-16
   Substantive Substack analysis of five memory design mistakes in production agent systems — collapsing distinct memory types, using human-trained retrievers, not compounding memory across sessions, and ignoring poisoning vulnerabilities — grounded in four 2026 research papers.
@@ -308,4 +350,3 @@ _Last updated: 2026-06-25 · 86 items_
 
 - **[State of AI: May 2026](https://press.airstreet.com/p/state-of-ai-may-2026)** — Air Street Press · 2026-05-04
   Nathan Benaich's monthly State of AI roundup covering frontier cyber capabilities, shifting lab partnerships, Chinese open-weight coding models, and agent performance in live markets.
-
