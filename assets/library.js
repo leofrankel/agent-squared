@@ -809,6 +809,12 @@ function setView(view) {
     if (!document.getElementById("view-library").hidden) libRender();
     else libUpdateStatusText();
   });
+  // The dashboard data (category registry) loads async in app.js; if the
+  // Library is the persisted initial view it can render before labels exist,
+  // so re-render once the data arrives.
+  document.addEventListener("news-loaded", () => {
+    if (!document.getElementById("view-library").hidden) libRender();
+  });
   document.addEventListener("cloud-auth", () => {
     libRenderAccount();
     libUpdateStatusText();

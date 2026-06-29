@@ -1,23 +1,21 @@
 ---
 name: refresh-dashboard
-description: Refresh the agent-squared AI-news dashboard. Searches the web for recent, legit developments in AI agents and the broader AI field, vets and de-duplicates them against the existing data, appends them to data/news.json, regenerates the data/news.js and data/news.md mirrors, then rigorously verifies and commits/pushes the result. Touches only the curated news data — never the user's Library or personal data. Runs on demand or unattended on a schedule. Use when the user asks to refresh, update, or repopulate the dashboard / AI news.
+description: Refresh the agent-squared AI-news dashboard. Searches the web for recent, legit developments in AI agents and the broader AI field, vets and de-duplicates them against the existing data, appends them to data/news.json, then rigorously verifies and commits/pushes the result. Touches only the curated news data — never the user's Library or personal data. Runs on demand or unattended on a schedule. Use when the user asks to refresh, update, or repopulate the dashboard / AI news.
 ---
 
 # refresh-dashboard
 
 Curate recent AI developments and update the agent-squared dashboard. The audience is one knowledgeable, experienced AI engineer who wants the next new thing — favor signal over volume.
 
-You touch **only the curated news data** (`data/news.json` and its two mirrors). The user's personal Library, the app code, and config are never modified by this skill.
+You touch **only the curated news data** (`data/news.json`). The user's personal Library, the app code, and config are never modified by this skill.
 
 ## Files you own
 
-- `data/news.json` — **canonical source of truth.** Structured items + category registry. De-dupe against this. Always edit this first.
-- `data/news.js` — generated mirror: `window.__NEWS__ = <same object as news.json>`. Lets the dashboard open from `file://` with no server. **Regenerate from news.json every time.**
-- `data/news.md` — generated human-readable mirror for browsing in git. **Regenerate from news.json every time.**
+- `data/news.json` — **the single source of truth.** Structured items + category registry. De-dupe against this, and edit only this. The deployed dashboard fetches it directly at runtime (`assets/app.js` → `fetch("data/news.json")`), so it is production data — not just a working file.
 - `index.html`, `assets/styles.css`, `assets/app.js` — the UI. You normally do **not** touch these during a refresh; only edit if the user asks for UI changes or the schema changes.
 - `assets/store.js`, `assets/cloud.js`, `assets/library.js` — the user's personal **Library** feature (saved dashboard items + custom links). Local-first with a split per-identity cache: a guest (signed-out) cache and a signed-in cache that's cleared on sign-out; on first sign-in a guest's items are adopted into the account. When signed in, Supabase is the source of truth and every write mirrors to it. Personal data lives client-side / in the user's account, never in the repo. **Off-limits to this skill** — never read, edit, or stage these during a news refresh.
 
-These three **news** files (`news.json` / `news.js` / `news.md`) must always stay in sync. `news.js` and `news.md` are derived 100% from `news.json`. **`news.js` is what the deployed site actually serves** (it's loaded via a `<script>` tag as `window.__NEWS__`; `news.json` is only a fallback), so regenerating it is production-critical, not just a `file://` nicety.
+`data/news.json` is the only news file — there are no generated mirrors to keep in sync. The dashboard loads it with `fetch()`, so it must be served over HTTP: the deploy is on Vercel, and locally you use the preview server (not `file://`).
 
 ## Item schema (in `data/news.json` → `items[]`)
 
@@ -118,30 +116,24 @@ For each surviving candidate, build an item per the schema. Set `date_added` to 
 ### 6. Update `news.json`
 Add the new items to `items[]` (order within the array doesn't matter — the UI sorts). Update `meta.count` and `meta.generated` (UTC ISO timestamp).
 
-### 7. Regenerate the mirrors
-- `data/news.js`: write the generated-file header comment, then `window.__NEWS__ = <exact JSON object>;`. It must deep-equal `news.json`.
-- `data/news.md`: write the generated-file header comment, a title, a `_Last updated: YYYY-MM-DD · N items_` line, a `## ★ Highlights` section (the high-significance items), then one `##` section per category with items newest-first. Each item: `- **[Title](url)** — Source · YYYY-MM-DD` then an indented description line.
+### 7. Verify
+- `python3 -c "import json; d=json.load(open('data/news.json')); print('items', len(d['items']), '| meta.count', d['meta']['count'])"` — confirms `news.json` is valid JSON and prints the counts; `meta.count` must equal the item count.
+- Optionally start the preview (`.claude/launch.json` → `dashboard`, port 4178) and confirm the new items render and links open. The dashboard fetches `data/news.json` at runtime, so it must be served over HTTP — don't open `index.html` from `file://`. **Note:** the browser may serve a *cached* old copy — hard-reload / cache-bust (or re-fetch with `cache: "reload"`) so you're verifying the fresh data, not a stale copy.
 
-### 8. Verify
-- `python3 -c "import json; json.load(open('data/news.json'))"` to confirm valid JSON.
-- Confirm the mirror matches, e.g.:
-  `node -e "global.window={}; require('./data/news.js'); const j=require('./data/news.json'); console.log('js', window.__NEWS__.items.length, 'json', j.items.length, 'meta', j.meta.count)"` — all three numbers must be equal.
-- Optionally start the preview (`.claude/launch.json` → `dashboard`, port 4178) and confirm the new items render and links open. **Note:** the browser may serve a *cached* old copy of a changed file — hard-reload / cache-bust (or re-fetch with `cache: "reload"`) so you're verifying the fresh build, not stale code.
-
-### 9. Verify rigorously, then commit and push
+### 8. Verify rigorously, then commit and push
 Pushing publishes straight to production (Vercel auto-deploys on push to `main`), and this skill may run **unattended on a schedule** — so there is no human to ask. Run a hard pre-flight and **push only if every check passes**. If any check fails, do **not** push: fix it, or abort and report the problem. Never push questionable data.
 
 **Pre-flight checks (all must pass):**
-- **Valid JSON** — `news.json` parses (step 8).
-- **Mirrors in sync** — `news.js` item count, `news.md` item count, and `meta.count` all equal `items.length` (step 8).
+- **Valid JSON** — `news.json` parses (step 7).
+- **Count matches** — `meta.count` equals `items.length` (step 7).
 - **Schema complete** — every item has `id`, `title`, `url`, `source`, `category`; `category` is in the registry; `significance` ∈ {`high`, `normal`}; `published`/`date_added` are `YYYY-MM-DD`; no `published` date is in the future. Every `category:"research"` item has a `research_subcategory` that is in the `research_subcategories` registry.
 - **No duplicates** — no repeated `id`; no repeated `url` (ignoring protocol/query/trailing slash).
 - **ID stability (critical)** — every pre-existing item `id` and category `id` recorded in step 1 still exists, unchanged. This run only *added* items; it never modified or removed an existing id (which would orphan users' synced Library state).
 - **Links resolve** — each *new* item's `url` was fetched/confirmed in step 3.
-- **Diff scope** — `git status` shows only `data/news.json`, `data/news.js`, `data/news.md` changed; no app/UI/Library/config files.
+- **Diff scope** — `git status` shows only `data/news.json` changed; no app/UI/Library/config files.
 
 **If all checks pass:**
-- `git add data/news.json data/news.js data/news.md` — **never** `git add -A`.
+- `git add data/news.json` — **never** `git add -A`.
 - Commit: `Refresh dashboard: add N items (YYYY-MM-DD)` + a short bullet list of what was added + the standard Co-Authored-By trailer.
 - `git push origin main`. **Never force-push.**
 
@@ -151,4 +143,4 @@ Pushing publishes straight to production (Vercel auto-deploys on push to `main`)
 - Lean toward more items rather than fewer — the goal is building a research radar, so breadth matters. Still skip genuine filler: SEO listicles, non-agentic AI news, vague rumors.
 - Keep descriptions factual and link-first — the user reads the source themselves.
 - Don't churn ids or rewrite existing items unnecessarily.
-- Keep the three data files in sync, every time.
+- Keep `meta.count` in sync with the item count, every time.

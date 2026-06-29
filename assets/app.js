@@ -2,10 +2,12 @@
 
 /* ----------------------------------------------------------------------------
  * agent² dashboard (front page)
- * Renders curated recommendations from window.__NEWS__ (data/news.js, fetch
- * fallback to data/news.json). All personal state — add-to-library, read
- * status, tags — lives in the shared per-user Store (assets/store.js), so the
- * Dashboard and Library stay in sync and sync to the cloud when signed in.
+ * Renders curated recommendations fetched from data/news.json (the single
+ * source of truth). The loaded payload is republished on window.__NEWS__ so the
+ * Library view (assets/library.js) can resolve saved items' category labels.
+ * All personal state — add-to-library, read status, tags — lives in the shared
+ * per-user Store (assets/store.js), so the Dashboard and Library stay in sync
+ * and sync to the cloud when signed in.
  * -------------------------------------------------------------------------- */
 
 let DATA = { meta: {}, categories: [], research_subcategories: [], items: [] };
@@ -20,17 +22,18 @@ const TAG_BUILTINS = [
 
 /* ---------- data loading ---------- */
 async function loadData() {
-  if (window.__NEWS__ && Array.isArray(window.__NEWS__.items)) {
-    DATA = window.__NEWS__;
-    return;
-  }
   try {
     const res = await fetch("data/news.json", { cache: "no-store" });
     DATA = await res.json();
   } catch (e) {
     console.error("Failed to load news data:", e);
-    DATA = { meta: {}, categories: [], items: [] };
+    DATA = { meta: {}, categories: [], research_subcategories: [], items: [] };
   }
+  // Publish for the Library view (assets/library.js), which resolves saved
+  // items' category labels from this registry, then signal that it's ready so
+  // a Library rendered before the fetch resolved can re-render with labels.
+  window.__NEWS__ = DATA;
+  document.dispatchEvent(new CustomEvent("news-loaded"));
 }
 
 /* ---------- helpers ---------- */
