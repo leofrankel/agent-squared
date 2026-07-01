@@ -1,7 +1,7 @@
 {
   "meta": {
-    "generated": "2026-06-29T18:00:00Z",
-    "count": 99
+    "generated": "2026-07-01T17:00:00Z",
+    "count": 113
   },
   "categories": [
     {
@@ -1762,6 +1762,187 @@
         "network topology",
         "emergence"
       ]
+    },
+    {
+      "id": "claude-sonnet-5",
+      "title": "Introducing Claude Sonnet 5",
+      "description": "Anthropic's most agentic Sonnet model yet, narrowing the gap to Opus 4.8 on planning, tool use, coding, and computer use (OSWorld-Verified) while showing lower hallucination and sycophancy than Sonnet 4.6. Ships as the default model for Free and Pro plans and in Claude Code with a native 1M-token context window, at introductory pricing through August 31, 2026.",
+      "url": "https://www.anthropic.com/news/claude-sonnet-5",
+      "source": "Anthropic",
+      "category": "model-release",
+      "significance": "high",
+      "published": "2026-06-30",
+      "date_added": "2026-07-01",
+      "topics": ["claude", "sonnet", "agentic", "tool use", "computer use", "coding"]
+    },
+    {
+      "id": "openai-genebench-pro-2026-06",
+      "title": "Introducing GeneBench-Pro",
+      "description": "OpenAI's research-level benchmark of 129 problems across 10 domains testing AI 'research taste' — judgment-heavy analytical decision-making on messy, realistic computational biology datasets rather than fact recall. GPT-5.6 Sol Pro leads at a 31.5% pass rate; Claude Opus 4.8 is the strongest non-GPT model at 16.0%.",
+      "url": "https://openai.com/index/introducing-genebench-pro/",
+      "source": "OpenAI",
+      "category": "research",
+      "research_subcategory": "research-science",
+      "significance": "normal",
+      "published": "2026-06-30",
+      "date_added": "2026-07-01",
+      "topics": ["benchmark", "biology", "research judgment", "genomics", "evaluation"]
+    },
+    {
+      "id": "always-on-agents-survey-arxiv-2606-30306",
+      "title": "Always-On Agents: A Survey of Persistent Memory, State, and Governance in LLM Agents",
+      "description": "Surveys 435 works on systems where future agent behavior depends on durable accumulated state, organizing the field along six diagnostic dimensions (authority, scope, mutability, provenance, recoverability, actionability). Finds existing literature emphasizes state accumulation and retrieval over governance and recovery, and introduces the Always-On Evaluation Protocol (AOEP-v0) to assess state mutation and recovery obligations.",
+      "url": "https://arxiv.org/abs/2606.30306",
+      "source": "arXiv",
+      "category": "research",
+      "research_subcategory": "research-agents",
+      "significance": "normal",
+      "published": "2026-06-29",
+      "date_added": "2026-07-01",
+      "topics": ["survey", "persistent memory", "state", "governance", "long-running agents"]
+    },
+    {
+      "id": "taco-tool-credit-optimization-arxiv-2606-30251",
+      "title": "TACO: Tool-Augmented Credit Optimization for Agentic Tool Use",
+      "description": "Reinforcement learning method for multimodal code-tool agents combining a self-supervised tool-contribution evaluator (comparing predictions with and without each call) with credit distribution from final answers back to specific tool invocations. Yields consistent accuracy gains across visual and reasoning tasks while learning to invoke tools only when they help.",
+      "url": "https://arxiv.org/abs/2606.30251",
+      "source": "arXiv",
+      "category": "research",
+      "research_subcategory": "research-agents",
+      "significance": "normal",
+      "published": "2026-06-29",
+      "date_added": "2026-07-01",
+      "topics": ["tool use", "credit assignment", "reinforcement learning", "multimodal agents"]
+    },
+    {
+      "id": "echo-epistemic-agents-arxiv-2606-29745",
+      "title": "ECHO: Learning Epistemically Adaptive Language Agents with Turn-Level Credit",
+      "description": "Formalizes multi-turn information-seeking as Epistemic Decision Processes, showing belief-agnostic policies suffer errors that compound exponentially over the horizon. Introduces ECHO, a policy-gradient method using posterior-sensitive rewards for turn-level credit, improving resolution, information gain, and efficiency on the Clue Selector Game benchmark.",
+      "url": "https://arxiv.org/abs/2606.29745",
+      "source": "arXiv",
+      "category": "research",
+      "research_subcategory": "research-training",
+      "significance": "normal",
+      "published": "2026-06-29",
+      "date_added": "2026-07-01",
+      "topics": ["credit assignment", "reinforcement learning", "clarification", "belief tracking"]
+    },
+    {
+      "id": "minority-sentinel-debate-arxiv-2606-29270",
+      "title": "Minority Sentinel: When to Overturn Majority Voting in Multi-Agent LLM Debates",
+      "description": "Shows that correlated errors from shared training data break the Condorcet Jury Theorem assumption behind majority-vote debate, with roughly one in four divergent cases having a correct 'minority truth' suppressed by voting. Minority Sentinel, a lightweight LightGBM meta-classifier over debate-log fingerprints, recovers suppressed correct minority opinions with 81.2% flip precision across six benchmarks.",
+      "url": "https://arxiv.org/abs/2606.29270",
+      "source": "arXiv",
+      "category": "research",
+      "research_subcategory": "research-agents",
+      "significance": "normal",
+      "published": "2026-06-28",
+      "date_added": "2026-07-01",
+      "topics": ["multi-agent debate", "majority voting", "meta-classifier", "consensus"]
+    },
+    {
+      "id": "kv-cache-integrity-multiagent-arxiv-2606-28958",
+      "title": "When Latent Agents Lie: KV-Cache Integrity in Multi-Agent LLM Collaboration",
+      "description": "Demonstrates that multi-agent LLM systems sharing hidden KV-cache state alongside visible messages are vulnerable to malicious agents tampering with that hidden state to compromise answers even when visible commitments still look plausible. Proposes HMAC-SHA256 cryptographic verification of KV-cache integrity in transit, arguing magnitude-based tamper detection alone is insufficient.",
+      "url": "https://arxiv.org/abs/2606.28958",
+      "source": "arXiv",
+      "category": "research",
+      "research_subcategory": "research-safety",
+      "significance": "normal",
+      "published": "2026-06-27",
+      "date_added": "2026-07-01",
+      "topics": ["kv-cache", "multi-agent security", "latent state", "cryptographic verification"]
+    },
+    {
+      "id": "gaslighting-agents-deception-arxiv-2606-28456",
+      "title": "Is Lying an Emergent Behaviour in LLMs? Evidence from Gaslighting AI Agents in a Sustainability Game",
+      "description": "Runs a networked resource-management simulation among LLM agents and finds deceptive communication emerges spontaneously even when agents are not explicitly permitted to lie, with access to neighbor information significantly changing system dynamics. Communication and reputation tracking reduce environmental degradation in the multi-agent system.",
+      "url": "https://arxiv.org/abs/2606.28456",
+      "source": "arXiv",
+      "category": "research",
+      "research_subcategory": "research-safety",
+      "significance": "normal",
+      "published": "2026-06-26",
+      "date_added": "2026-07-01",
+      "topics": ["deception", "emergent behavior", "multi-agent", "reputation", "simulation"]
+    },
+    {
+      "id": "clarus-research-agents-arxiv-2606-30246",
+      "title": "Clarus: Coordinating Autonomous Research Agents toward Web-Scale Scientific Collaboration",
+      "description": "Proposes infrastructure reformulating autonomous science research as an open, auditable, attributable, resource-aware multi-phase collaboration process, using a minimal project-agent-resource model across four layers. A controlled case study on paper generation demonstrates coordinating diverse research-agent contributors into a traceable, accumulative collaboration network.",
+      "url": "https://arxiv.org/abs/2606.30246",
+      "source": "arXiv",
+      "category": "research",
+      "research_subcategory": "research-agents",
+      "significance": "normal",
+      "published": "2026-06-29",
+      "date_added": "2026-07-01",
+      "topics": ["research agents", "multi-agent collaboration", "science", "coordination infrastructure"]
+    },
+    {
+      "id": "experience-graphs-self-improving-arxiv-2606-29823",
+      "title": "Experience Graphs: The Data Foundation for Self-Improving Agents",
+      "description": "Argues agent experience should be treated as database-managed assets rather than ephemeral logs, introducing structured 'experience graphs' recording executable artifacts, tool outputs, rewards, sibling comparisons, and causal lineage. The Trellis framework reframes agent search as database queries; the production system KernelEvolve achieves 10x faster speedup at 52% lower token cost through experience reuse at Meta.",
+      "url": "https://arxiv.org/abs/2606.29823",
+      "source": "arXiv",
+      "category": "research",
+      "research_subcategory": "research-agents",
+      "significance": "high",
+      "published": "2026-06-29",
+      "date_added": "2026-07-01",
+      "topics": ["self-improving agents", "experience reuse", "data infrastructure", "production system", "meta"]
+    },
+    {
+      "id": "hyphaedb-agent-memory-arxiv-2606-28781",
+      "title": "HyphaeDB: A Living Knowledge Topology for Agent-First Memory",
+      "description": "Reimagines vector database topology as a communication layer for multi-agent systems, where knowledge propagates via a gossip protocol through the graph's neighbor structure with energy-based attenuation. Agents operate as nodes in vector space with emergent contradiction detection and consensus formation; includes a reference implementation on PostgreSQL with pgvector.",
+      "url": "https://arxiv.org/abs/2606.28781",
+      "source": "arXiv",
+      "category": "research",
+      "research_subcategory": "research-agents",
+      "significance": "normal",
+      "published": "2026-06-27",
+      "date_added": "2026-07-01",
+      "topics": ["agent memory", "vector database", "gossip protocol", "multi-agent", "knowledge graph"]
+    },
+    {
+      "id": "mecobench-multimodal-embodied-arxiv-2606-31966",
+      "title": "MECoBench: A Systematic Study of Multimodal Agent Collaboration in Embodied Environments",
+      "description": "Benchmark evaluating how multimodal LLM agents collaborate in visually grounded, embodied environments across diverse team structures and communication modes. Finds collaboration generally improves task completion and robustness to noise, but communication quality is essential to realizing those gains.",
+      "url": "https://arxiv.org/abs/2606.31966",
+      "source": "arXiv",
+      "category": "research",
+      "research_subcategory": "research-benchmarks",
+      "significance": "normal",
+      "published": "2026-06-30",
+      "date_added": "2026-07-01",
+      "topics": ["benchmark", "multimodal", "embodied agents", "collaboration", "communication"]
+    },
+    {
+      "id": "organizational-behavior-agentic-ai-arxiv-2606-30986",
+      "title": "The Organizational Behavior of Agentic AI: Collective Intelligence in Human-Agent Workflows",
+      "description": "Argues agentic AI is a partial organizational analogue to human organizations — sharing work differentiation and coordinated outcomes but relying on context architecture (prompts, memory, traces, schemas, tools, validators, permissions) rather than human motivation and social bonds. Using computational analysis and real LLM agent data, finds human-like hierarchical structures often underperform designs with shared state and adaptive, task-aligned context.",
+      "url": "https://arxiv.org/abs/2606.30986",
+      "source": "arXiv",
+      "category": "research",
+      "research_subcategory": "research-agents",
+      "significance": "normal",
+      "published": "2026-06-29",
+      "date_added": "2026-07-01",
+      "topics": ["organizational behavior", "collective intelligence", "human-agent workflows", "context architecture"]
+    },
+    {
+      "id": "budgeted-act-or-defer-arxiv-2606-29654",
+      "title": "Budgeted Act-or-Defer Multi-Agent LLM Deliberation with Local Reliability Bounds",
+      "description": "Framework for deciding when multi-agent LLM systems should act autonomously versus escalate to humans, using k-nearest-neighbor lower confidence bounds on state-conditional correctness and wrong-action budgets normalized to task difficulty. Achieves automation rates up to 84% and accuracy up to 96% while staying within 9-12% of pre-declared error budgets, without post-deployment threshold tuning.",
+      "url": "https://arxiv.org/abs/2606.29654",
+      "source": "arXiv",
+      "category": "research",
+      "research_subcategory": "research-agents",
+      "significance": "normal",
+      "published": "2026-06-28",
+      "date_added": "2026-07-01",
+      "topics": ["human-agent escalation", "deliberation", "reliability", "automation", "multi-agent"]
     }
   ],
   "research_subcategories": [
