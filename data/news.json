@@ -1,7 +1,7 @@
 {
   "meta": {
-    "generated": "2026-07-21T18:00:00Z",
-    "count": 126
+    "generated": "2026-08-07T16:00:00Z",
+    "count": 142
   },
   "categories": [
     {
@@ -41,7 +41,13 @@
       "significance": "high",
       "published": "2026-06-26",
       "date_added": "2026-06-29",
-      "topics": ["agent safety", "phone-use agents", "misuse", "harmful tasks", "safety gap"]
+      "topics": [
+        "agent safety",
+        "phone-use agents",
+        "misuse",
+        "harmful tasks",
+        "safety gap"
+      ]
     },
     {
       "id": "govern-repo-not-agent-arxiv-2606-28235",
@@ -54,7 +60,13 @@
       "significance": "high",
       "published": "2026-06-26",
       "date_added": "2026-06-29",
-      "topics": ["agent governance", "pull requests", "risk", "AI-native software", "ecosystem"]
+      "topics": [
+        "agent governance",
+        "pull requests",
+        "risk",
+        "AI-native software",
+        "ecosystem"
+      ]
     },
     {
       "id": "mem0-agent-memory-2026-report",
@@ -66,7 +78,13 @@
       "significance": "normal",
       "published": "2026-06-29",
       "date_added": "2026-06-29",
-      "topics": ["memory", "benchmark", "agent memory", "LoCoMo", "LongMemEval"]
+      "topics": [
+        "memory",
+        "benchmark",
+        "agent memory",
+        "LoCoMo",
+        "LongMemEval"
+      ]
     },
     {
       "id": "agent-native-immune-system-arxiv-2606-28270",
@@ -79,7 +97,13 @@
       "significance": "normal",
       "published": "2026-06-26",
       "date_added": "2026-06-29",
-      "topics": ["agent safety", "runtime defense", "memory corruption", "tool manipulation", "immune system"]
+      "topics": [
+        "agent safety",
+        "runtime defense",
+        "memory corruption",
+        "tool manipulation",
+        "immune system"
+      ]
     },
     {
       "id": "horizon-agentic-hardware-design-arxiv-2606-28279",
@@ -92,7 +116,13 @@
       "significance": "normal",
       "published": "2026-06-26",
       "date_added": "2026-06-29",
-      "topics": ["hardware design", "agentic code", "repository evolution", "autonomous agent", "git worktree"]
+      "topics": [
+        "hardware design",
+        "agentic code",
+        "repository evolution",
+        "autonomous agent",
+        "git worktree"
+      ]
     },
     {
       "id": "gbc-gradient-connections-mas-arxiv-2606-28187",
@@ -105,7 +135,12 @@
       "significance": "normal",
       "published": "2026-06-26",
       "date_added": "2026-06-29",
-      "topics": ["multi-agent optimization", "gradient attribution", "agent coordination", "error attribution"]
+      "topics": [
+        "multi-agent optimization",
+        "gradient attribution",
+        "agent coordination",
+        "error attribution"
+      ]
     },
     {
       "id": "toolprivacybench-arxiv-2606-28061",
@@ -118,7 +153,13 @@
       "significance": "normal",
       "published": "2026-06-26",
       "date_added": "2026-06-29",
-      "topics": ["privacy", "tool use", "benchmark", "information flow", "LLM agents"]
+      "topics": [
+        "privacy",
+        "tool use",
+        "benchmark",
+        "information flow",
+        "LLM agents"
+      ]
     },
     {
       "id": "gilp-grounded-planning-arxiv-2606-27806",
@@ -131,7 +172,13 @@
       "significance": "normal",
       "published": "2026-06-26",
       "date_added": "2026-06-29",
-      "topics": ["planning", "hallucination", "world models", "LLM agents", "GILP"]
+      "topics": [
+        "planning",
+        "hallucination",
+        "world models",
+        "LLM agents",
+        "GILP"
+      ]
     },
     {
       "id": "discobench-clarification-search-arxiv-2606-27669",
@@ -144,7 +191,13 @@
       "significance": "normal",
       "published": "2026-06-26",
       "date_added": "2026-06-29",
-      "topics": ["search agents", "clarification", "benchmark", "ambiguity", "interactive agents"]
+      "topics": [
+        "search agents",
+        "clarification",
+        "benchmark",
+        "ambiguity",
+        "interactive agents"
+      ]
     },
     {
       "id": "atod-distillation-multiturn-arxiv-2606-27814",
@@ -157,7 +210,13 @@
       "significance": "normal",
       "published": "2026-06-26",
       "date_added": "2026-06-29",
-      "topics": ["training", "distillation", "reinforcement learning", "multi-turn agents", "long-horizon"]
+      "topics": [
+        "training",
+        "distillation",
+        "reinforcement learning",
+        "multi-turn agents",
+        "long-horizon"
+      ]
     },
     {
       "id": "agent-native-memory-system-arxiv-2606-24775",
@@ -170,7 +229,14 @@
       "significance": "normal",
       "published": "2026-06-23",
       "date_added": "2026-06-29",
-      "topics": ["memory", "agent memory", "benchmark", "retrieval", "storage", "data management"]
+      "topics": [
+        "memory",
+        "agent memory",
+        "benchmark",
+        "retrieval",
+        "storage",
+        "data management"
+      ]
     },
     {
       "id": "github-agentic-workflows-preview-2026-06",
@@ -182,7 +248,14 @@
       "significance": "normal",
       "published": "2026-06-11",
       "date_added": "2026-06-29",
-      "topics": ["GitHub", "agentic workflows", "automation", "coding agents", "CI/CD", "natural language"]
+      "topics": [
+        "GitHub",
+        "agentic workflows",
+        "automation",
+        "coding agents",
+        "CI/CD",
+        "natural language"
+      ]
     },
     {
       "id": "github-copilot-agent-finder-2026-06",
@@ -194,7 +267,14 @@
       "significance": "normal",
       "published": "2026-06-17",
       "date_added": "2026-06-29",
-      "topics": ["agent discovery", "Copilot", "ARD", "tool loading", "GitHub", "MCP"]
+      "topics": [
+        "agent discovery",
+        "Copilot",
+        "ARD",
+        "tool loading",
+        "GitHub",
+        "MCP"
+      ]
     },
     {
       "id": "anthropic-claude-tag-slack",
@@ -1773,7 +1853,14 @@
       "significance": "high",
       "published": "2026-06-30",
       "date_added": "2026-07-01",
-      "topics": ["claude", "sonnet", "agentic", "tool use", "computer use", "coding"]
+      "topics": [
+        "claude",
+        "sonnet",
+        "agentic",
+        "tool use",
+        "computer use",
+        "coding"
+      ]
     },
     {
       "id": "openai-genebench-pro-2026-06",
@@ -1786,7 +1873,13 @@
       "significance": "normal",
       "published": "2026-06-30",
       "date_added": "2026-07-01",
-      "topics": ["benchmark", "biology", "research judgment", "genomics", "evaluation"]
+      "topics": [
+        "benchmark",
+        "biology",
+        "research judgment",
+        "genomics",
+        "evaluation"
+      ]
     },
     {
       "id": "always-on-agents-survey-arxiv-2606-30306",
@@ -1799,7 +1892,13 @@
       "significance": "normal",
       "published": "2026-06-29",
       "date_added": "2026-07-01",
-      "topics": ["survey", "persistent memory", "state", "governance", "long-running agents"]
+      "topics": [
+        "survey",
+        "persistent memory",
+        "state",
+        "governance",
+        "long-running agents"
+      ]
     },
     {
       "id": "taco-tool-credit-optimization-arxiv-2606-30251",
@@ -1812,7 +1911,12 @@
       "significance": "normal",
       "published": "2026-06-29",
       "date_added": "2026-07-01",
-      "topics": ["tool use", "credit assignment", "reinforcement learning", "multimodal agents"]
+      "topics": [
+        "tool use",
+        "credit assignment",
+        "reinforcement learning",
+        "multimodal agents"
+      ]
     },
     {
       "id": "echo-epistemic-agents-arxiv-2606-29745",
@@ -1825,7 +1929,12 @@
       "significance": "normal",
       "published": "2026-06-29",
       "date_added": "2026-07-01",
-      "topics": ["credit assignment", "reinforcement learning", "clarification", "belief tracking"]
+      "topics": [
+        "credit assignment",
+        "reinforcement learning",
+        "clarification",
+        "belief tracking"
+      ]
     },
     {
       "id": "minority-sentinel-debate-arxiv-2606-29270",
@@ -1838,7 +1947,12 @@
       "significance": "normal",
       "published": "2026-06-28",
       "date_added": "2026-07-01",
-      "topics": ["multi-agent debate", "majority voting", "meta-classifier", "consensus"]
+      "topics": [
+        "multi-agent debate",
+        "majority voting",
+        "meta-classifier",
+        "consensus"
+      ]
     },
     {
       "id": "kv-cache-integrity-multiagent-arxiv-2606-28958",
@@ -1851,7 +1965,12 @@
       "significance": "normal",
       "published": "2026-06-27",
       "date_added": "2026-07-01",
-      "topics": ["kv-cache", "multi-agent security", "latent state", "cryptographic verification"]
+      "topics": [
+        "kv-cache",
+        "multi-agent security",
+        "latent state",
+        "cryptographic verification"
+      ]
     },
     {
       "id": "gaslighting-agents-deception-arxiv-2606-28456",
@@ -1864,7 +1983,13 @@
       "significance": "normal",
       "published": "2026-06-26",
       "date_added": "2026-07-01",
-      "topics": ["deception", "emergent behavior", "multi-agent", "reputation", "simulation"]
+      "topics": [
+        "deception",
+        "emergent behavior",
+        "multi-agent",
+        "reputation",
+        "simulation"
+      ]
     },
     {
       "id": "clarus-research-agents-arxiv-2606-30246",
@@ -1877,7 +2002,12 @@
       "significance": "normal",
       "published": "2026-06-29",
       "date_added": "2026-07-01",
-      "topics": ["research agents", "multi-agent collaboration", "science", "coordination infrastructure"]
+      "topics": [
+        "research agents",
+        "multi-agent collaboration",
+        "science",
+        "coordination infrastructure"
+      ]
     },
     {
       "id": "experience-graphs-self-improving-arxiv-2606-29823",
@@ -1890,7 +2020,13 @@
       "significance": "high",
       "published": "2026-06-29",
       "date_added": "2026-07-01",
-      "topics": ["self-improving agents", "experience reuse", "data infrastructure", "production system", "meta"]
+      "topics": [
+        "self-improving agents",
+        "experience reuse",
+        "data infrastructure",
+        "production system",
+        "meta"
+      ]
     },
     {
       "id": "hyphaedb-agent-memory-arxiv-2606-28781",
@@ -1903,7 +2039,13 @@
       "significance": "normal",
       "published": "2026-06-27",
       "date_added": "2026-07-01",
-      "topics": ["agent memory", "vector database", "gossip protocol", "multi-agent", "knowledge graph"]
+      "topics": [
+        "agent memory",
+        "vector database",
+        "gossip protocol",
+        "multi-agent",
+        "knowledge graph"
+      ]
     },
     {
       "id": "mecobench-multimodal-embodied-arxiv-2606-31966",
@@ -1916,7 +2058,13 @@
       "significance": "normal",
       "published": "2026-06-30",
       "date_added": "2026-07-01",
-      "topics": ["benchmark", "multimodal", "embodied agents", "collaboration", "communication"]
+      "topics": [
+        "benchmark",
+        "multimodal",
+        "embodied agents",
+        "collaboration",
+        "communication"
+      ]
     },
     {
       "id": "organizational-behavior-agentic-ai-arxiv-2606-30986",
@@ -1929,7 +2077,12 @@
       "significance": "normal",
       "published": "2026-06-29",
       "date_added": "2026-07-01",
-      "topics": ["organizational behavior", "collective intelligence", "human-agent workflows", "context architecture"]
+      "topics": [
+        "organizational behavior",
+        "collective intelligence",
+        "human-agent workflows",
+        "context architecture"
+      ]
     },
     {
       "id": "multi-agent-ai-control-distributed-attacks-arxiv-2607-07368",
@@ -1942,7 +2095,13 @@
       "significance": "high",
       "published": "2026-07-08",
       "date_added": "2026-07-21",
-      "topics": ["agent safety", "multi-agent", "ai control", "monitoring", "distributed attacks"]
+      "topics": [
+        "agent safety",
+        "multi-agent",
+        "ai control",
+        "monitoring",
+        "distributed attacks"
+      ]
     },
     {
       "id": "open-world-tool-use-fragility-arxiv-2607-01084",
@@ -1955,7 +2114,13 @@
       "significance": "normal",
       "published": "2026-07-01",
       "date_added": "2026-07-21",
-      "topics": ["tool use", "generalization", "robustness", "distributional shift", "fine-tuning"]
+      "topics": [
+        "tool use",
+        "generalization",
+        "robustness",
+        "distributional shift",
+        "fine-tuning"
+      ]
     },
     {
       "id": "cache-merging-multiagent-reasoning-arxiv-2607-01308",
@@ -1968,7 +2133,13 @@
       "significance": "normal",
       "published": "2026-07-01",
       "date_added": "2026-07-21",
-      "topics": ["kv-cache", "multi-agent", "latent reasoning", "replicated state", "determinism"]
+      "topics": [
+        "kv-cache",
+        "multi-agent",
+        "latent reasoning",
+        "replicated state",
+        "determinism"
+      ]
     },
     {
       "id": "mallm-decision-protocols-arxiv-2607-05477",
@@ -1981,7 +2152,13 @@
       "significance": "normal",
       "published": "2026-07-06",
       "date_added": "2026-07-21",
-      "topics": ["multi-agent", "decision protocols", "consensus", "voting", "evaluation"]
+      "topics": [
+        "multi-agent",
+        "decision protocols",
+        "consensus",
+        "voting",
+        "evaluation"
+      ]
     },
     {
       "id": "coweaver-human-agent-matching-arxiv-2607-15545",
@@ -1994,7 +2171,12 @@
       "significance": "normal",
       "published": "2026-07-17",
       "date_added": "2026-07-21",
-      "topics": ["human-agent collaboration", "matching", "science", "multi-agent"]
+      "topics": [
+        "human-agent collaboration",
+        "matching",
+        "science",
+        "multi-agent"
+      ]
     },
     {
       "id": "adversarial-pragmatics-safety-eval-arxiv-2607-01153",
@@ -2007,7 +2189,13 @@
       "significance": "normal",
       "published": "2026-07-01",
       "date_added": "2026-07-21",
-      "topics": ["safety evaluation", "adversarial", "instruction conflict", "benchmark", "policy ambiguity"]
+      "topics": [
+        "safety evaluation",
+        "adversarial",
+        "instruction conflict",
+        "benchmark",
+        "policy ambiguity"
+      ]
     },
     {
       "id": "saferelbench-embodied-agents-arxiv-2607-14543",
@@ -2020,7 +2208,13 @@
       "significance": "normal",
       "published": "2026-07-16",
       "date_added": "2026-07-21",
-      "topics": ["embodied agents", "vlm", "safety", "benchmark", "spatial reasoning"]
+      "topics": [
+        "embodied agents",
+        "vlm",
+        "safety",
+        "benchmark",
+        "spatial reasoning"
+      ]
     },
     {
       "id": "mute-communication-unlearning-arxiv-2607-03473",
@@ -2033,7 +2227,12 @@
       "significance": "normal",
       "published": "2026-07-03",
       "date_added": "2026-07-21",
-      "topics": ["multi-agent communication", "efficiency", "reinforcement learning", "coordination"]
+      "topics": [
+        "multi-agent communication",
+        "efficiency",
+        "reinforcement learning",
+        "coordination"
+      ]
     },
     {
       "id": "causalsteward-agentic-causal-discovery-arxiv-2607-01936",
@@ -2046,7 +2245,13 @@
       "significance": "normal",
       "published": "2026-07-02",
       "date_added": "2026-07-21",
-      "topics": ["multi-agent", "causal discovery", "divide and conquer", "rag", "science"]
+      "topics": [
+        "multi-agent",
+        "causal discovery",
+        "divide and conquer",
+        "rag",
+        "science"
+      ]
     },
     {
       "id": "memsyco-bench-arxiv-2607-01071",
@@ -2059,7 +2264,12 @@
       "significance": "normal",
       "published": "2026-07-01",
       "date_added": "2026-07-21",
-      "topics": ["agent memory", "sycophancy", "benchmark", "reliability"]
+      "topics": [
+        "agent memory",
+        "sycophancy",
+        "benchmark",
+        "reliability"
+      ]
     },
     {
       "id": "seed-self-evolving-distillation-arxiv-2607-14777",
@@ -2072,7 +2282,12 @@
       "significance": "normal",
       "published": "2026-07-16",
       "date_added": "2026-07-21",
-      "topics": ["reinforcement learning", "distillation", "self-evolving", "agentic training"]
+      "topics": [
+        "reinforcement learning",
+        "distillation",
+        "self-evolving",
+        "agentic training"
+      ]
     },
     {
       "id": "areal2-agentic-rl-systems-arxiv-2607-01120",
@@ -2085,7 +2300,12 @@
       "significance": "normal",
       "published": "2026-07-01",
       "date_added": "2026-07-21",
-      "topics": ["reinforcement learning", "agent infrastructure", "self-evolving agents", "production systems"]
+      "topics": [
+        "reinforcement learning",
+        "agent infrastructure",
+        "self-evolving agents",
+        "production systems"
+      ]
     },
     {
       "id": "hermes-agent-v0-19-0-quicksilver",
@@ -2097,7 +2317,13 @@
       "significance": "normal",
       "published": "2026-07-20",
       "date_added": "2026-07-21",
-      "topics": ["hermes", "nous research", "performance", "latency", "open source"]
+      "topics": [
+        "hermes",
+        "nous research",
+        "performance",
+        "latency",
+        "open source"
+      ]
     },
     {
       "id": "budgeted-act-or-defer-arxiv-2606-29654",
@@ -2110,7 +2336,291 @@
       "significance": "normal",
       "published": "2026-06-28",
       "date_added": "2026-07-01",
-      "topics": ["human-agent escalation", "deliberation", "reliability", "automation", "multi-agent"]
+      "topics": [
+        "human-agent escalation",
+        "deliberation",
+        "reliability",
+        "automation",
+        "multi-agent"
+      ]
+    },
+    {
+      "id": "mcp-spec-2026-07-28-final",
+      "title": "The 2026-07-28 MCP Specification",
+      "description": "Model Context Protocol's headline spec update: a stateless protocol core (removing the initialize/initialized handshake and Mcp-Session-Id), Multi Round-Trip Requests, header-based gateway routing, cacheable list results, hardened authorization, and a new Extensions framework. All four Tier 1 SDKs (TypeScript, Python, Go, C#) support it, with a 12-month deprecation window for the old stateful core.",
+      "url": "https://blog.modelcontextprotocol.io/posts/2026-07-28/",
+      "source": "Model Context Protocol Blog",
+      "category": "tooling",
+      "significance": "high",
+      "published": "2026-07-28",
+      "date_added": "2026-08-07",
+      "topics": [
+        "mcp",
+        "protocol",
+        "tools",
+        "standards"
+      ]
+    },
+    {
+      "id": "simon-willison-stateless-mcp",
+      "title": "Stateless MCP has recaptured my interest (and inspired mcp-explorer and datasette-mcp)",
+      "description": "Simon Willison's take on the newly stateless MCP spec, arguing it's a safer, more auditable way to grant agents capabilities than raw shell access, alongside three new tools he built against it: mcp-explorer, datasette-mcp, and llm-mcp-client.",
+      "url": "https://simonwillison.net/2026/Jul/31/stateless-mcp/",
+      "source": "Simon Willison",
+      "category": "community",
+      "significance": "normal",
+      "published": "2026-07-31",
+      "date_added": "2026-08-07",
+      "topics": [
+        "mcp",
+        "agents",
+        "tooling"
+      ]
+    },
+    {
+      "id": "hermes-agent-v0-20-0-herald",
+      "title": "Hermes Agent v0.20.0 — The Herald Release",
+      "description": "Nous Research's largest Hermes Agent release to date: conversational voice with barge-in, Agent-to-Agent protocol support (A2A v1.0), signed outbound webhooks, grounded citations verified against source text, and a new desktop app platform with a plugin SDK. Roughly 3,650 commits and 650+ contributors since v0.19.0.",
+      "url": "https://github.com/NousResearch/hermes-agent/releases/tag/v2026.8.3",
+      "source": "GitHub",
+      "category": "agent-framework",
+      "significance": "high",
+      "published": "2026-08-03",
+      "date_added": "2026-08-07",
+      "topics": [
+        "hermes",
+        "open-source",
+        "a2a",
+        "voice"
+      ]
+    },
+    {
+      "id": "microsoft-agent-framework-harness-ga",
+      "title": "Microsoft Agent Framework Harness and Hosted Agents Reach General Availability",
+      "description": "Microsoft's Agent Framework Harness and Foundry Hosted Agents move from preview to GA, providing function invocation, context compaction, plan-and-execute todo lists, file memory, tool approval, and built-in OpenTelemetry — shifting the framework from an SDK for building agents to a governed runtime for operating them.",
+      "url": "https://www.infoq.com/news/2026/08/agent-framework-harness-ga/",
+      "source": "InfoQ",
+      "category": "agent-framework",
+      "significance": "normal",
+      "published": "2026-08-03",
+      "date_added": "2026-08-07",
+      "topics": [
+        "microsoft",
+        "agent-framework",
+        "harness",
+        "observability"
+      ]
+    },
+    {
+      "id": "agentic-context-management-arxiv-2607-21503",
+      "title": "Agentic Context Management: Solving Agent Memory and Cost by Treating Them as Lifecycle and Architecture Problems",
+      "description": "Argues that agent failures stem less from reasoning limits than from unmanaged context — conversation history, tool outputs, and prompts accumulating until token cost grows quadratically. Proposes five primitives (architecting, ingesting, scoping, anticipating, compacting) and a reference implementation, Maximem Synap, scoring 92% on LongMemEval and 93.2% on LoCoMo.",
+      "url": "https://arxiv.org/abs/2607.21503",
+      "source": "arXiv",
+      "category": "research",
+      "research_subcategory": "research-agents",
+      "significance": "normal",
+      "published": "2026-07-23",
+      "date_added": "2026-08-07",
+      "topics": [
+        "agent-memory",
+        "context-management",
+        "benchmarks"
+      ]
+    },
+    {
+      "id": "memarena-benchmark-arxiv-2608-02613",
+      "title": "MemArena: An Ego-Centric Benchmark for On-Device Agentic Personal Memory Assistants at Scale",
+      "description": "A conversational benchmark for edge-deployed personal memory assistants, built with the MASim simulator: 50 agents over 15 days generating 10.3M dialog tokens. Finds memory-backend choice affects accuracy more than model scale (up to +32.5pp), and that permission-aware access control fails universally across tested systems.",
+      "url": "https://arxiv.org/abs/2608.02613",
+      "source": "arXiv",
+      "category": "research",
+      "research_subcategory": "research-agents",
+      "significance": "normal",
+      "published": "2026-05-20",
+      "date_added": "2026-08-07",
+      "topics": [
+        "agent-memory",
+        "on-device",
+        "benchmark",
+        "personal-agents"
+      ]
+    },
+    {
+      "id": "stateful-governance-agentic-systems-arxiv-2608-02764",
+      "title": "Stateful Governance for Concurrent Agentic Systems",
+      "description": "Identifies a 'stale authorization' problem in agents executing consequential operations (refunds, provisioning, transfers): policy conditions can change between approval and execution. Proposes policy-state serializability and Provenact, a runtime that keeps policies as reviewable programs and proves committed effects were authorized against the policy state immediately before they occurred.",
+      "url": "https://arxiv.org/abs/2608.02764",
+      "source": "arXiv",
+      "category": "research",
+      "research_subcategory": "research-safety",
+      "significance": "normal",
+      "published": "2026-08-03",
+      "date_added": "2026-08-07",
+      "topics": [
+        "governance",
+        "authorization",
+        "multi-agent",
+        "safety"
+      ]
+    },
+    {
+      "id": "past-bench-arxiv-2608-04003",
+      "title": "PAST-Bench: Benchmarking the Foundations of Recursive Self-Improvement in Personal Agents",
+      "description": "Tests whether personal agents actually get better from retained cross-session experience, via 204 episodes across 26 scenarios spanning memory, procedural reuse, information gathering, and updating. Across seven base models and four frameworks, improvement is real but uneven; introduces Hermes+, a variant with targeted interventions to strengthen the learning loop.",
+      "url": "https://arxiv.org/abs/2608.04003",
+      "source": "arXiv",
+      "category": "research",
+      "research_subcategory": "research-benchmarks",
+      "significance": "normal",
+      "published": "2026-08-04",
+      "date_added": "2026-08-07",
+      "topics": [
+        "self-improvement",
+        "personal-agents",
+        "benchmark",
+        "memory"
+      ]
+    },
+    {
+      "id": "agentic-microscopy-benchmarks-arxiv-2608-05266",
+      "title": "Agentic self-driving microscopy benchmarks support qualification but do not necessarily generalize to unseen tasks",
+      "description": "Studies how architecture choices — LLM choice, number of agents, delegation rules, retrieval — affect agents controlling scientific instruments like microscopes and synchrotron beamlines. Finds that benchmark performance on trained tasks doesn't reliably predict generalization to unseen ones, an early paradigm-setting result for agentic control of physical lab infrastructure.",
+      "url": "https://arxiv.org/abs/2608.05266",
+      "source": "arXiv",
+      "category": "research",
+      "research_subcategory": "research-science",
+      "significance": "normal",
+      "published": "2026-08-05",
+      "date_added": "2026-08-07",
+      "topics": [
+        "agentic-science",
+        "robotics",
+        "benchmark",
+        "physical-infrastructure"
+      ]
+    },
+    {
+      "id": "agentltl-procedural-compliance-arxiv-2607-02599",
+      "title": "AgentLTL: A Trace-Verification Framework for Measuring, Enforcing, and Training Procedural Compliance in Tool-Using LLM Agents",
+      "description": "Introduces a language derived from First-Order Linear Temporal Logic that expresses procedural rules over agent execution traces, yielding a deterministic, judge-free compliance score — targeting safety-critical settings where how an answer was produced matters as much as whether it's correct.",
+      "url": "https://arxiv.org/abs/2607.02599",
+      "source": "arXiv",
+      "category": "research",
+      "research_subcategory": "research-agents",
+      "significance": "normal",
+      "published": "2026-07-01",
+      "date_added": "2026-08-07",
+      "topics": [
+        "tool-use",
+        "compliance",
+        "evaluation",
+        "formal-methods"
+      ]
+    },
+    {
+      "id": "biased-consensus-multiagent-debate-arxiv-2608-02827",
+      "title": "Emergence of Biased Consensus in Multi-Agent LLM Debates",
+      "description": "Shows multi-agent LLM debates can converge on biased collective norms even when individual models are less biased, identifying sampling temperature as a key driver, and proposes an analytical framework explaining how interaction amplifies single-model biases into group-level distortions.",
+      "url": "https://arxiv.org/abs/2608.02827",
+      "source": "arXiv",
+      "category": "research",
+      "research_subcategory": "research-safety",
+      "significance": "normal",
+      "published": "2026-08-03",
+      "date_added": "2026-08-07",
+      "topics": [
+        "multi-agent",
+        "debate",
+        "bias",
+        "fairness"
+      ]
+    },
+    {
+      "id": "pluralistic-ignorance-agent-populations-arxiv-2608-02758",
+      "title": "Everyone Conforms, No One Believes: Pluralistic Ignorance in LLM Agent Populations",
+      "description": "Finds that LLM-based multi-agent social simulations reproduce pluralistic ignorance — a majority privately rejecting a norm while publicly conforming, each believing they're alone in dissenting — a dynamic known to drive norm persistence and social movements in human populations.",
+      "url": "https://arxiv.org/abs/2608.02758",
+      "source": "arXiv",
+      "category": "research",
+      "research_subcategory": "research-agents",
+      "significance": "normal",
+      "published": "2026-08-03",
+      "date_added": "2026-08-07",
+      "topics": [
+        "multi-agent",
+        "social-simulation",
+        "emergent-behavior"
+      ]
+    },
+    {
+      "id": "maple-guard-memory-poisoning-arxiv-2608-00426",
+      "title": "MAPLE-Guard: Memory-Aware Link Enforcement Against Memory-Link Poisoning in Multi-Agent Systems",
+      "description": "Addresses a durable attack channel in multi-agent systems with persistent memory: a single poisoned write can be retrieved repeatedly, promoted to shared memory, and reused by agents that never saw the original attack — contaminating decisions long after the initial compromise.",
+      "url": "https://arxiv.org/abs/2608.00426",
+      "source": "arXiv",
+      "category": "research",
+      "research_subcategory": "research-safety",
+      "significance": "normal",
+      "published": "2026-08-01",
+      "date_added": "2026-08-07",
+      "topics": [
+        "memory-poisoning",
+        "multi-agent",
+        "security"
+      ]
+    },
+    {
+      "id": "agentic-rl-self-distilled-reward-shaping-arxiv-2608-03223",
+      "title": "Agentic Reinforcement Learning with Self-Distilled Reward Shaping",
+      "description": "Tackles credit assignment in agentic RL, where sparse trajectory-level rewards reveal success without identifying which intermediate decisions mattered. Uses a frozen policy snapshot to rescore skill-free trajectories against task-matched procedural skills, improving performance on long-horizon, multi-turn benchmarks.",
+      "url": "https://arxiv.org/abs/2608.03223",
+      "source": "arXiv",
+      "category": "research",
+      "research_subcategory": "research-training",
+      "significance": "normal",
+      "published": "2026-08-04",
+      "date_added": "2026-08-07",
+      "topics": [
+        "reinforcement-learning",
+        "credit-assignment",
+        "reward-shaping"
+      ]
+    },
+    {
+      "id": "trident-drl-cyber-defense-redteam-arxiv-2608-04317",
+      "title": "Trident: How to Break Deep Reinforcement Learning Cyber Defenses (Agentic)",
+      "description": "An agentic LLM red-teaming framework for autonomous cyber defense systems, built on a dynamic benchmark spanning CybORG CAGE 4 and CyberWheel with 13,000+ red-blue interaction trajectories, exposing that DRL-based defenses evaluated only against static heuristic attackers are largely untested against adaptive, RLVR-trained threats.",
+      "url": "https://arxiv.org/abs/2608.04317",
+      "source": "arXiv",
+      "category": "research",
+      "research_subcategory": "research-safety",
+      "significance": "normal",
+      "published": "2026-08-05",
+      "date_added": "2026-08-07",
+      "topics": [
+        "red-teaming",
+        "cybersecurity",
+        "reinforcement-learning",
+        "agentic"
+      ]
+    },
+    {
+      "id": "curate-reproducible-agent-workflows-arxiv-2608-04270",
+      "title": "CURATE: Leveraging LLM Agents to Compose, Catalog, and Deploy Reproducible Workflows",
+      "description": "Extends agentic code generation beyond one-off scripts toward composing, cataloging, and deploying reproducible scientific and engineering workflows, addressing a gap where existing coding agents generate code but don't manage it as a reusable, discoverable workflow artifact.",
+      "url": "https://arxiv.org/abs/2608.04270",
+      "source": "arXiv",
+      "category": "research",
+      "research_subcategory": "research-agents",
+      "significance": "normal",
+      "published": "2026-08-04",
+      "date_added": "2026-08-07",
+      "topics": [
+        "agentic-workflows",
+        "reproducibility",
+        "code-generation"
+      ]
     }
   ],
   "research_subcategories": [
